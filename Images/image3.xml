@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sensor>
+  <compass>
+    <north>323.85763549804687</north>
+  </compass>
+  <inclinometer>
+    <Pitch>67.1602249</Pitch>
+    <Roll>-3.16747284</Roll>
+    <Yaw>41.88279</Yaw>
+  </inclinometer>
+</sensor>
