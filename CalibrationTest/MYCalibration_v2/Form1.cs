@@ -534,7 +534,7 @@ namespace MYCalibration_v2
             {
 
                 Calibrate();
-                _currentCam = _calibratedCam;
+                //_currentCam = _calibratedCam;
                 Refresh();
 
             }
@@ -598,9 +598,16 @@ namespace MYCalibration_v2
                 case Keys.Space:
                     _currentCam.KeySpace();
                     break;
-                case Keys.Shift:
+                case Keys.X:
                     _currentCam.KeyShift();
                     break;
+                case Keys.I:
+                    _currentCam.ReinitializePosition();
+                    break;
+                case Keys.NumPad1:
+                    _currentCam.SetTarget(_calibratedCam._eye);
+                    break;
+
 
             }
             Refresh();

@@ -29,8 +29,8 @@ namespace MYCalibration_v2
         private int _height;
 
 
-        private float _angleV,_angleH, _tx, _ty, _tz ;
-        private Vector3 _target0, _up0;
+        private float _angleV, _angleH, _tx, _ty, _tz;
+        private Vector3 _target0, _up0, _eye0;
 
         public Calibration4points _calibration4P;
 
@@ -166,7 +166,7 @@ namespace MYCalibration_v2
                 GL.Vertex3(x, -y, 0.0f);
             }
 
-           
+
             GL.End();
 
             GL.Color3(1.0f, 1.0f, 1.0f);
@@ -206,7 +206,7 @@ namespace MYCalibration_v2
         {
             List<Vect2D> list2D = new List<Vect2D>();
 
-            foreach(Vector2  vector in lv2)
+            foreach (Vector2 vector in lv2)
             {
                 list2D.Add(Vect2D.ToVect2D(vector));
             }
@@ -244,7 +244,7 @@ namespace MYCalibration_v2
 
         public void SetLookat(Matrix4 lookatMatrix)
         {
-                _lookatMatrix = lookatMatrix;
+            _lookatMatrix = lookatMatrix;
         }
 
         public void UpdateLookAt()
@@ -257,7 +257,7 @@ namespace MYCalibration_v2
             this._eye = eye;
             this._target = target;
             this._up = up;
-          _lookatMatrix = Matrix4.LookAt(_eye, _target, _up);
+            _lookatMatrix = Matrix4.LookAt(_eye, _target, _up);
 
         }
 
@@ -278,9 +278,9 @@ namespace MYCalibration_v2
             if (_useDoubleMatrix)
                 _useDoubleMatrix = false;
 
-            this._projectionMatrix = projectionMatrix; 
+            this._projectionMatrix = projectionMatrix;
 
-            
+
 
         }
 
@@ -321,10 +321,10 @@ namespace MYCalibration_v2
 
         }
 
-        public void SetColor ( Color4 color)
-            {
+        public void SetColor(Color4 color)
+        {
             this._color = color;
-            }
+        }
 
         public void Draw()
         {
@@ -332,19 +332,19 @@ namespace MYCalibration_v2
             GL.Material(MaterialFace.FrontAndBack, MaterialParameter.Shininess, 128f);
             GL.Material(MaterialFace.FrontAndBack, MaterialParameter.Emission, new Color4(0.0f, 0.0f, 0.0f, 1.0f));
 
-            
+
             GL.Color4(_color);
-            
+
 
             Vector3 target = VectMove(this._eye, this._target, 1);
             Vector3 up = VectMove(this._eye, this._up, 1);
-            
-            
+
+
             Matrix4 rotationMat1 = Matrix4.CreateFromAxisAngle(this._target, (float)Math.PI / 2);
             Matrix4 rotationMat2 = Matrix4.CreateFromAxisAngle(this._target, (float)Math.PI / 4);
 
             Vector3 p0 = Vector3.Transform(this._up, rotationMat2);
-            
+
             Vector3 p1 = Vector3.Transform(p0, rotationMat1);
 
             Vector3 p2 = Vector3.Transform(p1, rotationMat1);
@@ -375,7 +375,7 @@ namespace MYCalibration_v2
 
             GL.End();
 
-           
+
             GL.Begin(BeginMode.Quads);
             //Face
             GL.Normal3(1.0f, 0.0f, 0.0f);
@@ -416,8 +416,8 @@ namespace MYCalibration_v2
 
             GL.Color3(1.0f, 1.0f, 1.0f);
 
-            
-            
+
+
         }
 
         private Vector3 VectMove(Vector3 p_point, Vector3 p_dir, double p_dist)
@@ -437,22 +437,23 @@ namespace MYCalibration_v2
             {
                 _target0 = this._target;
                 _up0 = this._up;
+                _eye0 = _eye;
                 _angleV = 0;
                 _angleH = 0;
                 _tx = 0;
                 _ty = 0;
                 _tz = 0;
             }
-            
+
         }
 
         #region EventKey
 
         #region Rotation
 
-        public void KeyUP ()
+        public void KeyUP()
         {
-            if(_controlEnabled)
+            if (_controlEnabled)
             {
                 _angleV--;
                 float radianAngle = (float)Math.PI * _angleV / 180;
@@ -477,15 +478,15 @@ namespace MYCalibration_v2
         {
             if (_controlEnabled)
             {
-               
-                _angleV ++;
+
+                _angleV++;
                 float radianAngleV = (float)Math.PI * _angleV / 180;
                 float radianAngleH = (float)Math.PI * _angleH / 180;
 
                 Matrix4 rotY = Matrix4.CreateRotationY(radianAngleV);
                 Matrix4 rotZ = Matrix4.CreateRotationZ(radianAngleH);
                 Vector3 tmp1 = Vector3.Transform(this._eye, rotY);
-                        tmp1 = Vector3.Transform(tmp1, rotZ);
+                tmp1 = Vector3.Transform(tmp1, rotZ);
                 Vector3 tmp2 = _target0 - tmp1;
                 this._target = tmp2 + this._eye;
                 this._up = Vector3.Transform(_up0, rotY);
@@ -548,14 +549,15 @@ namespace MYCalibration_v2
         //anvancer
         public void KeyZ()
         {
-            if(_controlEnabled)
+            if (_controlEnabled)
             {
-                _tx = 0;
-                _tx++;
-                this._eye = this._eye + new Vector3(1.0f, 0.0f, 0.0f);
+                Vector3 translation = new Vector3(1.0f, 0.0f, 0.0f);
+                this._eye = this._eye + translation;
+                this._target = this._target + translation;
+                
                 UpdateLookAt();
             }
-            
+
         }
 
         //Reculer
@@ -563,12 +565,13 @@ namespace MYCalibration_v2
         {
             if (_controlEnabled)
             {
-                _tx = 0;
-                _tx--;
-                this._eye = this._eye + new Vector3(-1.0f, 0.0f, 0.0f);
+                Vector3 translation = new Vector3(-1.0f, 0.0f, 0.0f);
+                this._eye = this._eye + translation;
+                this._target = this._target + translation;
+                
                 UpdateLookAt();
             }
-           
+
         }
 
         //Gauche
@@ -576,11 +579,13 @@ namespace MYCalibration_v2
         {
             if (_controlEnabled)
             {
-                _ty++;
-                this._eye = this._eye + new Vector3(0.0f, 1.0f, 0.0f);
+                Vector3 translation = new Vector3(0.0f, 1.0f, 0.0f);
+                this._eye = this._eye + translation;
+                this._target = this._target + translation;
+                
                 UpdateLookAt();
             }
-           
+
         }
 
         //Droite
@@ -588,11 +593,13 @@ namespace MYCalibration_v2
         {
             if (_controlEnabled)
             {
-                _ty--;
-                this._eye = this._eye + new Vector3(0.0f, -1.0f, 0.0f);
+                Vector3 translation = new Vector3(0.0f, -1.0f, 0.0f);
+                this._eye = this._eye + translation;
+                this._target = this._target + translation;
+                
                 UpdateLookAt();
             }
-            
+
         }
 
         //Monter
@@ -600,11 +607,13 @@ namespace MYCalibration_v2
         {
             if (_controlEnabled)
             {
-                _tz++;
-                this._eye = this._eye + new Vector3(0.0f, 0.0f, 1.0f);
+                Vector3 translation = new Vector3(0.0f, 0.0f, 1.0f);
+                this._eye = this._eye + translation;
+                this._target = this._target + translation;
+                
                 UpdateLookAt();
             }
-            
+
         }
 
         //Descendre
@@ -612,11 +621,39 @@ namespace MYCalibration_v2
         {
             if (_controlEnabled)
             {
-                _tz--;
-                this._eye = this._eye + new Vector3(0.0f, 0.0f, 1.0f);
+                Vector3 translation = new Vector3(0.0f, 0.0f, -1.0f);
+                this._eye = this._eye + translation;
+                this._target = this._target + translation;
+                
                 UpdateLookAt();
             }
-           
+
+        }
+        #endregion
+
+        #region reinitialisation
+        public void ReinitializePosition()
+        {
+            if (_controlEnabled)
+            {
+                this._eye = _eye0;
+                this._target = _target0;
+                this._up = _up0;
+                this._angleH = 0;
+                this._angleV = 0;
+                UpdateLookAt();
+            }
+        }
+        #endregion
+
+        #region SetTarget
+        public void SetTarget(Vector3 target)
+        {
+            if (_controlEnabled)
+            {
+                this._target = target;
+                UpdateLookAt();
+            }
         }
         #endregion
 
