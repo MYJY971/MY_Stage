@@ -10,23 +10,23 @@ using System.Drawing;
 
 using CalibrationLibrary;
 
-namespace MYCalibration_v2
+namespace MYCalibration_v3
 {
     class Camera
     {
-        private Matrix4 _projectionMatrix;
-        private Matrix4 _lookatMatrix;
+        protected Matrix4 _projectionMatrix;
+        protected Matrix4 _lookatMatrix;
         private double[] _projectionMatrixDouble;
         private int _type; //0 projection ortho, 1 projection perspective
         public Vector3 _eye, _target, _up;
         private bool _isPerspective;
-        private Color4 _color;
+        protected Color4 _color;
         private bool _useDoubleMatrix;
         public bool _isCalibrated;
-        private bool _controlEnabled;
-        private int _backgroundTextureId;
-        private int _width;
-        private int _height;
+        protected bool _controlEnabled;
+        protected int _backgroundTextureId;
+        protected int _width;
+        protected int _height;
         private Camera _target1, _target2;
 
         private float _angleV, _angleH, _tx, _ty, _tz;
@@ -684,6 +684,15 @@ namespace MYCalibration_v2
         {
             this._target1 = t1;
             this._target2 = t2;
+        }
+
+        public int GetWidth()
+        {
+            return this._width;
+        }
+        public int GetHeight()
+        {
+            return this._height;
         }
     }
 }
