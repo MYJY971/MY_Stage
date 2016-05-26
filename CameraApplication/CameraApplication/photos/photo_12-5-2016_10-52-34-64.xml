@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sensor>
+  <compass>
+    <north>0</north>
+  </compass>
+  <inclinometer>
+    <Pitch>0</Pitch>
+    <Roll>0</Roll>
+    <Yaw>0</Yaw>
+  </inclinometer>
+</sensor>

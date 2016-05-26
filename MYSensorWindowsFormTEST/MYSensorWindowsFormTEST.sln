@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYSensorWindowsFormTEST", "MYSensorWindowsFormTEST.csproj", "{4BF80DFA-0B0A-476A-B5D1-1C69E1946A6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorConsole", "..\SensorConsole\SensorConsole.csproj", "{F124D428-4DB6-4959-9116-20E0F9D25738}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTestOpenGl", "..\MYTestOpenGl\MYTestOpenGl.csproj", "{69FD1673-1580-499D-A37C-121B4E6D2992}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testMatrice", "..\testMatrice\testMatrice.csproj", "{73631C57-1FEF-404C-821A-46FBF717A66B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSML", "..\CSML\CSML.csproj", "{CCFC3AAA-86D7-4900-8A59-33DAB19A1235}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTestOpenGlV2", "..\MYTestOpenGlV2\MYTestOpenGlV2.csproj", "{04C032A6-1285-483D-9ADE-C0E2B355BB08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MYTestOpenGlv3", "..\MYTestOpenGlv3\MYTestOpenGlv3.csproj", "{F96C54BC-EACF-41D8-8FA4-853BD9DFBDC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BF80DFA-0B0A-476A-B5D1-1C69E1946A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF80DFA-0B0A-476A-B5D1-1C69E1946A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF80DFA-0B0A-476A-B5D1-1C69E1946A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF80DFA-0B0A-476A-B5D1-1C69E1946A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F124D428-4DB6-4959-9116-20E0F9D25738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F124D428-4DB6-4959-9116-20E0F9D25738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F124D428-4DB6-4959-9116-20E0F9D25738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F124D428-4DB6-4959-9116-20E0F9D25738}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69FD1673-1580-499D-A37C-121B4E6D2992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69FD1673-1580-499D-A37C-121B4E6D2992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69FD1673-1580-499D-A37C-121B4E6D2992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69FD1673-1580-499D-A37C-121B4E6D2992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73631C57-1FEF-404C-821A-46FBF717A66B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73631C57-1FEF-404C-821A-46FBF717A66B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73631C57-1FEF-404C-821A-46FBF717A66B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73631C57-1FEF-404C-821A-46FBF717A66B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCFC3AAA-86D7-4900-8A59-33DAB19A1235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCFC3AAA-86D7-4900-8A59-33DAB19A1235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCFC3AAA-86D7-4900-8A59-33DAB19A1235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCFC3AAA-86D7-4900-8A59-33DAB19A1235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04C032A6-1285-483D-9ADE-C0E2B355BB08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C032A6-1285-483D-9ADE-C0E2B355BB08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C032A6-1285-483D-9ADE-C0E2B355BB08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04C032A6-1285-483D-9ADE-C0E2B355BB08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F96C54BC-EACF-41D8-8FA4-853BD9DFBDC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F96C54BC-EACF-41D8-8FA4-853BD9DFBDC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F96C54BC-EACF-41D8-8FA4-853BD9DFBDC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F96C54BC-EACF-41D8-8FA4-853BD9DFBDC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

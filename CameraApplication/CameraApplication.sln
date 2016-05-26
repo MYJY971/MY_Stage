@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraApplication", "CameraApplication\CameraApplication.csproj", "{AFD2099A-414F-4083-83F1-CE48A586674E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraCapture", "..\..\Librairies\Emgu\emgucv-windesktop 3.1.0.2282\Emgu.CV.Example\CameraCapture\CameraCapture.csproj", "{5F6B97F8-7EA6-4B5D-9A5D-F5581505C303}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenCVHelloWorld", "OpenCVHelloWorld\OpenCVHelloWorld.csproj", "{3A92DC52-F2E4-450E-80B2-857B2FD68CCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenCVCamera", "OpenCVCamera\OpenCVCamera.csproj", "{3BC8A133-2283-4C06-AE19-097EEBEB7059}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFD2099A-414F-4083-83F1-CE48A586674E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFD2099A-414F-4083-83F1-CE48A586674E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFD2099A-414F-4083-83F1-CE48A586674E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFD2099A-414F-4083-83F1-CE48A586674E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F6B97F8-7EA6-4B5D-9A5D-F5581505C303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F6B97F8-7EA6-4B5D-9A5D-F5581505C303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F6B97F8-7EA6-4B5D-9A5D-F5581505C303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F6B97F8-7EA6-4B5D-9A5D-F5581505C303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A92DC52-F2E4-450E-80B2-857B2FD68CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A92DC52-F2E4-450E-80B2-857B2FD68CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A92DC52-F2E4-450E-80B2-857B2FD68CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A92DC52-F2E4-450E-80B2-857B2FD68CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BC8A133-2283-4C06-AE19-097EEBEB7059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BC8A133-2283-4C06-AE19-097EEBEB7059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BC8A133-2283-4C06-AE19-097EEBEB7059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BC8A133-2283-4C06-AE19-097EEBEB7059}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
