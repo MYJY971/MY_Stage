@@ -83,7 +83,22 @@ namespace MYCalibration_v3
 
         }
 
+        public void SetCalibrationFalse()
+        {
+            _isCalibrated = false;
+            _calibration4P._eyePosition = Vect3D.ToVect3D(this._eye);
+            _calibration4P._targetPosition = Vect3D.ToVect3D(this._target);
+            _calibration4P._upVector = Vect3D.ToVect3D(this._up);
+        }
+
 
         #endregion
+
+        public override void ReinitializePosition()
+        {
+            SetDefaultProjection(this._width, this._height);
+            SetCalibrationFalse();
+            this._useDoubleMatrix = false;
+        }
     }
 }

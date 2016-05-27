@@ -379,7 +379,7 @@ namespace MYCalibration_v3
 
         public override void ReinitializePosition()
         {
-            SetDefaultProjection(this._width, this._height);
+            return;
         }
 
 

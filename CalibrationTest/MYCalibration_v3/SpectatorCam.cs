@@ -65,6 +65,7 @@ namespace MYCalibration_v3
 
             //_observedCam1.Projection();
             //_observedCam1.LookAt();
+            //_observedCam1.LookAt();
             _observedCam1.DrawPlan(colorP1);
             //_observedCam2.Projection();
             //_observedCam2.LookAt();

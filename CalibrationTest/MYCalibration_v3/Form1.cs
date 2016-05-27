@@ -62,8 +62,8 @@ namespace MYCalibration_v3
             glControl1.Size = imageSize;
             //glControl1.Width = imageSize.Width / 2;
             //glControl1.Height = imageSize.Height / 2;
-            
-            int w = glControl1.Width;
+
+            /*int w = glControl1.Width;
             int h = glControl1.Height;
 
             _calibratedCam = new CalibrationCam(w, h, _eye, _target, _up); //new neoClassicCam(w, h, _eye,_target,_up);
@@ -78,7 +78,9 @@ namespace MYCalibration_v3
 
             _spectatorCam = new SpectatorCam(w, h, _eye, _target, _up, _calibratedCam, _surfaceCam); 
             
-            _currentCam = _calibratedCam;
+            _currentCam = _calibratedCam;*/
+
+            initCameras();
 
             SetImagePoints();
             Set3DPoints();
@@ -211,7 +213,11 @@ namespace MYCalibration_v3
             GL.Translate(0.0f, -3.0f, 0.0f); 
             GL.Rotate(-_angle, Vector3d.UnitZ);*/
 
+            //Matrix4 rot = Matrix4.CreateRotationZ((float)Math.PI / 2);
+
+            GL.Rotate(-90, Vector3d.UnitZ);
             DrawTrihedral();
+            GL.Rotate(90, Vector3d.UnitZ);
 
             DrawQuad();
 
@@ -221,7 +227,7 @@ namespace MYCalibration_v3
             //_calibratedCam.Draw();
             //_calibratedCam.DrawPlan(Color4.White);
             _currentCam.Draw();
-            _currentCam.DrawPlan(new Color4(0.0f,1.0f,0.0f,1.0f));
+            _currentCam.DrawPlan(new Color4(1.0f,1.0f,1.0f,1.0f));
 
             //DrawCamera();
         }
@@ -411,7 +417,7 @@ namespace MYCalibration_v3
 
             float[] l_couleur = new float[4];
             float l_shin;
-            float l_lenghAxis = 0.1f;
+            float l_lenghAxis = 1.1f;
             float l_flecheW = 0.01f; float l_flecheH = 0.005f;
 
             // axe X
@@ -425,7 +431,7 @@ namespace MYCalibration_v3
             GL.Material(MaterialFace.FrontAndBack, MaterialParameter.Emission, @l_couleur);
 
             GL.Begin(BeginMode.LineStrip);
-            GL.Vertex3(0.0f, 0.0f, -0.0001f);
+            GL.Vertex3(0.0f, 0.0f, 0.0001f);
             GL.Vertex3(l_lenghAxis, 0.0f, 0.0f);
             GL.End();
 
@@ -449,7 +455,7 @@ namespace MYCalibration_v3
 
             GL.Begin(BeginMode.LineStrip);
             GL.Vertex3(0.0f, 0.0f, 0.0f);
-            GL.Vertex3(0.0f, l_lenghAxis, -0.0001f);
+            GL.Vertex3(0.0f, l_lenghAxis, 0.0001f);
             GL.End();
             // pointe axe Y
             GL.Begin(BeginMode.LineStrip);
@@ -552,14 +558,15 @@ namespace MYCalibration_v3
                 Size imageSize;
                 _backgroundTextureId = TexUtil.CreateTextureFromFile(openFile.FileName, out imageSize);
                 glControl1.Size = imageSize;
-                _calibratedCam.SetBackgroundTextureId(_backgroundTextureId);
+                /*_calibratedCam.SetBackgroundTextureId(_backgroundTextureId);
                 _surfaceCam.SetBackgroundTextureId(_backgroundTextureId);
                 //glControl1.Width = imageSize.Width / 2;
-                //glControl1.Height = imageSize.Height / 2;
+                //glControl1.Height = imageSize.Height / 2;*/
                 _listImagePoints = new List<Vector2>();
-                _calibratedCam._isCalibrated = false;
+                /*_calibratedCam._isCalibrated = false;
                 _calibratedCam.SetLookat(_eye, _target, _up);
-                _surfaceCam.SetLookat(_eye, _target, _up);
+                _surfaceCam.SetLookat(_eye, _target, _up);*/
+                initCameras();
 
                 Refresh();
             }
@@ -577,7 +584,7 @@ namespace MYCalibration_v3
             {
 
                 Calibrate();
-                //_currentCam = _calibratedCam;
+                
                 Refresh();
 
             }
@@ -587,11 +594,12 @@ namespace MYCalibration_v3
         private void buttonReinit_Click(object sender, EventArgs e)
         {
             _listImagePoints = new List<Vector2>();
-            _calibratedCam._isCalibrated = false;
-            _calibratedCam.SetLookat(_eye, _target, _up);
+            //_calibratedCam._isCalibrated = false;
+            /*_calibratedCam.SetLookat(_eye, _target, _up);
             _calibratedCam.ReinitializePosition();
             _surfaceCam.SetLookat(_eye, _target, _up);
-            _currentCam = _calibratedCam;
+            _currentCam = _calibratedCam;*/
+            initCameras();
             Refresh();
         }
 
@@ -676,7 +684,25 @@ namespace MYCalibration_v3
 
         #endregion
 
+        public void initCameras()
+        {
+            int w = glControl1.Width;
+            int h = glControl1.Height;
 
+            _calibratedCam = new CalibrationCam(w, h, _eye, _target, _up); //new neoClassicCam(w, h, _eye,_target,_up);
+            _calibratedCam.SetColor(Color.BlueViolet);
+            _calibratedCam.SetBackgroundTextureId(_backgroundTextureId);
+
+
+
+            _surfaceCam = new ClassicCam(w, h, _eye, _target, _up);
+            _surfaceCam.SetColor(Color.Azure);
+            _surfaceCam.SetBackgroundTextureId(_backgroundTextureId);
+
+            _spectatorCam = new SpectatorCam(w, h, _eye, _target, _up, _calibratedCam, _surfaceCam);
+
+            _currentCam = _calibratedCam;
+        }
 
 
 
