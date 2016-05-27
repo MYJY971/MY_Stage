@@ -52,19 +52,25 @@ namespace MYCalibration_v3
         #endregion
 
         #region Draw
+        public override void Draw()
+        {
+            _observedCam1.Draw();
+            _observedCam2.Draw();
+        }
+
         public override void DrawPlan(Color4 color)
         {
             Color4 colorP1 = color;
             Color4 colorP2 = new Color4(1 - colorP1.R, 1 - colorP1.G, 1 - colorP1.B, 1.0f);
 
-            _observedCam1.Projection();
-            _observedCam1.LookAt();
+            //_observedCam1.Projection();
+            //_observedCam1.LookAt();
             _observedCam1.DrawPlan(colorP1);
-            _observedCam2.Projection();
-            _observedCam2.LookAt();
+            //_observedCam2.Projection();
+            //_observedCam2.LookAt();
             _observedCam2.DrawPlan(colorP2);
-            Projection();
-            LookAt();
+            //Projection();
+            //LookAt();
         }
         #endregion
 
@@ -230,7 +236,7 @@ namespace MYCalibration_v3
 
         public override void LookCam(Camera cam)
         {
-            this._target = cam._target;
+            this._target = cam._eye;
             UpdateLookAt();
         }
         #endregion
