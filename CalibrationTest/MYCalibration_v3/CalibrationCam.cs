@@ -29,7 +29,7 @@ namespace MYCalibration_v3
             this._eye = eye;
             this._target = target;
             this._up = up;
-            _calibration4P = new Calibration4points();
+            _calibration4P = new Calibration4points((int)width, (int)height, Vect3D.ToVect3D(this._eye), Vect3D.ToVect3D(this._target), Vect3D.ToVect3D(this._up));
         }
 
         #endregion

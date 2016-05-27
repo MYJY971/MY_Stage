@@ -215,11 +215,12 @@ namespace MYCalibration_v3
 
             DrawQuad();
 
-            
-            _surfaceCam.Draw();
+
+            //_surfaceCam.Draw();
             //_surfaceCam.DrawPlan(Color4.Red);
-            _calibratedCam.Draw();
+            //_calibratedCam.Draw();
             //_calibratedCam.DrawPlan(Color4.White);
+            _currentCam.Draw();
             _currentCam.DrawPlan(new Color4(0.0f,1.0f,0.0f,1.0f));
 
             //DrawCamera();
@@ -586,9 +587,11 @@ namespace MYCalibration_v3
         private void buttonReinit_Click(object sender, EventArgs e)
         {
             _listImagePoints = new List<Vector2>();
-            _currentCam._isCalibrated = false;
+            _calibratedCam._isCalibrated = false;
             _calibratedCam.SetLookat(_eye, _target, _up);
+            _calibratedCam.ReinitializePosition();
             _surfaceCam.SetLookat(_eye, _target, _up);
+            _currentCam = _calibratedCam;
             Refresh();
         }
 
