@@ -1,0 +1,9 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CameraApplication\OpenCVHelloWorld\bin\Debug\OpenCVHelloWorld.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CameraApplication\OpenCVHelloWorld\bin\Debug\OpenCVHelloWorld.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CameraApplication\OpenCVHelloWorld\bin\Debug\OpenCVHelloWorld.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CameraApplication\OpenCVHelloWorld\bin\Debug\Emgu.CV.World.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CameraApplication\OpenCVHelloWorld\bin\Debug\Emgu.CV.World.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CameraApplication\OpenCVHelloWorld\bin\Debug\Emgu.CV.World.xml
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CameraApplication\OpenCVHelloWorld\obj\Debug\OpenCVHelloWorld.csprojResolveAssemblyReference.cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CameraApplication\OpenCVHelloWorld\obj\Debug\OpenCVHelloWorld.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CameraApplication\OpenCVHelloWorld\obj\Debug\OpenCVHelloWorld.pdb

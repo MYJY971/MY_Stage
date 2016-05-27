@@ -1,0 +1,6 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\readXml\bin\Debug\readXml.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\readXml\bin\Debug\readXml.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\readXml\bin\Debug\readXml.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\readXml\obj\Debug\readXml.csprojResolveAssemblyReference.cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\readXml\obj\Debug\readXml.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\readXml\obj\Debug\readXml.pdb

@@ -1,0 +1,14 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\bin\Debug\TextureTest.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\bin\Debug\TextureTest.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\bin\Debug\TextureTest.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\bin\Debug\OpenTK.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\bin\Debug\OpenTK.GLControl.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\bin\Debug\OpenTK.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\bin\Debug\OpenTK.xml
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\bin\Debug\OpenTK.GLControl.xml
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\obj\Debug\TextureTest.csprojResolveAssemblyReference.cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\obj\Debug\TextureTest.Form1.resources
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\obj\Debug\TextureTest.Properties.Resources.resources
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\obj\Debug\TextureTest.csproj.GenerateResource.Cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\obj\Debug\TextureTest.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\TextureTest\obj\Debug\TextureTest.pdb

@@ -1,0 +1,9 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\testOpenTK\bin\Debug\testOpenTK.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\testOpenTK\bin\Debug\testOpenTK.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\testOpenTK\bin\Debug\testOpenTK.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\testOpenTK\bin\Debug\OpenTK.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\testOpenTK\bin\Debug\OpenTK.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\testOpenTK\bin\Debug\OpenTK.xml
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\testOpenTK\obj\Debug\testOpenTK.csprojResolveAssemblyReference.cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\testOpenTK\obj\Debug\testOpenTK.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\testOpenTK\obj\Debug\testOpenTK.pdb

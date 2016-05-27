@@ -1,0 +1,16 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\bin\Debug\MYCalibrationTest.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\bin\Debug\MYCalibrationTest.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\bin\Debug\MYCalibrationTest.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\obj\Debug\MYCalibrationTest.Properties.Resources.resources
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\obj\Debug\MYCalibrationTest.csproj.GenerateResource.Cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\obj\Debug\MYCalibrationTest.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\obj\Debug\MYCalibrationTest.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\bin\Debug\OpenTK.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\bin\Debug\OpenTK.GLControl.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\bin\Debug\OpenTK.xml
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\bin\Debug\OpenTK.GLControl.xml
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\obj\Debug\MYCalibrationTest.Form1.resources
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\bin\Debug\openCV.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\obj\Debug\MYCalibrationTest.csprojResolveAssemblyReference.cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\bin\Debug\openCV.xml
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationTest\bin\Debug\OpenTK.pdb

@@ -1,0 +1,5 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CSML\bin\Debug\CSML.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CSML\bin\Debug\CSML.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CSML\bin\Debug\CSML.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CSML\obj\Debug\CSML.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CSML\obj\Debug\CSML.pdb

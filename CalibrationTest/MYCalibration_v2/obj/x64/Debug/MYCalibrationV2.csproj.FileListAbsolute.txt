@@ -1,0 +1,12 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\bin\x64\Debug\MYCalibrationV2.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\bin\x64\Debug\MYCalibrationV2.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\bin\x64\Debug\MYCalibrationV2.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\bin\x64\Debug\openCV.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\bin\x64\Debug\OpenTK.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\bin\x64\Debug\OpenTK.GLControl.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\obj\x64\Debug\MYCalibrationV2.Form1.resources
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\obj\x64\Debug\MYCalibrationV2.Properties.Resources.resources
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\obj\x64\Debug\MYCalibrationV2.csproj.GenerateResource.Cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\obj\x64\Debug\MYCalibrationV2.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\obj\x64\Debug\MYCalibrationV2.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibrationV2\obj\x64\Debug\MYCalibrationV2.csprojResolveAssemblyReference.cache

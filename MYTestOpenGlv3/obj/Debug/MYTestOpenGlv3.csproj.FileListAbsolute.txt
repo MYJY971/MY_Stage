@@ -1,0 +1,14 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\bin\Debug\MYTestOpenGlv3.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\bin\Debug\MYTestOpenGlv3.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\bin\Debug\MYTestOpenGlv3.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\bin\Debug\System.Runtime.WindowsRuntime.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\bin\Debug\Tao.FreeGlut.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\bin\Debug\Tao.OpenGl.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\bin\Debug\Tao.Platform.Windows.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\bin\Debug\System.Runtime.WindowsRuntime.xml
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\obj\Debug\MYTestOpenGlv3.Form1.resources
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\obj\Debug\MYTestOpenGlv3.Properties.Resources.resources
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\obj\Debug\MYTestOpenGlv3.csproj.GenerateResource.Cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\obj\Debug\MYTestOpenGlv3.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\obj\Debug\MYTestOpenGlv3.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGlv3\obj\Debug\MYTestOpenGlv3.csprojResolveAssemblyReference.cache

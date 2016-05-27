@@ -1,0 +1,14 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\bin\Debug\OpenTKWinfowsForm.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\bin\Debug\OpenTKWinfowsForm.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\bin\Debug\OpenTKWinfowsForm.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\bin\Debug\OpenTK.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\bin\Debug\OpenTK.GLControl.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\bin\Debug\OpenTK.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\bin\Debug\OpenTK.xml
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\bin\Debug\OpenTK.GLControl.xml
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\obj\Debug\OpenTKWinfowsForm.Form1.resources
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\obj\Debug\OpenTKWinfowsForm.Properties.Resources.resources
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\obj\Debug\OpenTKWinfowsForm.csproj.GenerateResource.Cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\obj\Debug\OpenTKWinfowsForm.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\obj\Debug\OpenTKWinfowsForm.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\OpenTKWinfowsForm\obj\Debug\OpenTKWinfowsForm.csprojResolveAssemblyReference.cache

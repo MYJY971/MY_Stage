@@ -1,0 +1,6 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\testMatrice\bin\Debug\testMatrice.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\testMatrice\bin\Debug\testMatrice.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\testMatrice\bin\Debug\testMatrice.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\testMatrice\obj\Debug\testMatrice.csprojResolveAssemblyReference.cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\testMatrice\obj\Debug\testMatrice.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\testMatrice\obj\Debug\testMatrice.pdb

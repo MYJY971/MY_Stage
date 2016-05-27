@@ -1,0 +1,12 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\bin\Debug\SensorConsole.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\bin\Debug\SensorConsole.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\bin\Debug\SensorConsole.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\obj\Debug\SensorConsole.csprojResolveAssemblyReference.cache
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\obj\Debug\SensorConsole.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\obj\Debug\SensorConsole.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\bin\Debug\System.Runtime.WindowsRuntime.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\bin\Debug\Tao.OpenGl.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\bin\Debug\Tao.Platform.Windows.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\bin\Debug\System.Runtime.WindowsRuntime.xml
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\bin\Debug\CSML.dll
+C:\Stage\Yanis\CSharp_projects\MY_Stage\SensorConsole\bin\Debug\CSML.pdb
