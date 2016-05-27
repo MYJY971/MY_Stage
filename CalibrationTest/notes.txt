@@ -1,0 +1,138 @@
+ #region Constructeurs
+
+        #endregion
+
+        #region Projection
+        public override void SetDefaultProjection(float width, float height)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Projection()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetPerspective(double[] projectionMatrix)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetPerspective(Matrix4 projectionMatrix)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region LookAt
+        public override void LookAt()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetLookat(Vector3 eye, Vector3 target, Vector3 up)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void UpdateLookAt()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region Background
+        public override void SetBackgroundTextureId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Background()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region DrawMethods
+        public override void SetColor(Color4 color)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Draw()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void DrawPlan(Color4 colorPlan)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region Calibration
+        public override void Calibrate(string calibrationPathFile, List<Vector2> listImagePoints, List<Vector3> listObjectPoints)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region Control
+
+        #region Rotation
+        public override void KeyDOWN()
+        {
+            throw new NotImplementedException();
+        }
+        public override void KeyLEFT()
+        {
+            throw new NotImplementedException();
+        }
+        public override void KeyRIGHT()
+        {
+            throw new NotImplementedException();
+        }
+        public override void KeyUP()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region translation
+        public override void KeyD()
+        {
+            throw new NotImplementedException();
+        }
+        public override void KeyQ()
+        {
+            throw new NotImplementedException();
+        }
+        public override void KeyS()
+        {
+            throw new NotImplementedException();
+        }
+        public override void KeySpace()
+        {
+            throw new NotImplementedException();
+        }
+        public override void KeyX()
+        {
+            throw new NotImplementedException();
+        }
+        public override void KeyZ()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        public override void ReinitializePosition()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SetObservedCam()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion

@@ -66,20 +66,18 @@ namespace MYCalibration_v3
             int w = glControl1.Width;
             int h = glControl1.Height;
 
-            _calibratedCam = new Camera(w, h, _eye,_target,_up);
+            _calibratedCam = new CalibrationCam(w, h, _eye, _target, _up); //new neoClassicCam(w, h, _eye,_target,_up);
             _calibratedCam.SetColor(Color.BlueViolet);
             _calibratedCam.SetBackgroundTextureId(_backgroundTextureId);
 
            
 
-            _surfaceCam = new Camera(w, h, _eye, _target, _up);
+            _surfaceCam = new ClassicCam(w, h, _eye, _target, _up);
             _surfaceCam.SetColor(Color.Azure);
             _surfaceCam.SetBackgroundTextureId(_backgroundTextureId);
 
-            _spectatorCam = new Camera(w, h, _eye, _target, _up);
-            _spectatorCam.SetControl(true);
-            _spectatorCam.SetTargets(_calibratedCam, _surfaceCam);
-
+            _spectatorCam = new SpectatorCam(w, h, _eye, _target, _up, _calibratedCam, _surfaceCam); 
+            
             _currentCam = _calibratedCam;
 
             SetImagePoints();
@@ -558,7 +556,7 @@ namespace MYCalibration_v3
                 //glControl1.Width = imageSize.Width / 2;
                 //glControl1.Height = imageSize.Height / 2;
                 _listImagePoints = new List<Vector2>();
-                _currentCam._isCalibrated = false;
+                _calibratedCam._isCalibrated = false;
                 _calibratedCam.SetLookat(_eye, _target, _up);
                 _surfaceCam.SetLookat(_eye, _target, _up);
 
@@ -651,16 +649,16 @@ namespace MYCalibration_v3
                     _currentCam.KeySpace();
                     break;
                 case Keys.X:
-                    _currentCam.KeyShift();
+                    _currentCam.KeyX();
                     break;
                 case Keys.I:
                     _currentCam.ReinitializePosition();
                     break;
                 case Keys.NumPad1:
-                    _currentCam.SetTarget(_calibratedCam._eye);
+                    _currentCam.LookCam(_calibratedCam);
                     break;
                 case Keys.NumPad2:
-                    _currentCam.SetTarget(_surfaceCam._eye);
+                    _currentCam.LookCam(_surfaceCam);
                     break;
 
 

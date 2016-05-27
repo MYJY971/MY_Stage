@@ -208,12 +208,13 @@ namespace MYCalibration_v2
                 this._target = _calibration4P._targetPosition.ToVector3();
                 this._up = _calibration4P._upVector.ToVector3();
 
-                _useDoubleMatrix = true;
+                //_useDoubleMatrix = true;
 
                 SetPerspective(_calibration4P._glProjectionMatrix);
 
                 //SetLookat(_calibration4P._modelView.toMatrix4());
-                SetLookat(this._eye, this._target, this._up);
+                //SetLookat(this._eye, this._target, this._up);
+                UpdateLookAt();
                 _isCalibrated = true;
             }
 

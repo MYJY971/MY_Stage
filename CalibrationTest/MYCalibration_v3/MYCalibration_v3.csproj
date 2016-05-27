@@ -79,7 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calibration4points.cs" />
+    <Compile Include="CalibrationCam.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="ClassicCam.cs" />
+    <Compile Include="neoClassicCam.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

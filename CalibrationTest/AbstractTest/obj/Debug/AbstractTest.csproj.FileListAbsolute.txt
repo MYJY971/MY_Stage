@@ -1,0 +1,6 @@
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\AbstractTest\bin\Debug\AbstractTest.exe.config
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\AbstractTest\bin\Debug\AbstractTest.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\AbstractTest\bin\Debug\AbstractTest.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\AbstractTest\obj\Debug\AbstractTest.exe
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\AbstractTest\obj\Debug\AbstractTest.pdb
+C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\AbstractTest\obj\Debug\AbstractTest.csprojResolveAssemblyReference.cache
