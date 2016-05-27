@@ -10,3 +10,6 @@ C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibration_v3\obj\x64
 C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibration_v3\obj\x64\Debug\MYCalibration_v3.csproj.GenerateResource.Cache
 C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibration_v3\obj\x64\Debug\MYCalibration_v3.exe
 C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibration_v3\obj\x64\Debug\MYCalibration_v3.pdb
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v3\bin\x64\Debug\MYCalibration_v3.exe.config
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v3\obj\x64\Debug\MYCalibration_v3.exe
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v3\obj\x64\Debug\MYCalibration_v3.pdb
