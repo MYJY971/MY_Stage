@@ -27,6 +27,14 @@ namespace AbstractTest
             c3.Calibrate();
             c3.Control();
 
+            string path1, path2;
+
+            path1 = "monPath.jpg";
+            path2 = path1.Substring(0, path1.Length - 3)+"xml";
+            
+
+            Console.WriteLine(path1);
+            Console.WriteLine(path2);
 
 
             Console.ReadLine();

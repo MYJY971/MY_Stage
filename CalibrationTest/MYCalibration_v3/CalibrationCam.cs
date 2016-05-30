@@ -26,9 +26,9 @@ namespace MYCalibration_v3
         public CalibrationCam(int width, int height, Vector3 eye, Vector3 target, Vector3 up)
             :base(width,height,eye,target,up)
         {
-            this._eye = eye;
+            /*this._eye = eye;
             this._target = target;
-            this._up = up;
+            this._up = up;*/
             _calibration4P = new Calibration4points((int)width, (int)height, Vect3D.ToVect3D(this._eye), Vect3D.ToVect3D(this._target), Vect3D.ToVect3D(this._up));
         }
 
@@ -73,9 +73,10 @@ namespace MYCalibration_v3
                 this._eye = _calibration4P._eyePosition.ToVector3();
                 this._target = _calibration4P._targetPosition.ToVector3();
                 this._up = _calibration4P._upVector.ToVector3();
-
+                
                 SetPerspective(_calibration4P._glProjectionMatrix);
 
+                //SetLookat(_calibration4P._modelView.toMatrix4());
                 UpdateLookAt();
 
                 _isCalibrated = true;

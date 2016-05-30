@@ -372,7 +372,7 @@ namespace CalibrationLibrary
             Vect3D target = Vect3D.Move(new Vect3D(_eyePosition.X, _eyePosition.Y, _eyePosition.Z), new Vect3D(ZVectorTransf.X, ZVectorTransf.Y, ZVectorTransf.Z), 20);
 
             this._targetPosition = target;
-
+            //this._eyePosition = new Vect3D(_eyePosition.X, _eyePosition.Y, _eyePosition.Z+1.0f);
             _modelView = Mat4.LookAt(_eyePosition, _targetPosition, _upVector);
 
             #endregion

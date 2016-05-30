@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalibrationLibrary
 {
-    public struct Vect4D //OpenTK Vector4
+    public struct Vect4D //opentk/Source/OpenTK/Math/
     {
         #region Fields
 

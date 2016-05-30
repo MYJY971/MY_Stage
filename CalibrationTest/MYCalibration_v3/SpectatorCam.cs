@@ -54,25 +54,28 @@ namespace MYCalibration_v3
         #region Draw
         public override void Draw()
         {
+            //_observedCam1.Projection();
+
             _observedCam1.Draw();
+            //_observedCam2.Projection();
             _observedCam2.Draw();
+            //Projection();
+            
         }
 
-        public override void DrawPlan(Color4 color)
+
+        /*public override void DrawPlan(Color4 color)
         {
             Color4 colorP1 = color;
             Color4 colorP2 = new Color4(1 - colorP1.R, 1 - colorP1.G, 1 - colorP1.B, 1.0f);
 
             //_observedCam1.Projection();
-            //_observedCam1.LookAt();
-            //_observedCam1.LookAt();
             _observedCam1.DrawPlan(colorP1);
             //_observedCam2.Projection();
-            //_observedCam2.LookAt();
             _observedCam2.DrawPlan(colorP2);
             //Projection();
             //LookAt();
-        }
+        }*/
         #endregion
 
         #region Control
@@ -97,39 +100,46 @@ namespace MYCalibration_v3
 
         public override void KeyLEFT()
         {
-            _angleH++;
+            _angleH+=5;
             float radianAngleV = (float)Math.PI * _angleV / 180;
             float radianAngleH = (float)Math.PI * _angleH / 180;
 
 
             Matrix4 rotY = Matrix4.CreateRotationY(radianAngleV);
             Matrix4 rotZ = Matrix4.CreateRotationZ(radianAngleH);
-
+            /*
             Vector3 tmp1 = Vector3.Transform(this._eye, rotZ);
             tmp1 = Vector3.Transform(tmp1, rotY);
             Vector3 tmp2 = _target0 - tmp1;
             this._target = tmp2 + this._eye;
-            this._up = Vector3.Transform(_up0, rotZ);
+            this._up = Vector3.Transform(_up0, rotZ);*/
+
+            this._eye = Vector3.Transform(this._eye0, rotZ);
+            this._up = Vector3.Transform(this._up0, rotZ);
 
             UpdateLookAt();
         }
 
         public override void KeyRIGHT()
         {
-            _angleH--;
+            _angleH-=5;
             float radianAngleV = (float)Math.PI * _angleV / 180;
             float radianAngleH = (float)Math.PI * _angleH / 180;
 
 
             Matrix4 rotY = Matrix4.CreateRotationY(radianAngleV);
             Matrix4 rotZ = Matrix4.CreateRotationZ(radianAngleH);
-
+            /*
             Vector3 tmp1 = Vector3.Transform(this._eye, rotZ);
             tmp1 = Vector3.Transform(tmp1, rotY);
             Vector3 tmp2 = _target0 - tmp1;
             this._target = tmp2 + this._eye;
             this._up = Vector3.Transform(_up0, rotZ);
+            */
+            this._eye = Vector3.Transform(this._eye0, rotZ);
+            this._up = Vector3.Transform(this._up0, rotZ);
 
+            
 
             UpdateLookAt();
         }
@@ -235,10 +245,42 @@ namespace MYCalibration_v3
             this._observedCam2 = cam2;
         }
 
-        public override void LookCam(Camera cam)
+        public override void LookCam(int numCam)
         {
-            this._target = cam._eye;
+            if (numCam == 0)
+                this._target = this._target0;
+            else
+                this._target = GetObservedCam(numCam)._eye;
+
             UpdateLookAt();
+        }
+
+        public override void ChangePerspective(int numCam)
+        {
+            Camera cam = GetObservedCam(numCam);
+
+            if (numCam == 0)
+            {
+                _useDoubleMatrix = false;
+                SetDefaultProjection(this._width, this._height);
+            }
+
+            else
+                if (cam._useDoubleMatrix)
+                SetPerspective(cam._projectionMatrixDouble);
+            else
+                SetPerspective(cam._projectionMatrix);
+            
+        }
+
+        private Camera GetObservedCam (int num)
+        {
+            if (num == 1)
+                return _observedCam1;
+            else if (num == 2)
+                return _observedCam2;
+            else
+                return this;
         }
         #endregion
 

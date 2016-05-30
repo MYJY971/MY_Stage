@@ -14,16 +14,17 @@ namespace MYCalibration_v3
 {
     public abstract class Camera
     {
-        protected Matrix4 _projectionMatrix;
+        public Matrix4 _projectionMatrix;
         protected Matrix4 _lookatMatrix;
-        protected double[] _projectionMatrixDouble;
+        public double[] _projectionMatrixDouble;
         public Vector3 _eye, _target, _up;
         protected Color4 _color;
-        protected bool _useDoubleMatrix;
+        public bool _useDoubleMatrix;
         protected int _backgroundTextureId;
         protected int _width;
         protected int _height;
         public bool _isCalibrated;
+        public List<Vector3> _listPlanPoints = new List<Vector3>();
 
         #region Projection
 
@@ -62,6 +63,8 @@ namespace MYCalibration_v3
         public abstract void KeyDOWN();
         public abstract void KeyRIGHT();
         public abstract void KeyLEFT();
+
+
         #endregion
 
         #region Translation
@@ -73,14 +76,18 @@ namespace MYCalibration_v3
         public abstract void KeyX();
 
         #endregion
+
         public abstract void ReinitializePosition();
 
+        public abstract void RotatePosition(Matrix4 matRotation);
 
         #endregion
 
         #region Spectator
         public abstract void SetObservedCams(Camera cam1, Camera cam2);
-        public abstract void LookCam(Camera cam);
+        public abstract void LookCam(int numCam);
+        public abstract void ChangePerspective(int numCam);
+
         #endregion
 
     }

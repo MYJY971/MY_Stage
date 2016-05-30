@@ -24,6 +24,8 @@ namespace MYCalibration_v3
         private int _width;
         private int _height;*/
 
+        
+
         #region Constructeurs
         public ClassicCam(int width, int height)
         {
@@ -37,6 +39,7 @@ namespace MYCalibration_v3
             this._color = Color.Silver;
             _useDoubleMatrix = false;
             _isCalibrated = false;
+            setPlanPoints();
 
         }
 
@@ -52,6 +55,7 @@ namespace MYCalibration_v3
             this._color = Color.Silver;
             _useDoubleMatrix = false;
             _isCalibrated = false;
+            setPlanPoints();
 
         }
         #endregion
@@ -110,6 +114,11 @@ namespace MYCalibration_v3
             this._target = target;
             this._up = up;
             _lookatMatrix = Matrix4.LookAt(_eye, _target, _up);
+        }
+
+        protected void SetLookat(Matrix4 lookatMatrix)
+        {
+            _lookatMatrix = lookatMatrix;
         }
 
         public override void UpdateLookAt()
@@ -201,13 +210,22 @@ namespace MYCalibration_v3
 
             GL.Color4(_color);
 
+            Vector3 targetAxis;
+            if(this._target==Vector3.Zero)
+            {
+                targetAxis = Vector3.UnitX;
+            }
+            else
+            {
+                targetAxis = this._target;
+            }
 
-            Vector3 target = VectMove(this._eye, this._target, 1);
+            Vector3 target = VectMove(this._eye, targetAxis, 1);
             Vector3 up = VectMove(this._eye, this._up, 1);
 
 
-            Matrix4 rotationMat1 = Matrix4.CreateFromAxisAngle(this._target, (float)Math.PI / 2);
-            Matrix4 rotationMat2 = Matrix4.CreateFromAxisAngle(this._target, (float)Math.PI / 4);
+            Matrix4 rotationMat1 = Matrix4.CreateFromAxisAngle(targetAxis, (float)Math.PI / 2);
+            Matrix4 rotationMat2 = Matrix4.CreateFromAxisAngle(targetAxis, (float)Math.PI / 4);
 
             Vector3 p0 = Vector3.Transform(this._up, rotationMat2);
 
@@ -223,7 +241,7 @@ namespace MYCalibration_v3
             p2 = VectMove(this._eye, p2, 1);
             p3 = VectMove(this._eye, p3, 1);
 
-            Vector3 p4 = VectMove(this._eye, -this._target, 1);
+            Vector3 p4 = VectMove(this._eye, -targetAxis, 1);
 
             GL.Begin(BeginMode.Lines);
 
@@ -285,34 +303,13 @@ namespace MYCalibration_v3
 
         public override void DrawPlan(Color4 colorPlan)
         {
+            
             GL.Color4(colorPlan);
             GL.Begin(BeginMode.Lines);
 
-            float x = 0.5f;
-            float y = 0.5f;
-
-            //horizontale
-            GL.Vertex3(-x, y, 0.0f);
-            GL.Vertex3(x, y, 0.0f);
-
-            for (int i = 0; i < 10; ++i)
+            foreach (Vector3 point in _listPlanPoints)
             {
-                y = y - 0.1f;
-                GL.Vertex3(-x, y, 0.0f);
-                GL.Vertex3(x, y, 0.0f);
-            }
-
-            y = 0.5f;
-
-            //Verticale
-            GL.Vertex3(x, y, 0.0f);
-            GL.Vertex3(x, -y, 0.0f);
-
-            for (int i = 0; i < 10; ++i)
-            {
-                x = x - 0.1f;
-                GL.Vertex3(x, y, 0.0f);
-                GL.Vertex3(x, -y, 0.0f);
+                GL.Vertex3(point.X, point.Y,point.Z);
             }
 
 
@@ -320,6 +317,39 @@ namespace MYCalibration_v3
 
             GL.Color3(1.0f, 1.0f, 1.0f);
         }
+
+        private void setPlanPoints()
+        {
+            float x = 0.5f;
+            float y = 0.5f;
+
+            //horizontale
+            _listPlanPoints.Add(new Vector3(-x, y, 0.0f));//GL.Vertex3(-x, y, 0.0f);
+            _listPlanPoints.Add(new Vector3(x, y, 0.0f)); //GL.Vertex3(x, y, 0.0f);
+
+            for (int i = 0; i < 10; ++i)
+            {
+                y = y - 0.1f;
+                _listPlanPoints.Add(new Vector3(-x, y, 0.0f));//GL.Vertex3(-x, y, 0.0f);
+                _listPlanPoints.Add(new Vector3(x, y, 0.0f)); //GL.Vertex3(x, y, 0.0f);
+            }
+
+            y = 0.5f;
+
+            //Verticale
+            _listPlanPoints.Add(new Vector3(x, y, 0.0f));// GL.Vertex3(x, y, 0.0f);
+            _listPlanPoints.Add(new Vector3(x, -y, 0.0f));// GL.Vertex3(x, -y, 0.0f);
+
+            for (int i = 0; i < 10; ++i)
+            {
+                x = x - 0.1f;
+                _listPlanPoints.Add(new Vector3(x, y, 0.0f));// GL.Vertex3(x, y, 0.0f);
+                _listPlanPoints.Add(new Vector3(x, -y, 0.0f));// GL.Vertex3(x, -y, 0.0f);
+            }
+
+            
+        }
+
         #endregion
 
         #region Calibration
@@ -382,6 +412,13 @@ namespace MYCalibration_v3
             return;
         }
 
+        public override void RotatePosition(Matrix4 matRotation)
+        {
+            this._eye = Vector3.Transform(this._eye, matRotation);
+            this._up = Vector3.Transform(this._up, matRotation);
+            this._target = Vector3.Transform(this._target, matRotation);
+            UpdateLookAt();
+        }
 
         #endregion
 
@@ -391,9 +428,14 @@ namespace MYCalibration_v3
             return;
         }
 
-        public override void LookCam(Camera cam)
+        public override void LookCam(int numCam)
         {
-            
+            return;
+        }
+
+        public override void ChangePerspective(int numCam)
+        {
+            return;
         }
 
         #endregion

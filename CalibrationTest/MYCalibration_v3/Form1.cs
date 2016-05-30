@@ -26,14 +26,13 @@ namespace MYCalibration_v3
         bool _initContextGLisOk = false;
         Color4 _background = new Color4(0.4f, 1.0f, 1.0f, 0.3f);
 
-        private Vector3 _eye = new Vector3(-10.0f, 0.0f, 0.0f);
+        private Vector3 _eye = new Vector3(-5.0f, 0.0f, 0.0f);
         private Vector3 _target = Vector3.Zero;
         private Vector3 _up = new Vector3(0.0f, 0.0f, 1.0f);
 
         private int _backgroundTextureId, _objectTextureId;
 
-        private float _mouseX, _mouseY;
-
+        private float _mouseX, _mouseY; 
         
 
         private List<Vector2> _listImagePoints = new List<Vector2>();
@@ -41,8 +40,12 @@ namespace MYCalibration_v3
 
         private String _calibrationPathFile = "../../calibration.xml";
 
+        private String _currentImagePath = "../../../photos/photo_26-5-2016_9-15-29-432";
+
         private Camera _calibratedCam,_surfaceCam, _spectatorCam, _currentCam;
 
+        //private Matrix4 _rotationSurface = new Matrix4();
+        //private bool _isRotated = false;
         
         public Form1()
         {
@@ -57,7 +60,7 @@ namespace MYCalibration_v3
             glControl1.Resize += glControl1_Resize;
 
             Size imageSize;
-            _backgroundTextureId = TexUtil.CreateTextureFromFile("../../../photos/photo_26-5-2016_9-15-29-432.jpg", out imageSize);
+            _backgroundTextureId = TexUtil.CreateTextureFromFile(_currentImagePath+".jpg", out imageSize);
             _objectTextureId = TexUtil.CreateTextureFromFile("../../../photos/texture.png");
             glControl1.Size = imageSize;
             //glControl1.Width = imageSize.Width / 2;
@@ -80,7 +83,10 @@ namespace MYCalibration_v3
             
             _currentCam = _calibratedCam;*/
 
+
             initCameras();
+
+            
 
             SetImagePoints();
             Set3DPoints();
@@ -167,7 +173,7 @@ namespace MYCalibration_v3
             _currentCam.Projection();
 
             _currentCam.LookAt();
-
+            GL.Scale(1, 1, -1);
             //Draw the scene
             DrawScene();
 
@@ -190,14 +196,10 @@ namespace MYCalibration_v3
             GL.Begin(BeginMode.Quads);
 
 
-            GL.TexCoord2(0, 1);//1,1 //1, 0 //0, 0  //0, 1 //1, 1
-            GL.Vertex2(0, 0);
-            GL.TexCoord2(1, 1);//0,1 //1, 1 //1, 0  //0, 0 //0, 1  
-            GL.Vertex2(w, 0);
-            GL.TexCoord2(1, 0);//0,0 //0, 1 //1, 1  //1, 0 //0, 0
-            GL.Vertex2(w, h);
-            GL.TexCoord2(0, 0);//1,0 //0, 0 //0, 1 //1, 1 //1, 0
-            GL.Vertex2(0, h);
+            GL.TexCoord2(0, 1);GL.Vertex2(0, 0);
+            GL.TexCoord2(1, 1);GL.Vertex2(w, 0);
+            GL.TexCoord2(1, 0);GL.Vertex2(w, h);
+            GL.TexCoord2(0, 0);GL.Vertex2(0, h);
 
             GL.End();
         }
@@ -215,9 +217,9 @@ namespace MYCalibration_v3
 
             //Matrix4 rot = Matrix4.CreateRotationZ((float)Math.PI / 2);
 
-            GL.Rotate(-90, Vector3d.UnitZ);
+            //GL.Rotate(-90, Vector3d.UnitZ);
             DrawTrihedral();
-            GL.Rotate(90, Vector3d.UnitZ);
+           // GL.Rotate(90, Vector3d.UnitZ);
 
             DrawQuad();
 
@@ -256,33 +258,33 @@ namespace MYCalibration_v3
             //Left face
             GL.Normal3(0.0f, 1.0f, 0.0f);
             GL.TexCoord2(0, 0); GL.Vertex3(0.042f, -0.0296f, 0.0f);
-            GL.TexCoord2(1, 0); GL.Vertex3(0.042f, -0.0296f, -0.05f);
-            GL.TexCoord2(1, 1); GL.Vertex3(0.042f, -0.1184f, -0.05f);
+            GL.TexCoord2(1, 0); GL.Vertex3(0.042f, -0.0296f, 0.05f);
+            GL.TexCoord2(1, 1); GL.Vertex3(0.042f, -0.1184f, 0.05f);
             GL.TexCoord2(0, 1); GL.Vertex3(0.042f, -0.1184f, 0.0f);
             //Back face
             GL.Normal3(1.0f, 0.0f, 0.0f);
             GL.TexCoord2(0, 1); GL.Vertex3(0.042f, -0.0296f, 0.0f);
-            GL.TexCoord2(1, 1); GL.Vertex3(0.042f, -0.0296f, -0.05f);
-            GL.TexCoord2(1, 0); GL.Vertex3(0.168f, -0.0296f, -0.05f);
+            GL.TexCoord2(1, 1); GL.Vertex3(0.042f, -0.0296f, 0.05f);
+            GL.TexCoord2(1, 0); GL.Vertex3(0.168f, -0.0296f, 0.05f);
             GL.TexCoord2(0, 0); GL.Vertex3(0.168f, -0.0296f, 0.0f);
             //Right face
             GL.Normal3(0.0f, -1.0f, 0.0f);
             GL.TexCoord2(1, 0); GL.Vertex3(0.168f, -0.0296f, 0.0f);
-            GL.TexCoord2(1, 1); GL.Vertex3(0.168f, -0.0296f, -0.05f);
-            GL.TexCoord2(0, 1); GL.Vertex3(0.168f, -0.1184f, -0.05f);
+            GL.TexCoord2(1, 1); GL.Vertex3(0.168f, -0.0296f, 0.05f);
+            GL.TexCoord2(0, 1); GL.Vertex3(0.168f, -0.1184f, 0.05f);
             GL.TexCoord2(0, 0); GL.Vertex3(0.168f, -0.1184f, 0.0f);
             //Front face
             GL.Normal3(-1.0f, 0.0f, 0.0f);
             GL.TexCoord2(0, 0); GL.Vertex3(0.042f, -0.1184f, 0.0f);
-            GL.TexCoord2(1, 0); GL.Vertex3(0.042f, -0.1184f, -0.05f);
-            GL.TexCoord2(1, 1); GL.Vertex3(0.168f, -0.1184f, -0.05f);
+            GL.TexCoord2(1, 0); GL.Vertex3(0.042f, -0.1184f, 0.05f);
+            GL.TexCoord2(1, 1); GL.Vertex3(0.168f, -0.1184f, 0.05f);
             GL.TexCoord2(0, 1); GL.Vertex3(0.168f, -0.1184f, 0.0f);
             //Top face
             GL.Normal3(0.0f, 0.0f, 1.0f);
-            GL.TexCoord2(0, 1); GL.Vertex3(0.042f, -0.0296f, -0.05f);
-            GL.TexCoord2(0, 0); GL.Vertex3(0.168f, -0.0296f, -0.05f);
-            GL.TexCoord2(1, 0); GL.Vertex3(0.168f, -0.1184f, -0.05f);
-            GL.TexCoord2(1, 1); GL.Vertex3(0.042f, -0.1184f, -0.05f);
+            GL.TexCoord2(0, 1); GL.Vertex3(0.042f, -0.0296f, 0.05f);
+            GL.TexCoord2(0, 0); GL.Vertex3(0.168f, -0.0296f, 0.05f);
+            GL.TexCoord2(1, 0); GL.Vertex3(0.168f, -0.1184f, 0.05f);
+            GL.TexCoord2(1, 1); GL.Vertex3(0.042f, -0.1184f, 0.05f);
 
             GL.End();
 
@@ -417,7 +419,7 @@ namespace MYCalibration_v3
 
             float[] l_couleur = new float[4];
             float l_shin;
-            float l_lenghAxis = 1.1f;
+            float l_lenghAxis = _currentCam._eye.Length/10;//0.1f;
             float l_flecheW = 0.01f; float l_flecheH = 0.005f;
 
             // axe X
@@ -566,7 +568,12 @@ namespace MYCalibration_v3
                 /*_calibratedCam._isCalibrated = false;
                 _calibratedCam.SetLookat(_eye, _target, _up);
                 _surfaceCam.SetLookat(_eye, _target, _up);*/
+
+                _currentImagePath = openFile.FileName.Substring(0,openFile.FileName.Length-3)+"xml";
+
                 initCameras();
+
+                
 
                 Refresh();
             }
@@ -666,11 +673,24 @@ namespace MYCalibration_v3
                     _currentCam.ReinitializePosition();
                     break;
                 case Keys.NumPad1:
-                    _currentCam.LookCam(_calibratedCam);
+                    _currentCam.LookCam(0);
                     break;
                 case Keys.NumPad2:
-                    _currentCam.LookCam(_surfaceCam);
+                    _currentCam.LookCam(1);
                     break;
+                case Keys.NumPad3:
+                    _currentCam.LookCam(2);
+                    break;
+                case Keys.NumPad4:
+                    _currentCam.ChangePerspective(0);
+                    break;
+                case Keys.NumPad5:
+                    _currentCam.ChangePerspective(1);
+                    break;
+                case Keys.NumPad6:
+                    _currentCam.ChangePerspective(2);
+                    break;
+
 
 
             }
@@ -689,19 +709,49 @@ namespace MYCalibration_v3
             int w = glControl1.Width;
             int h = glControl1.Height;
 
-            _calibratedCam = new CalibrationCam(w, h, _eye, _target, _up); //new neoClassicCam(w, h, _eye,_target,_up);
-            _calibratedCam.SetColor(Color.BlueViolet);
+            _calibratedCam = new CalibrationCam(w, h, _eye, _target, _up); 
+            _calibratedCam.SetColor(new Color4(75, 0, 130, 0));
             _calibratedCam.SetBackgroundTextureId(_backgroundTextureId);
 
 
 
             _surfaceCam = new ClassicCam(w, h, _eye, _target, _up);
-            _surfaceCam.SetColor(Color.Azure);
+            _surfaceCam.SetColor(new Color4(244, 102, 27, 0));
             _surfaceCam.SetBackgroundTextureId(_backgroundTextureId);
+
+            _surfaceCam.RotatePosition(GetSurfaceRot(_currentImagePath + ".xml"));
+
+
 
             _spectatorCam = new SpectatorCam(w, h, _eye, _target, _up, _calibratedCam, _surfaceCam);
 
             _currentCam = _calibratedCam;
+        }
+
+        private Matrix4 GetSurfaceRot(string path)
+        {
+            XDocument matriceSensor = XDocument.Load(path);
+
+            float M11, M12, M13,
+                  M21, M22, M23,
+                  M31, M32, M33;
+
+            M11 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M11").Value.Replace(".", ","));
+            M12 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M12").Value.Replace(".", ","));
+            M13 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M13").Value.Replace(".", ","));
+
+            M21 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M21").Value.Replace(".", ","));
+            M22 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M22").Value.Replace(".", ","));
+            M23 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M23").Value.Replace(".", ","));
+
+            M31 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M31").Value.Replace(".", ","));
+            M32 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M32").Value.Replace(".", ","));
+            M33 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M33").Value.Replace(".", ","));
+
+            return new          Matrix4( M11,  M12,  M13, 0.0f,
+                                         M21,  M22,  M23, 0.0f,
+                                         M31,  M32,  M33, 0.0f,
+                                        0.0f, 0.0f, 0.0f, 1.0f);
         }
 
 
