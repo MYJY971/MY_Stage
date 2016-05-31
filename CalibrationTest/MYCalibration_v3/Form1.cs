@@ -498,15 +498,20 @@ namespace MYCalibration_v3
 
         private void Calibrate()
         {
-         _calibratedCam.Calibrate(_calibrationPathFile, _listImagePoints, _listObjectPoints);
+            _calibratedCam.Calibrate(_calibrationPathFile, _listImagePoints, _listObjectPoints);
+            //_surfaceCam.SetTarget(_target);
+            _surfaceCam.SetEye(_calibratedCam._eye);
+            //_surfaceCam.ChangePerspective(_calibratedCam._projectionMatrixDouble);
+            
+
         }
 
         private void Set3DPoints()
         {
             _listObjectPoints.Add(new Vector3(0f, 0f, 0f));
-            _listObjectPoints.Add(new Vector3(0.21f, 0f, 0f));
-            _listObjectPoints.Add(new Vector3(0.21f, -0.148f, 0f ));
-            _listObjectPoints.Add(new Vector3(0f, -0.148f, 0f ));
+            _listObjectPoints.Add(new Vector3(0.21f, 0f, 0f)); //2.20f,0f,0f));
+            _listObjectPoints.Add(new Vector3(0.21f, -0.148f, 0f ));//2.20f,-1.45f,0f));
+            _listObjectPoints.Add(new Vector3(0f, -0.148f, 0f )); //0f,-1.45f,0f));
         }
 
         private void SetImagePoints()
@@ -571,7 +576,7 @@ namespace MYCalibration_v3
                 _calibratedCam.SetLookat(_eye, _target, _up);
                 _surfaceCam.SetLookat(_eye, _target, _up);*/
 
-                _currentImagePath = openFile.FileName.Substring(0,openFile.FileName.Length-3)+"xml";
+                _currentImagePath = openFile.FileName.Substring(0,openFile.FileName.Length-4);
 
                 initCameras();
 
@@ -757,6 +762,15 @@ namespace MYCalibration_v3
                                   M21, M22, M23, 0.0f,
                                   M31, M32, M33, 0.0f,
                                   0.0f, 0.0f, 0.0f, 1.0f);
+
+                //transformation pour adapter le repere de la surface à celui d'openGL
+                Matrix4 rotX = Matrix4.CreateRotationX(-90/*-(float)Math.PI / 2*/);
+                Matrix4 rotZ = Matrix4.CreateRotationZ(-90/*-(float)Math.PI / 2*/);
+
+               res = Matrix4.Mult(res, rotX);
+               res = Matrix4.Mult(res, rotZ);
+
+
             }
             catch (Exception e)
             {

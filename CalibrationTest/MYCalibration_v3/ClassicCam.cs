@@ -416,7 +416,7 @@ namespace MYCalibration_v3
         {
             this._eye = Vector3.Transform(this._eye, matRotation);
             this._up = Vector3.Transform(this._up, matRotation);
-            this._target = Vector3.Transform(this._target, matRotation);
+            //this._target = Vector3.Transform(this._target, matRotation);
             UpdateLookAt();
         }
 
@@ -438,34 +438,26 @@ namespace MYCalibration_v3
             return;
         }
 
+
+
         #endregion
 
+        public override void SetTarget(Vector3 target)
+        {
+            this._target = target;
+            UpdateLookAt();
+        }
 
+        public override void SetEye(Vector3 eye)
+        {
+            this._eye = eye;
+            UpdateLookAt();
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public override void ChangePerspective(double[] mat)
+        {
+            _useDoubleMatrix = true;
+            SetPerspective(mat);
+        }
     }
 }

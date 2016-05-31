@@ -83,10 +83,16 @@ namespace MYCalibration_v3
 
         #endregion
 
+        #region Setters
+        public abstract void SetTarget(Vector3 target);
+        public abstract void SetEye(Vector3 eye);
+        #endregion
+
         #region Spectator
         public abstract void SetObservedCams(Camera cam1, Camera cam2);
         public abstract void LookCam(int numCam);
         public abstract void ChangePerspective(int numCam);
+        public abstract void ChangePerspective(double[] mat);
 
         #endregion
 

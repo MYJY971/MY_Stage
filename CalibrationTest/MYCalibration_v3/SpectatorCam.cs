@@ -154,10 +154,10 @@ namespace MYCalibration_v3
         public override void KeyUP()
         {
             _angleV-=5;
-            float radianAngle = (float)Math.PI * _angleV / 180;
+            float radianAngleV = (float)Math.PI * _angleV / 180;
             float radianAngleH = (float)Math.PI * _angleH / 180;
 
-            Matrix4 rotY = Matrix4.CreateRotationY(radianAngle);
+            Matrix4 rotY = Matrix4.CreateRotationY(radianAngleV);
             Matrix4 rotZ = Matrix4.CreateRotationZ(radianAngleH);
 
             /* 
