@@ -44,9 +44,8 @@ namespace MYCalibration_v3
 
         private Camera _calibratedCam,_surfaceCam, _spectatorCam, _currentCam;
 
-        //private Matrix4 _rotationSurface = new Matrix4();
-        //private bool _isRotated = false;
-        
+        private float _factorSizeWindow;
+                
         public Form1()
         {
             InitializeComponent();
@@ -62,7 +61,9 @@ namespace MYCalibration_v3
             Size imageSize;
             _backgroundTextureId = TexUtil.CreateTextureFromFile(_currentImagePath+".jpg", out imageSize);
             _objectTextureId = TexUtil.CreateTextureFromFile("../../../photos/texture.png");
-            glControl1.Size = imageSize;
+            glControl1.Size = AdaptSize(imageSize);
+
+            panel2.Size = panel2.Size;
             //glControl1.Width = imageSize.Width / 2;
             //glControl1.Height = imageSize.Height / 2;
 
@@ -165,7 +166,7 @@ namespace MYCalibration_v3
             ///Background 2D
             _currentCam.Background();
 
-            if (_listImagePoints.Count>0)
+            if (_listImagePoints.Count>0 && _currentCam==_calibratedCam && _calibratedCam._isCalibrated==false)
                 DrawPoint();
 
             ///Scene 3D
@@ -559,7 +560,8 @@ namespace MYCalibration_v3
             {
                 Size imageSize;
                 _backgroundTextureId = TexUtil.CreateTextureFromFile(openFile.FileName, out imageSize);
-                glControl1.Size = imageSize;
+                glControl1.Size = AdaptSize(imageSize);
+                panel2.Size = panel2.Size;
                 /*_calibratedCam.SetBackgroundTextureId(_backgroundTextureId);
                 _surfaceCam.SetBackgroundTextureId(_backgroundTextureId);
                 //glControl1.Width = imageSize.Width / 2;
@@ -730,31 +732,86 @@ namespace MYCalibration_v3
 
         private Matrix4 GetSurfaceRot(string path)
         {
-            XDocument matriceSensor = XDocument.Load(path);
+            Matrix4 res = Matrix4.Identity;
+            try
+            {
+                XDocument matriceSensor = XDocument.Load(path);
 
-            float M11, M12, M13,
-                  M21, M22, M23,
-                  M31, M32, M33;
+                float M11, M12, M13,
+                      M21, M22, M23,
+                      M31, M32, M33;
 
-            M11 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M11").Value.Replace(".", ","));
-            M12 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M12").Value.Replace(".", ","));
-            M13 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M13").Value.Replace(".", ","));
+                M11 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M11").Value.Replace(".", ","));
+                M12 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M12").Value.Replace(".", ","));
+                M13 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M13").Value.Replace(".", ","));
 
-            M21 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M21").Value.Replace(".", ","));
-            M22 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M22").Value.Replace(".", ","));
-            M23 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M23").Value.Replace(".", ","));
+                M21 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M21").Value.Replace(".", ","));
+                M22 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M22").Value.Replace(".", ","));
+                M23 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M23").Value.Replace(".", ","));
 
-            M31 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M31").Value.Replace(".", ","));
-            M32 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M32").Value.Replace(".", ","));
-            M33 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M33").Value.Replace(".", ","));
+                M31 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M31").Value.Replace(".", ","));
+                M32 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M32").Value.Replace(".", ","));
+                M33 = (float)Convert.ToDouble(matriceSensor.Element("sensor").Element("orientation").Element("M33").Value.Replace(".", ","));
 
-            return new          Matrix4( M11,  M12,  M13, 0.0f,
-                                         M21,  M22,  M23, 0.0f,
-                                         M31,  M32,  M33, 0.0f,
-                                        0.0f, 0.0f, 0.0f, 1.0f);
+                res = new Matrix4(M11, M12, M13, 0.0f,
+                                  M21, M22, M23, 0.0f,
+                                  M31, M32, M33, 0.0f,
+                                  0.0f, 0.0f, 0.0f, 1.0f);
+            }
+            catch (Exception e)
+            {
+
+                Console.Error.WriteLine("" + e);
+            }
+
+            return res;
         }
 
+        private Size AdaptSize(Size s)
+        {
 
+            /*if ((s.Width > s.Height) && (s.Width > panel2.Size.Width))
+            {
+                _factorSizeWindow =(float)panel2.Size.Width / (float)s.Width;
+            }
+            else if ((s.Width < s.Height) && (s.Height > panel2.Size.Height))
+            {
+                _factorSizeWindow = (float)panel2.Size.Height / (float)s.Height;
+            }
+            else
+                _factorSizeWindow = 1.0f;
+
+            return new Size((int)(s.Width * _factorSizeWindow), (int)(s.Height * _factorSizeWindow));*/
+            float diffW, diffH;
+
+            diffW = s.Width - panel2.Size.Width;
+            diffH = s.Height - panel2.Size.Height;
+
+            if(diffW>0 || diffH>0)
+            {
+                if(s.Width <= s.Height)
+                {
+                    _factorSizeWindow = (float)panel2.Size.Width / (float)s.Width;
+                }
+                else
+                {
+                    _factorSizeWindow = (float)panel2.Size.Height / (float)s.Height;
+                }
+            }
+            else
+            {
+                _factorSizeWindow = 1.0f;
+            }
+
+            return new Size((int)(s.Width * _factorSizeWindow), (int)(s.Height * _factorSizeWindow));
+
+
+        }
+
+        /*private Size AdaptSize(Size s)
+        {
+            return FactoriseSize(FactoriseSize(s));
+        }*/
 
     }
 }

@@ -89,8 +89,8 @@ namespace CameraApplication
 
         private void ImageVideo_Resize(object sender, EventArgs e)
         {
-            _cameraCapture.SetCaptureProperty(CapProp.FrameWidth, /*1920/**/imageVideo.Size.Width/**/);
-            _cameraCapture.SetCaptureProperty(CapProp.FrameHeight, /*1080/**/imageVideo.Size.Height/**/);
+            _cameraCapture.SetCaptureProperty(CapProp.FrameWidth, 1920/*imageVideo.Size.Width*/);
+            _cameraCapture.SetCaptureProperty(CapProp.FrameHeight, 1080/*imageVideo.Size.Height*/);
         }
 
         #region Récupération des données des capteurs
