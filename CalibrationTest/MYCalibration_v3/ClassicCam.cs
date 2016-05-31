@@ -39,7 +39,7 @@ namespace MYCalibration_v3
             this._color = Color.Silver;
             _useDoubleMatrix = false;
             _isCalibrated = false;
-            setPlanPoints();
+            setPlanPoints(5.0f,5.0f);
 
         }
 
@@ -55,7 +55,7 @@ namespace MYCalibration_v3
             this._color = Color.Silver;
             _useDoubleMatrix = false;
             _isCalibrated = false;
-            setPlanPoints();
+            setPlanPoints(5.0f,5.0f);
 
         }
         #endregion
@@ -318,29 +318,29 @@ namespace MYCalibration_v3
             GL.Color3(1.0f, 1.0f, 1.0f);
         }
 
-        private void setPlanPoints()
+        protected void setPlanPoints(float xVal, float yVal )
         {
-            float x = 0.5f;
-            float y = 0.5f;
+            float x = xVal;
+            float y = yVal;
 
             //horizontale
             _listPlanPoints.Add(new Vector3(-x, y, 0.0f));//GL.Vertex3(-x, y, 0.0f);
             _listPlanPoints.Add(new Vector3(x, y, 0.0f)); //GL.Vertex3(x, y, 0.0f);
 
-            for (int i = 0; i < 10; ++i)
+            while(y>=-yVal)//for (int i = 0; i < 10; ++i)
             {
                 y = y - 0.1f;
                 _listPlanPoints.Add(new Vector3(-x, y, 0.0f));//GL.Vertex3(-x, y, 0.0f);
                 _listPlanPoints.Add(new Vector3(x, y, 0.0f)); //GL.Vertex3(x, y, 0.0f);
             }
 
-            y = 0.5f;
+            y = yVal;
 
             //Verticale
             _listPlanPoints.Add(new Vector3(x, y, 0.0f));// GL.Vertex3(x, y, 0.0f);
             _listPlanPoints.Add(new Vector3(x, -y, 0.0f));// GL.Vertex3(x, -y, 0.0f);
 
-            for (int i = 0; i < 10; ++i)
+            while(x>=-xVal)//for (int i = 0; i < 10; ++i)
             {
                 x = x - 0.1f;
                 _listPlanPoints.Add(new Vector3(x, y, 0.0f));// GL.Vertex3(x, y, 0.0f);

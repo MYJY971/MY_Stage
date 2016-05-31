@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonReinit = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.buttonSpectatorCam = new System.Windows.Forms.Button();
             this.buttonSurfaceCam = new System.Windows.Forms.Button();
             this.buttonCamCalib = new System.Windows.Forms.Button();
@@ -36,10 +40,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.glControl1 = new OpenTK.GLControl();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.buttonReinit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +61,37 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(905, 51);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonReinit
+            // 
+            this.buttonReinit.Location = new System.Drawing.Point(349, 25);
+            this.buttonReinit.Name = "buttonReinit";
+            this.buttonReinit.Size = new System.Drawing.Size(92, 23);
+            this.buttonReinit.TabIndex = 9;
+            this.buttonReinit.Text = "Reinitialiser";
+            this.buttonReinit.UseVisualStyleBackColor = true;
+            this.buttonReinit.Click += new System.EventHandler(this.buttonReinit_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(765, 16);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 22);
+            this.textBox4.TabIndex = 8;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(659, 16);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 22);
+            this.textBox3.TabIndex = 7;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(553, 17);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 22);
+            this.textBox2.TabIndex = 6;
             // 
             // buttonSpectatorCam
             // 
@@ -133,37 +164,6 @@
             this.glControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.glControl1_MouseClick);
             this.glControl1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.glControl1_PreviewKeyDown);
             this.glControl1.Resize += new System.EventHandler(this.glControl1_Resize);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(553, 17);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 6;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(659, 16);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 22);
-            this.textBox3.TabIndex = 7;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(765, 16);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 22);
-            this.textBox4.TabIndex = 8;
-            // 
-            // buttonReinit
-            // 
-            this.buttonReinit.Location = new System.Drawing.Point(349, 25);
-            this.buttonReinit.Name = "buttonReinit";
-            this.buttonReinit.Size = new System.Drawing.Size(92, 23);
-            this.buttonReinit.TabIndex = 9;
-            this.buttonReinit.Text = "Reinitialiser";
-            this.buttonReinit.UseVisualStyleBackColor = true;
-            this.buttonReinit.Click += new System.EventHandler(this.buttonReinit_Click);
             // 
             // Form1
             // 
