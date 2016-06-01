@@ -79,7 +79,9 @@ namespace MYCalibration_v3
 
         public abstract void ReinitializePosition();
 
-        public abstract void RotatePosition(Matrix4 matRotation);
+        public abstract void RotateTarget(Matrix4 matRotation);
+
+        //public abstract void RotatePosition(Matrix4 matRotation);
 
         #endregion
 

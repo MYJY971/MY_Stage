@@ -20,7 +20,7 @@ namespace MYCalibration_v3
 
         #region Constructeurs
         public SpectatorCam(int width, int height)
-            :base(width,height)
+            : base(width, height)
         {
             this._eye0 = this._eye;
             this._target0 = this._target;
@@ -31,7 +31,7 @@ namespace MYCalibration_v3
         }
 
         public SpectatorCam(int width, int height, Vector3 eye, Vector3 target, Vector3 up)
-            :base(width,height,eye,target,up)
+            : base(width, height, eye, target, up)
         {
             this._eye0 = eye;
             this._target0 = target;
@@ -64,7 +64,7 @@ namespace MYCalibration_v3
             //_observedCam2.Projection();
             _observedCam2.Draw();
             //Projection();
-            
+
         }
 
 
@@ -86,7 +86,7 @@ namespace MYCalibration_v3
         #region Rotation
         public override void KeyDOWN()
         {
-            _angleV+=5;
+            _angleV += 5;
             float radianAngleV = (float)Math.PI * _angleV / 180;
             float radianAngleH = (float)Math.PI * _angleH / 180;
 
@@ -97,7 +97,7 @@ namespace MYCalibration_v3
             Vector3 tmp2 = _target0 - tmp1;
             this._target = tmp2 + this._eye;
             this._up = Vector3.Transform(_up0, rotY);*/
-            this._eye = Vector3.Transform(Vector3.Transform(this._eyeRotTrans + this._target, rotY), rotZ);
+            this._eye = Vector3.Transform(Vector3.Transform(this._eyeRotTrans , rotY), rotZ) + this._target;
             this._up = Vector3.Transform(Vector3.Transform(this._up0, rotY), rotZ);
 
 
@@ -106,7 +106,7 @@ namespace MYCalibration_v3
 
         public override void KeyLEFT()
         {
-            _angleH-=5;
+            _angleH -= 5;
             float radianAngleV = (float)Math.PI * _angleV / 180;
             float radianAngleH = (float)Math.PI * _angleH / 180;
 
@@ -120,7 +120,7 @@ namespace MYCalibration_v3
             this._target = tmp2 + this._eye;
             this._up = Vector3.Transform(_up0, rotZ);*/
 
-            this._eye = Vector3.Transform(Vector3.Transform(this._eyeRotTrans+this._target, rotY), rotZ);
+            this._eye = Vector3.Transform(Vector3.Transform(this._eyeRotTrans , rotY), rotZ) + this._target;
             this._up = Vector3.Transform(Vector3.Transform(this._up0, rotY), rotZ);
 
             UpdateLookAt();
@@ -128,7 +128,7 @@ namespace MYCalibration_v3
 
         public override void KeyRIGHT()
         {
-            _angleH+=5;
+            _angleH += 5;
             float radianAngleV = (float)Math.PI * _angleV / 180;
             float radianAngleH = (float)Math.PI * _angleH / 180;
 
@@ -142,7 +142,7 @@ namespace MYCalibration_v3
             this._target = tmp2 + this._eye;
             this._up = Vector3.Transform(_up0, rotZ);
             */
-            this._eye = Vector3.Transform(Vector3.Transform(this._eyeRotTrans+this._target, rotY), rotZ);
+            this._eye = Vector3.Transform(Vector3.Transform(this._eyeRotTrans , rotY), rotZ) + this._target;
             this._up = Vector3.Transform(Vector3.Transform(this._up0, rotY), rotZ);
 
 
@@ -153,7 +153,7 @@ namespace MYCalibration_v3
 
         public override void KeyUP()
         {
-            _angleV-=5;
+            _angleV -= 5;
             float radianAngleV = (float)Math.PI * _angleV / 180;
             float radianAngleH = (float)Math.PI * _angleH / 180;
 
@@ -168,8 +168,8 @@ namespace MYCalibration_v3
             this._target = tmp2 + this._eye;
             this._up = Vector3.Transform(_up0, rotY);*/
 
-            this._eye = Vector3.Transform(Vector3.Transform(this._eyeRotTrans + this._target, rotY),rotZ);
-            this._up = Vector3.Transform(Vector3.Transform(this._up0, rotY),rotZ);
+            this._eye = Vector3.Transform(Vector3.Transform(this._eyeRotTrans , rotY), rotZ) + this._target;
+            this._up = Vector3.Transform(Vector3.Transform(this._up0, rotY), rotZ);
 
             //this._eye = Vector3.Transform(this._eye, rotZ);
             //this._up = Vector3.Transform(this._up, rotZ);
@@ -177,7 +177,7 @@ namespace MYCalibration_v3
             UpdateLookAt();
         }
         #endregion
-        
+
         #region translation
         //avancer
         public override void KeyZ()
@@ -223,13 +223,13 @@ namespace MYCalibration_v3
         //Droite
         public override void KeyD()
         {
-           /* Vector3 translation = new Vector3(0.0f, -1.0f, 0.0f);
-            this._eye = this._eye + translation;
-            this._target = this._target + translation;
+            /* Vector3 translation = new Vector3(0.0f, -1.0f, 0.0f);
+             this._eye = this._eye + translation;
+             this._target = this._target + translation;
 
-            UpdateLookAt();*/
+             UpdateLookAt();*/
         }
-        
+
         //Monter
         public override void KeySpace()
         {
@@ -249,7 +249,7 @@ namespace MYCalibration_v3
 
             UpdateLookAt();*/
         }
-        
+
         #endregion
 
         public override void ReinitializePosition()
@@ -295,10 +295,10 @@ namespace MYCalibration_v3
                 SetPerspective(cam._projectionMatrixDouble);
             else
                 SetPerspective(cam._projectionMatrix);
-            
+
         }
 
-        private Camera GetObservedCam (int num)
+        private Camera GetObservedCam(int num)
         {
             if (num == 1)
                 return _observedCam1;

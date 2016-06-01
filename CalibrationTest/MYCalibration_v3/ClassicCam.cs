@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +24,7 @@ namespace MYCalibration_v3
         private int _width;
         private int _height;*/
 
-        
+
 
         #region Constructeurs
         public ClassicCam(int width, int height)
@@ -39,7 +39,7 @@ namespace MYCalibration_v3
             this._color = Color.Silver;
             _useDoubleMatrix = false;
             _isCalibrated = false;
-            setPlanPoints(5.0f,5.0f);
+            setPlanPoints(5.0f, 5.0f);
 
         }
 
@@ -55,7 +55,7 @@ namespace MYCalibration_v3
             this._color = Color.Silver;
             _useDoubleMatrix = false;
             _isCalibrated = false;
-            setPlanPoints(5.0f,5.0f);
+            setPlanPoints(5.0f, 5.0f);
 
         }
         #endregion
@@ -137,7 +137,7 @@ namespace MYCalibration_v3
         {
             if (_backgroundTextureId == 0)
             {
-                GL.ClearColor(Color4.DarkGray);
+                GL.ClearColor(new Color4(48,48,48,0));
             }
             else
             {
@@ -158,7 +158,7 @@ namespace MYCalibration_v3
                 GL.Enable(EnableCap.Texture2D);
                 GL.DepthMask(false);
 
-                //réinitialise la couleur
+                //r�initialise la couleur
                 GL.Color3(1.0f, 1.0f, 1.0f);
 
                 GL.BindTexture(TextureTarget.Texture2D, _backgroundTextureId);
@@ -210,15 +210,8 @@ namespace MYCalibration_v3
 
             GL.Color4(_color);
 
-            Vector3 targetAxis;
-            if(this._target==Vector3.Zero)
-            {
-                targetAxis = Vector3.UnitX;
-            }
-            else
-            {
-                targetAxis = this._target;
-            }
+            Vector3 targetAxis = this._target - this._eye;
+
 
             Vector3 target = VectMove(this._eye, targetAxis, 1);
             Vector3 up = VectMove(this._eye, this._up, 1);
@@ -303,13 +296,13 @@ namespace MYCalibration_v3
 
         public override void DrawPlan(Color4 colorPlan)
         {
-            
+
             GL.Color4(colorPlan);
             GL.Begin(BeginMode.Lines);
 
             foreach (Vector3 point in _listPlanPoints)
             {
-                GL.Vertex3(point.X, point.Y,point.Z);
+                GL.Vertex3(point.X, point.Y, point.Z);
             }
 
 
@@ -318,7 +311,7 @@ namespace MYCalibration_v3
             GL.Color3(1.0f, 1.0f, 1.0f);
         }
 
-        protected void setPlanPoints(float xVal, float yVal )
+        protected void setPlanPoints(float xVal, float yVal)
         {
             float x = xVal;
             float y = yVal;
@@ -327,7 +320,7 @@ namespace MYCalibration_v3
             _listPlanPoints.Add(new Vector3(-x, y, 0.0f));//GL.Vertex3(-x, y, 0.0f);
             _listPlanPoints.Add(new Vector3(x, y, 0.0f)); //GL.Vertex3(x, y, 0.0f);
 
-            while(y>=-yVal)//for (int i = 0; i < 10; ++i)
+            while (y >= -yVal)//for (int i = 0; i < 10; ++i)
             {
                 y = y - 0.1f;
                 _listPlanPoints.Add(new Vector3(-x, y, 0.0f));//GL.Vertex3(-x, y, 0.0f);
@@ -340,14 +333,14 @@ namespace MYCalibration_v3
             _listPlanPoints.Add(new Vector3(x, y, 0.0f));// GL.Vertex3(x, y, 0.0f);
             _listPlanPoints.Add(new Vector3(x, -y, 0.0f));// GL.Vertex3(x, -y, 0.0f);
 
-            while(x>=-xVal)//for (int i = 0; i < 10; ++i)
+            while (x >= -xVal)//for (int i = 0; i < 10; ++i)
             {
                 x = x - 0.1f;
                 _listPlanPoints.Add(new Vector3(x, y, 0.0f));// GL.Vertex3(x, y, 0.0f);
                 _listPlanPoints.Add(new Vector3(x, -y, 0.0f));// GL.Vertex3(x, -y, 0.0f);
             }
 
-            
+
         }
 
         #endregion
@@ -355,7 +348,7 @@ namespace MYCalibration_v3
         #region Calibration
         public override void Calibrate(string calibrationPathFile, List<Vector2> listImagePoints, List<Vector3> listObjectPoints)
         {
-            return ;
+            return;
         }
         #endregion
 
@@ -412,7 +405,7 @@ namespace MYCalibration_v3
             return;
         }
 
-        public override void RotatePosition(Matrix4 matRotation)
+        public override void RotateTarget(Matrix4 matRotation)
         {
             this._eye = Vector3.Transform(this._eye, matRotation);
             this._up = Vector3.Transform(this._up, matRotation);
@@ -459,5 +452,6 @@ namespace MYCalibration_v3
             _useDoubleMatrix = true;
             SetPerspective(mat);
         }
+
     }
-}
+    }

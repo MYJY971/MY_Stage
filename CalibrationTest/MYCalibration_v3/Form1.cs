@@ -500,8 +500,8 @@ namespace MYCalibration_v3
         {
             _calibratedCam.Calibrate(_calibrationPathFile, _listImagePoints, _listObjectPoints);
             //_surfaceCam.SetTarget(_target);
-            _surfaceCam.SetEye(_calibratedCam._eye);
-            //_surfaceCam.ChangePerspective(_calibratedCam._projectionMatrixDouble);
+            //_surfaceCam.SetEye(_calibratedCam._eye);
+            _surfaceCam.ChangePerspective(_calibratedCam._projectionMatrixDouble);
             
 
         }
@@ -533,9 +533,12 @@ namespace MYCalibration_v3
             //textBox1.Text = "(" + e.X + "," + e.Y + ")";
             Vector2 v = new Vector2(_mouseX, _mouseY);
 
-            if (_listImagePoints.Count < 4)
+            if (_currentCam == _calibratedCam)
             {
-                _listImagePoints.Add(new Vector2(_mouseX, _mouseY));
+                if (_listImagePoints.Count < 4)
+                {
+                    _listImagePoints.Add(new Vector2(_mouseX, _mouseY));
+                }
             }
 
 
@@ -643,65 +646,68 @@ namespace MYCalibration_v3
         private void glControl1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs key)
         {
             //base.OnPreviewKeyDown(key);
-            switch (key.KeyCode)
+            if (_currentCam == _spectatorCam)
             {
-                case Keys.Up:
-                    _currentCam.KeyUP();
-                    break;
-                case Keys.Down:
-                    _currentCam.KeyDOWN();
-                    break;
-                case Keys.Left:
-                    _currentCam.KeyLEFT();
-                    break;
-                case Keys.Right:
-                    _currentCam.KeyRIGHT();
-                    break;
+                switch (key.KeyCode)
+                {
+                    case Keys.Up:
+                        _spectatorCam.KeyUP();
+                        break;
+                    case Keys.Down:
+                        _spectatorCam.KeyDOWN();
+                        break;
+                    case Keys.Left:
+                        _spectatorCam.KeyLEFT();
+                        break;
+                    case Keys.Right:
+                        _spectatorCam.KeyRIGHT();
+                        break;
 
-                case Keys.Z:
-                    _currentCam.KeyZ();
-                    break;
-                case Keys.Q:
-                    _currentCam.KeyQ();
-                    break;
-                case Keys.S:
-                    _currentCam.KeyS();
-                    break;
-                case Keys.D:
-                    _currentCam.KeyD();
-                    break;
-                case Keys.Space:
-                    _currentCam.KeySpace();
-                    break;
-                case Keys.X:
-                    _currentCam.KeyX();
-                    break;
-                case Keys.I:
-                    _currentCam.ReinitializePosition();
-                    break;
-                case Keys.NumPad1:
-                    _currentCam.LookCam(0);
-                    break;
-                case Keys.NumPad2:
-                    _currentCam.LookCam(1);
-                    break;
-                case Keys.NumPad3:
-                    _currentCam.LookCam(2);
-                    break;
-                case Keys.NumPad4:
-                    _currentCam.ChangePerspective(0);
-                    break;
-                case Keys.NumPad5:
-                    _currentCam.ChangePerspective(1);
-                    break;
-                case Keys.NumPad6:
-                    _currentCam.ChangePerspective(2);
-                    break;
+                    case Keys.Z:
+                        _spectatorCam.KeyZ();
+                        break;
+                    case Keys.Q:
+                        //_surfaceCam.KeyLEFT();
+                        break;
+                    case Keys.S:
+                        _spectatorCam.KeyS();
+                        break;
+                    case Keys.D:
+                        //_surfaceCam.KeyRIGHT();
+                        break;
+                    case Keys.Space:
+                        _spectatorCam.KeySpace();
+                        break;
+                    case Keys.X:
+                        _spectatorCam.KeyX();
+                        break;
+                    case Keys.I:
+                        _spectatorCam.ReinitializePosition();
+                        break;
+                    case Keys.NumPad1:
+                        _currentCam.LookCam(0);
+                        break;
+                    case Keys.NumPad2:
+                        _currentCam.LookCam(1);
+                        break;
+                    case Keys.NumPad3:
+                        _currentCam.LookCam(2);
+                        break;
+                    case Keys.NumPad4:
+                        _currentCam.ChangePerspective(0);
+                        break;
+                    case Keys.NumPad5:
+                        _currentCam.ChangePerspective(1);
+                        break;
+                    case Keys.NumPad6:
+                        _currentCam.ChangePerspective(2);
+                        break;
 
 
 
+                }
+                Refresh();
             }
-            Refresh();
         }
 
                
@@ -726,7 +732,7 @@ namespace MYCalibration_v3
             _surfaceCam.SetColor(new Color4(244, 102, 27, 0));
             _surfaceCam.SetBackgroundTextureId(_backgroundTextureId);
 
-            _surfaceCam.RotatePosition(GetSurfaceRot(_currentImagePath + ".xml"));
+            _surfaceCam.RotateTarget(GetSurfaceRot(_currentImagePath + ".xml"));
 
 
 
@@ -764,8 +770,8 @@ namespace MYCalibration_v3
                                   0.0f, 0.0f, 0.0f, 1.0f);
 
                 //transformation pour adapter le repere de la surface à celui d'openGL
-                Matrix4 rotX = Matrix4.CreateRotationX(-90/*-(float)Math.PI / 2*/);
-                Matrix4 rotZ = Matrix4.CreateRotationZ(-90/*-(float)Math.PI / 2*/);
+                Matrix4 rotX = Matrix4.CreateRotationX(/*-90/**/-(float)Math.PI / 2/**/);
+                Matrix4 rotZ = Matrix4.CreateRotationZ(/*-90/**/-(float)Math.PI / 2/**/);
 
                res = Matrix4.Mult(res, rotX);
                res = Matrix4.Mult(res, rotZ);

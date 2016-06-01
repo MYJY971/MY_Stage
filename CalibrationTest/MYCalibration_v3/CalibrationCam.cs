@@ -95,11 +95,64 @@ namespace MYCalibration_v3
 
         #endregion
 
+        #region Control
+
+        #region Rotation
+        public override void KeyDOWN()
+        {
+            return;
+        }
+        public override void KeyLEFT()
+        {
+            return;
+        }
+        public override void KeyRIGHT()
+        {
+            return;
+        }
+        public override void KeyUP()
+        {
+            return;
+        }
+        #endregion
+
+        #region translation
+        public override void KeyD()
+        {
+            return;
+        }
+        public override void KeyQ()
+        {
+            return;
+        }
+        public override void KeyS()
+        {
+            return;
+        }
+        public override void KeySpace()
+        {
+            return;
+        }
+        public override void KeyX()
+        {
+            return;
+        }
+        public override void KeyZ()
+        {
+            return;
+        }
+        #endregion
+
         public override void ReinitializePosition()
         {
             SetDefaultProjection(this._width, this._height);
             SetCalibrationFalse();
             this._useDoubleMatrix = false;
         }
+
+
+        #endregion
+
+
     }
 }
