@@ -42,6 +42,9 @@
             this.glControl1 = new OpenTK.GLControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBoxXangle = new System.Windows.Forms.TextBox();
+            this.textBoxYangle = new System.Windows.Forms.TextBox();
+            this.textBoxZangle = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -50,6 +53,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.textBoxZangle);
+            this.panel1.Controls.Add(this.textBoxYangle);
+            this.panel1.Controls.Add(this.textBoxXangle);
             this.panel1.Controls.Add(this.buttonReinit);
             this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.textBox3);
@@ -78,21 +84,21 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(765, 16);
+            this.textBox4.Location = new System.Drawing.Point(765, 4);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 22);
             this.textBox4.TabIndex = 8;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(659, 16);
+            this.textBox3.Location = new System.Drawing.Point(659, 4);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 22);
             this.textBox3.TabIndex = 7;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(553, 17);
+            this.textBox2.Location = new System.Drawing.Point(553, 4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 22);
             this.textBox2.TabIndex = 6;
@@ -139,7 +145,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(447, 17);
+            this.textBox1.Location = new System.Drawing.Point(447, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 22);
             this.textBox1.TabIndex = 1;
@@ -194,6 +200,30 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1050, 654);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+            // textBoxXangle
+            // 
+            this.textBoxXangle.BackColor = System.Drawing.Color.IndianRed;
+            this.textBoxXangle.Location = new System.Drawing.Point(496, 32);
+            this.textBoxXangle.Name = "textBoxXangle";
+            this.textBoxXangle.Size = new System.Drawing.Size(100, 22);
+            this.textBoxXangle.TabIndex = 10;
+            // 
+            // textBoxYangle
+            // 
+            this.textBoxYangle.BackColor = System.Drawing.Color.PaleGreen;
+            this.textBoxYangle.Location = new System.Drawing.Point(602, 32);
+            this.textBoxYangle.Name = "textBoxYangle";
+            this.textBoxYangle.Size = new System.Drawing.Size(100, 22);
+            this.textBoxYangle.TabIndex = 11;
+            // 
+            // textBoxZangle
+            // 
+            this.textBoxZangle.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.textBoxZangle.Location = new System.Drawing.Point(708, 32);
+            this.textBoxZangle.Name = "textBoxZangle";
+            this.textBoxZangle.Size = new System.Drawing.Size(100, 22);
+            this.textBoxZangle.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -226,6 +256,9 @@
         private System.Windows.Forms.Button buttonReinit;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TextBox textBoxZangle;
+        private System.Windows.Forms.TextBox textBoxYangle;
+        private System.Windows.Forms.TextBox textBoxXangle;
     }
 }
 

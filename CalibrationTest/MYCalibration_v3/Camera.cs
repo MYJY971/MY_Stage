@@ -79,7 +79,7 @@ namespace MYCalibration_v3
 
         public abstract void ReinitializePosition();
 
-        public abstract void RotateTarget(Matrix4 matRotation);
+        public abstract void RotateUp(Matrix4 matRotation);
 
         //public abstract void RotatePosition(Matrix4 matRotation);
 
@@ -88,6 +88,7 @@ namespace MYCalibration_v3
         #region Setters
         public abstract void SetTarget(Vector3 target);
         public abstract void SetEye(Vector3 eye);
+        public abstract void SetUp(Vector3 up);
         #endregion
 
         #region Spectator

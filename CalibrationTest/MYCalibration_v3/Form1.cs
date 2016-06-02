@@ -45,6 +45,8 @@ namespace MYCalibration_v3
         private Camera _calibratedCam,_surfaceCam, _spectatorCam, _currentCam;
 
         private float _factorSizeWindow;
+
+        private float _angleX, _angleY, _angleZ;
                 
         public Form1()
         {
@@ -88,7 +90,7 @@ namespace MYCalibration_v3
             initCameras();
 
             
-
+            
             SetImagePoints();
             Set3DPoints();
         }
@@ -174,6 +176,7 @@ namespace MYCalibration_v3
             _currentCam.Projection();
 
             _currentCam.LookAt();
+
             GL.Scale(1, 1, -1);
             //Draw the scene
             DrawScene();
@@ -499,8 +502,9 @@ namespace MYCalibration_v3
         private void Calibrate()
         {
             _calibratedCam.Calibrate(_calibrationPathFile, _listImagePoints, _listObjectPoints);
-            //_surfaceCam.SetTarget(_target);
+            _surfaceCam.SetTarget(_calibratedCam._target);
             _surfaceCam.SetEye(_calibratedCam._eye);
+            //_surfaceCam.SetUp(_calibratedCam._up);
             _surfaceCam.ChangePerspective(_calibratedCam._projectionMatrixDouble);
             
 
@@ -646,9 +650,16 @@ namespace MYCalibration_v3
         private void glControl1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs key)
         {
             //base.OnPreviewKeyDown(key);
-            if (_currentCam == _spectatorCam)
-            {
-                switch (key.KeyCode)
+            //if (_currentCam == _spectatorCam)
+            //{
+            float radianAngleX;
+            float radianAngleY;
+            float radianAngleZ;
+            Matrix4 rotX; 
+            Matrix4 rotY;
+            Matrix4 rotZ;
+            Matrix4 rotation;
+            switch (key.KeyCode)
                 {
                     case Keys.Up:
                         _spectatorCam.KeyUP();
@@ -684,6 +695,56 @@ namespace MYCalibration_v3
                     case Keys.I:
                         _spectatorCam.ReinitializePosition();
                         break;
+                    case Keys.C:
+                        _angleX += 0.05f;
+                        radianAngleX = (float)Math.PI * _angleX / 180;
+                        radianAngleY = (float)Math.PI * _angleY / 180;
+                        radianAngleZ = (float)Math.PI * _angleZ / 180;
+
+                        rotX = Matrix4.CreateRotationX(radianAngleX);
+                        rotY = Matrix4.CreateRotationY(radianAngleY);
+                        rotZ = Matrix4.CreateRotationZ(radianAngleZ);
+
+                        rotation = Matrix4.Mult(rotX, rotY);
+                        rotation = Matrix4.Mult(rotation, rotZ);
+
+                        _surfaceCam.RotateUp(rotation);
+
+                    textBoxXangle.Text = "" + radianAngleX;
+
+                        break;
+                    case Keys.V:
+                    _angleY+= 0.005f;
+                    radianAngleX = (float)Math.PI * _angleX / 180;
+                    radianAngleY = (float)Math.PI * _angleY / 180;
+                    radianAngleZ = (float)Math.PI * _angleZ / 180;
+
+                    rotX = Matrix4.CreateRotationX(radianAngleX);
+                    rotY = Matrix4.CreateRotationY(radianAngleY);
+                    rotZ = Matrix4.CreateRotationZ(radianAngleZ);
+
+                    rotation = Matrix4.Mult(rotX, rotY);
+                    rotation = Matrix4.Mult(rotation, rotZ);
+
+                    _surfaceCam.RotateUp(rotation);
+                    textBoxYangle.Text = "" + radianAngleY;
+                    break;
+                    case Keys.B:
+                    _angleZ += 0.005f;
+                    radianAngleX = (float)Math.PI * _angleX / 180;
+                    radianAngleY = (float)Math.PI * _angleY / 180;
+                    radianAngleZ = (float)Math.PI * _angleZ / 180;
+
+                    rotX = Matrix4.CreateRotationX(radianAngleX);
+                    rotY = Matrix4.CreateRotationY(radianAngleY);
+                    rotZ = Matrix4.CreateRotationZ(radianAngleZ);
+
+                    rotation = Matrix4.Mult(rotX, rotY);
+                    rotation = Matrix4.Mult(rotation, rotZ);
+
+                    _surfaceCam.RotateUp(rotation);
+                    textBoxZangle.Text = "" + radianAngleZ;
+                    break;
                     case Keys.NumPad1:
                         _currentCam.LookCam(0);
                         break;
@@ -707,7 +768,7 @@ namespace MYCalibration_v3
 
                 }
                 Refresh();
-            }
+            //}
         }
 
                
@@ -732,13 +793,17 @@ namespace MYCalibration_v3
             _surfaceCam.SetColor(new Color4(244, 102, 27, 0));
             _surfaceCam.SetBackgroundTextureId(_backgroundTextureId);
 
-            _surfaceCam.RotateTarget(GetSurfaceRot(_currentImagePath + ".xml"));
+            _surfaceCam.RotateUp(GetSurfaceRot(_currentImagePath + ".xml"));
 
 
 
             _spectatorCam = new SpectatorCam(w, h, _eye, _target, _up, _calibratedCam, _surfaceCam);
 
             _currentCam = _calibratedCam;
+
+            _angleX = 0.0f;
+            _angleY = 0.0f;
+            _angleZ = 0.0f;
         }
 
         private Matrix4 GetSurfaceRot(string path)
@@ -770,10 +835,10 @@ namespace MYCalibration_v3
                                   0.0f, 0.0f, 0.0f, 1.0f);
 
                 //transformation pour adapter le repere de la surface à celui d'openGL
-                Matrix4 rotX = Matrix4.CreateRotationX(/*-90/**/-(float)Math.PI / 2/**/);
-                Matrix4 rotZ = Matrix4.CreateRotationZ(/*-90/**/-(float)Math.PI / 2/**/);
+                Matrix4 rotX = Matrix4.CreateRotationX(/*-90*/-(float)Math.PI / 2/**/);
+                Matrix4 rotZ = Matrix4.CreateRotationZ(/*-90*/(float)Math.PI / 2/**/);
 
-               res = Matrix4.Mult(res, rotX);
+               //res = Matrix4.Mult(res, rotX);
                res = Matrix4.Mult(res, rotZ);
 
 

@@ -426,7 +426,7 @@ namespace MYCalibration_v3
             return;
         }
 
-        public override void RotateTarget(Matrix4 matRotation)
+        public override void RotateUp(Matrix4 matRotation)
         {
             //this._eye = Vector3.Transform(this._eye, matRotation);
             this._up = Vector3.Transform(this._up, matRotation);
@@ -474,5 +474,10 @@ namespace MYCalibration_v3
             SetPerspective(mat);
         }
 
+        public override void SetUp(Vector3 up)
+        {
+            this._up = up;
+            UpdateLookAt();
+        }
     }
     }
