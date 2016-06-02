@@ -254,9 +254,9 @@ namespace MYCalibration_v3
             GL.End();
 
             //TEST
-            float ps = Vector3.Dot(up, target);
-            float norm = ps/(targetAxis.Length);
-            Vector3 pt = VectMove(Vector3.Zero, targetAxis, norm);
+            float ps = Vector3.Dot(upVector, targetAxis);
+            float norm = ps/targetAxis.Length;
+            Vector3 pt = VectMove(this._eye, targetAxis, norm);
             GL.Begin(BeginMode.Lines);
             GL.Color3(1.0f, 0.0f, 0.0f);
             GL.Vertex3(pt);

@@ -211,7 +211,7 @@ namespace MYCalibration_v3
             GL.Color4(_color);
 
             Vector3 targetAxis = this._target - this._eye;
-            Vector3 upVector = this._up - this._eye;
+            Vector3 orthoTarget = Vector3.Cross(-targetAxis, targetAxis);
 
             Vector3 target = VectMove(this._eye, targetAxis, 2);
             Vector3 up = VectMove(this._eye, this._up, 2);
@@ -254,11 +254,12 @@ namespace MYCalibration_v3
             GL.End();
 
             //TEST
-            float ps = Vector3.Dot(up, target);
-            float norm = ps/(targetAxis.Length);
-            Vector3 pt = VectMove(Vector3.Zero, targetAxis, norm);
+            float norm = up.Length;
+            float f = 1.0f / this._eye.Length;
+            norm = norm * f;
+            Vector3 pt = VectMove(this._eye, targetAxis, norm);
             GL.Begin(BeginMode.Lines);
-            GL.Color3(1.0f, 0.0f, 0.0f);
+            GL.Color3(1.0f, 1.0f, 0.0f);
             GL.Vertex3(pt);
             GL.Vertex3(up);
             GL.Color4(_color);
