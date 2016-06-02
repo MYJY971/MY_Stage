@@ -500,7 +500,7 @@ namespace MYCalibration_v3
         {
             _calibratedCam.Calibrate(_calibrationPathFile, _listImagePoints, _listObjectPoints);
             //_surfaceCam.SetTarget(_target);
-            //_surfaceCam.SetEye(_calibratedCam._eye);
+            _surfaceCam.SetEye(_calibratedCam._eye);
             _surfaceCam.ChangePerspective(_calibratedCam._projectionMatrixDouble);
             
 

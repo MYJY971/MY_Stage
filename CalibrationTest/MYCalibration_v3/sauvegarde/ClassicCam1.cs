@@ -211,10 +211,10 @@ namespace MYCalibration_v3
             GL.Color4(_color);
 
             Vector3 targetAxis = this._target - this._eye;
-            Vector3 orthoTarget = Vector3.Cross(-targetAxis, targetAxis);
 
-            Vector3 target = VectMove(this._eye, targetAxis, 2);
-            Vector3 up = VectMove(this._eye, this._up, 2);
+
+            Vector3 target = VectMove(this._eye, targetAxis, 1);
+            Vector3 up = VectMove(this._eye, this._up, 1);
 
 
             Matrix4 rotationMat1 = Matrix4.CreateFromAxisAngle(targetAxis, (float)Math.PI / 2);
@@ -254,23 +254,17 @@ namespace MYCalibration_v3
             GL.End();
 
 
-            //GL.Begin(BeginMode.Quads);
-            Vector3 pt = VectMove(this._eye, orthoTarget, 1);
-            GL.Begin(BeginMode.Points);
-            GL.PointSize(20);
+            GL.Begin(BeginMode.Quads);
             //Face
             GL.Normal3(1.0f, 0.0f, 0.0f);
-            /*GL.Vertex3(p0);
+            GL.Vertex3(p0);
             GL.Vertex3(p1);
             GL.Vertex3(p2);
-            GL.Vertex3(p3);*/
-            GL.Color3(1.0f,0.0f,0.0f);
-            GL.Vertex3(pt);
-            GL.Color4(_color);
+            GL.Vertex3(p3);
 
             GL.End();
 
-            /*GL.Begin(BeginMode.Triangles);
+            GL.Begin(BeginMode.Triangles);
 
             //Left Face
             GL.Normal3(0.0f, 1.0f, 0.0f);
@@ -296,7 +290,7 @@ namespace MYCalibration_v3
             GL.Vertex3(p0);
             GL.Vertex3(p4);
 
-            GL.End();*/
+            GL.End();
 
             GL.Color3(1.0f, 1.0f, 1.0f);
         }
