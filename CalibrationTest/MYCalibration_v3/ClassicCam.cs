@@ -431,6 +431,7 @@ namespace MYCalibration_v3
             //this._eye = Vector3.Transform(this._eye, matRotation);
             this._up = Vector3.Transform(this._up, matRotation);
             //this._target = Vector3.Transform(this._target, matRotation);
+            
             UpdateLookAt();
         }
 
