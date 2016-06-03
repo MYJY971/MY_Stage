@@ -520,10 +520,24 @@ namespace MYCalibration_v3
 
         private void SetImagePoints()
         {
-            _listImagePoints.Add(new Vector2(380f,  146f)); //392.296f,  221.876f
-            _listImagePoints.Add(new Vector2(667f, 148f)); //634.203f,  189.495f
-            _listImagePoints.Add(new Vector2(661f,  273f)); //681.638f,  287.72f
-            _listImagePoints.Add(new Vector2(334f,  269f)); //412.448f,  327.44f
+            _listImagePoints = new List<Vector2>();
+
+            //string p= "../../../photos/";
+            if (_currentImagePath == "C:\\Stage\\Yanis\\CSharp_projects\\MY_Stage\\CalibrationTest\\MYCalibration_v3\\photos\\photo_2-6-2016_15-53-24-270")
+            {
+                _listImagePoints.Add(new Vector2(476f, 430)); //392.296f,  221.876f
+                _listImagePoints.Add(new Vector2(489, 279)); //634.203f,  189.495f
+                _listImagePoints.Add(new Vector2(670, 293)); //681.638f,  287.72f
+                _listImagePoints.Add(new Vector2(695, 439)); //412.448f,  327.44f
+            }
+            else
+            {
+                _listImagePoints.Add(new Vector2(380f, 146f)); //392.296f,  221.876f
+                _listImagePoints.Add(new Vector2(667f, 148f)); //634.203f,  189.495f
+                _listImagePoints.Add(new Vector2(661f, 273f)); //681.638f,  287.72f
+                _listImagePoints.Add(new Vector2(334f, 269f)); //412.448f,  327.44f
+            }
+            
         }
 
 
@@ -624,6 +638,11 @@ namespace MYCalibration_v3
             Refresh();
         }
 
+        private void buttonDefaultPoints_Click(object sender, EventArgs e)
+        {
+            SetImagePoints();
+        }
+
         private void buttonCamCalib_Click(object sender, EventArgs e)
         {
             _currentCam = _calibratedCam;
@@ -696,7 +715,7 @@ namespace MYCalibration_v3
                         _spectatorCam.ReinitializePosition();
                         break;
                     case Keys.C:
-                        _angleX += 0.05f;
+                        _angleX += 0.005f;
                         radianAngleX = (float)Math.PI * _angleX / 180;
                         radianAngleY = (float)Math.PI * _angleY / 180;
                         radianAngleZ = (float)Math.PI * _angleZ / 180;
@@ -727,7 +746,7 @@ namespace MYCalibration_v3
                     rotation = Matrix4.Mult(rotation, rotZ);
 
                     _surfaceCam.RotateUp(rotation);
-                    textBoxYangle.Text = "" + radianAngleY;
+                    textBoxYangle.Text = "" +_angleY+"("+ radianAngleY+")";
                     break;
                     case Keys.B:
                     _angleZ += 0.005f;
@@ -742,10 +761,21 @@ namespace MYCalibration_v3
                     rotation = Matrix4.Mult(rotX, rotY);
                     rotation = Matrix4.Mult(rotation, rotZ);
 
+                    
                     _surfaceCam.RotateUp(rotation);
                     textBoxZangle.Text = "" + radianAngleZ;
                     break;
-                    case Keys.NumPad1:
+                case Keys.N:
+
+                    float mn = (float)Math.PI * 216.2f / 180;
+
+                    Matrix4 rotEst = Matrix4.CreateRotationY(mn);
+
+                    _surfaceCam.RotateUp(rotEst);
+                    textBoxZangle.Text = "" + mn;
+                    textBoxYangle.Text = "" + 180 * mn / Math.PI;
+                    break;
+                case Keys.NumPad1:
                         _currentCam.LookCam(0);
                         break;
                     case Keys.NumPad2:
@@ -835,11 +865,14 @@ namespace MYCalibration_v3
                                   0.0f, 0.0f, 0.0f, 1.0f);
 
                 //transformation pour adapter le repere de la surface à celui d'openGL
+                float magicNumber = 3.773402f;
                 Matrix4 rotX = Matrix4.CreateRotationX(/*-90*/-(float)Math.PI / 2/**/);
-                Matrix4 rotZ = Matrix4.CreateRotationZ(/*-90*/(float)Math.PI / 2/**/);
+                Matrix4 rotZ = Matrix4.CreateRotationZ(/*-90*/-(float)Math.PI / 2/**/);
+                Matrix4 rotY = Matrix4.CreateRotationY(/**/(float)Math.PI / 2 + magicNumber);
 
                //res = Matrix4.Mult(res, rotX);
                res = Matrix4.Mult(res, rotZ);
+               res = Matrix4.Mult(res, rotY);
 
 
             }
