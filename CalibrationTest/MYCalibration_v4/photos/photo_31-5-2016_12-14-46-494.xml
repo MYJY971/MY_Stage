@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sensor>
+  <compass>
+    <north>22.470409393310547</north>
+  </compass>
+  <inclinometer>
+    <Pitch>45.64047</Pitch>
+    <Roll>-0.76790446</Roll>
+    <Yaw>340.912354</Yaw>
+  </inclinometer>
+  <orientation>
+    <M11>0.941797</M11>
+    <M12>0.228628859</M12>
+    <M13>-0.246460587</M13>
+    <M21>-0.3360449</M21>
+    <M22>0.660701036</M22>
+    <M23>-0.6712096</M23>
+    <M31>0.009369932</M31>
+    <M32>0.714966655</M32>
+    <M33>0.6990795</M33>
+  </orientation>
+</sensor>
