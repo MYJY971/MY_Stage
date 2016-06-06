@@ -21,3 +21,12 @@ C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibration_v4\obj\x64
 C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibration_v4\obj\x64\Debug\MYCalibration_v4.Form1.resources
 C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibration_v4\obj\x64\Debug\MYCalibration_v4.Properties.Resources.resources
 C:\Stage\Yanis\CSharp_projects\MY_Stage\CalibrationTest\MYCalibration_v4\obj\x64\Debug\MYCalibration_v4.csproj.GenerateResource.Cache
+C:\Users\Windows\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v4\bin\x64\Debug\MYCalibration_v4.exe.config
+C:\Users\Windows\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v4\bin\x64\Debug\MYCalibration_v4.exe
+C:\Users\Windows\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v4\bin\x64\Debug\MYCalibration_v4.pdb
+C:\Users\Windows\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v4\obj\x64\Debug\MYCalibration_v4.csprojResolveAssemblyReference.cache
+C:\Users\Windows\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v4\obj\x64\Debug\MYCalibration_v4.Form1.resources
+C:\Users\Windows\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v4\obj\x64\Debug\MYCalibration_v4.Properties.Resources.resources
+C:\Users\Windows\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v4\obj\x64\Debug\MYCalibration_v4.csproj.GenerateResource.Cache
+C:\Users\Windows\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v4\obj\x64\Debug\MYCalibration_v4.exe
+C:\Users\Windows\Documents\GitHub\MY_Stage\CalibrationTest\MYCalibration_v4\obj\x64\Debug\MYCalibration_v4.pdb

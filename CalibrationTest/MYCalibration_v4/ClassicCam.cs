@@ -440,14 +440,16 @@ namespace MYCalibration_v4
         }
         public override void RotateTarget(Matrix4 rotation)
         {
-            
+            /*rotation.Transpose();
             Vector3 tmp = this._target0 - this._eye;
-            this._target = Vector3.Transform(tmp, rotation);
-            
+            this._target = Vector3.Transform(tmp, rotation);*/
 
-            /*Vector3 tmp1 = Vector3.Transform(this._eye, rotation);
+
+            
+            rotation.Transpose();
+            Vector3 tmp1 = Vector3.Transform(this._eye, rotation);
             Vector3 tmp2 = this._target0 - tmp1;
-            this._target = tmp2 + this._eye;*/ 
+            this._target = tmp2 + this._eye;
             UpdateLookAt();
         }
 

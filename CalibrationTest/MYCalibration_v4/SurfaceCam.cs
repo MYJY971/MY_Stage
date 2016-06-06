@@ -11,7 +11,6 @@ using System.Drawing;
 using CalibrationLibrary;
 using System.Xml.Linq;
 
-using Windows.Devices.Sensors;
 
 namespace MYCalibration_v4
 {

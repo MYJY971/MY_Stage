@@ -18,7 +18,7 @@ using System.Xml.Linq;
 using CalibrationLibrary;
 
 using openCV;
-using Windows.Devices.Sensors;
+
 
 namespace MYCalibration_v4
 {
@@ -55,10 +55,7 @@ namespace MYCalibration_v4
 
         }
 
-        private void _orientationSensor_ReadingChanged(OrientationSensor sender, OrientationSensorReadingChangedEventArgs args)
-        {
-            throw new NotImplementedException();
-        }
+        
 
 
 
@@ -183,7 +180,7 @@ namespace MYCalibration_v4
 
             _currentCam.LookAt();
 
-            //GL.Scale(1, 1, -1);
+            GL.Scale(1, 1, -1);
             //Draw the scene
             DrawScene();
 
