@@ -10,7 +10,7 @@ using System.Drawing;
 
 using CalibrationLibrary;
 
-namespace MYCalibration_v4
+namespace MYCalibration_v3
 {
     class ClassicCam : Camera
     {
@@ -23,7 +23,7 @@ namespace MYCalibration_v4
         private int _backgroundTextureId;
         private int _width;
         private int _height;*/
-
+        private float _angle;
 
 
         #region Constructeurs
@@ -56,6 +56,7 @@ namespace MYCalibration_v4
             _useDoubleMatrix = false;
             _isCalibrated = false;
             setPlanPoints(5.0f, 5.0f);
+            _angle = 0.0f;
 
         }
         #endregion

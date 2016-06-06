@@ -38,9 +38,9 @@ namespace MYCalibration_v4
         private List<Vector2> _listImagePoints = new List<Vector2>();
         List<Vector3> _listObjectPoints = new List<Vector3>();
 
-        private String _calibrationPathFile = "../../calibration.xml";
+        private String _calibrationPathFile = "../../../../../DATA/calibration.xml";
 
-        private String _currentImagePath = "../../../photos/photo_26-5-2016_9-15-29-432";
+        private String _currentImagePath = "../../../../../DATA/photos/photo_26-5-2016_9-15-29-432";
 
         private Camera _calibratedCam,_surfaceCam, _spectatorCam, _currentCam;
 
@@ -502,8 +502,8 @@ namespace MYCalibration_v4
         private void Calibrate()
         {
             _calibratedCam.Calibrate(_calibrationPathFile, _listImagePoints, _listObjectPoints);
-            _surfaceCam.SetTarget(_calibratedCam._target);
-            _surfaceCam.SetEye(_calibratedCam._eye);
+            //_surfaceCam.SetTarget(_calibratedCam._target);
+            //_surfaceCam.SetEye(_calibratedCam._eye);
             //_surfaceCam.SetUp(_calibratedCam._up);
             _surfaceCam.ChangePerspective(_calibratedCam._projectionMatrixDouble);
             
@@ -697,7 +697,7 @@ namespace MYCalibration_v4
                         _spectatorCam.KeyZ();
                         break;
                     case Keys.Q:
-                        //_surfaceCam.KeyLEFT();
+                        _surfaceCam.KeyLEFT();
                         break;
                     case Keys.S:
                         _spectatorCam.KeyS();
@@ -823,7 +823,8 @@ namespace MYCalibration_v4
             _surfaceCam.SetColor(new Color4(244, 102, 27, 0));
             _surfaceCam.SetBackgroundTextureId(_backgroundTextureId);
 
-            _surfaceCam.RotateUp(GetSurfaceRot(_currentImagePath + ".xml"));
+            //_surfaceCam.RotateUp(GetSurfaceRot(_currentImagePath + ".xml"));
+            _surfaceCam.RotateTarget(GetSurfaceRot(_currentImagePath + ".xml"));
 
 
 
@@ -868,11 +869,11 @@ namespace MYCalibration_v4
                 float magicNumber = 3.773402f;
                 Matrix4 rotX = Matrix4.CreateRotationX(/*-90*/-(float)Math.PI / 2/**/);
                 Matrix4 rotZ = Matrix4.CreateRotationZ(/*-90*/-(float)Math.PI / 2/**/);
-                Matrix4 rotY = Matrix4.CreateRotationY(/**/(float)Math.PI / 2 + magicNumber);
+                //Matrix4 rotY = Matrix4.CreateRotationY(/**/(float)Math.PI / 2 + magicNumber);
 
-               //res = Matrix4.Mult(res, rotX);
+               res = Matrix4.Mult(res, rotX);
                res = Matrix4.Mult(res, rotZ);
-               res = Matrix4.Mult(res, rotY);
+               //res = Matrix4.Mult(res, rotY);
 
 
             }
