@@ -26,3 +26,12 @@ C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGl\obj\Debug\MYTestOpenGl.cspr
 C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGl\obj\Debug\MYTestOpenGl.Properties.Resources.resources
 C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGl\obj\Debug\MYTestOpenGl.csproj.GenerateResource.Cache
 C:\Stage\Yanis\CSharp_projects\MY_Stage\MYTestOpenGl\obj\Debug\MYTestOpenGl.Form1.resources
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\MYTestOpenGl\bin\Debug\MYTestOpenGl.exe.config
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\MYTestOpenGl\obj\Debug\MYTestOpenGl.exe
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\MYTestOpenGl\obj\Debug\MYTestOpenGl.pdb
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\MYTestOpenGl\bin\Debug\MYTestOpenGl.exe
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\MYTestOpenGl\bin\Debug\MYTestOpenGl.pdb
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\MYTestOpenGl\obj\Debug\MYTestOpenGl.csprojResolveAssemblyReference.cache
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\MYTestOpenGl\obj\Debug\MYTestOpenGl.Form1.resources
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\MYTestOpenGl\obj\Debug\MYTestOpenGl.Properties.Resources.resources
+C:\Users\theop\OneDrive\Documents\GitHub\MY_Stage\MYTestOpenGl\obj\Debug\MYTestOpenGl.csproj.GenerateResource.Cache
