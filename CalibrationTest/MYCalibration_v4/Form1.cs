@@ -177,7 +177,7 @@ namespace MYCalibration_v4
 
             _currentCam.LookAt();
 
-            GL.Scale(1, 1, -1);
+            //GL.Scale(1, 1, -1);
             //Draw the scene
             DrawScene();
 
@@ -505,7 +505,8 @@ namespace MYCalibration_v4
             //_surfaceCam.SetTarget(_calibratedCam._target);
             //_surfaceCam.SetEye(_calibratedCam._eye);
             //_surfaceCam.SetUp(_calibratedCam._up);
-            _surfaceCam.ChangePerspective(_calibratedCam._projectionMatrixDouble);
+            //_surfaceCam.ChangePerspective(_calibratedCam._projectionMatrixDouble);
+            _surfaceCam.Calibrate(_calibratedCam);
             
 
         }
@@ -697,13 +698,13 @@ namespace MYCalibration_v4
                         _spectatorCam.KeyZ();
                         break;
                     case Keys.Q:
-                        _surfaceCam.KeyLEFT();
+                        _surfaceCam.KeyS();
                         break;
                     case Keys.S:
                         _spectatorCam.KeyS();
                         break;
                     case Keys.D:
-                        //_surfaceCam.KeyRIGHT();
+                        _surfaceCam.KeyZ();
                         break;
                     case Keys.Space:
                         _spectatorCam.KeySpace();
@@ -819,13 +820,13 @@ namespace MYCalibration_v4
 
 
 
-            _surfaceCam = new ClassicCam(w, h, _eye, _target, _up);
+            _surfaceCam = new SurfaceCam(w, h, _eye, _target, _up);
             _surfaceCam.SetColor(new Color4(244, 102, 27, 0));
             _surfaceCam.SetBackgroundTextureId(_backgroundTextureId);
 
             //_surfaceCam.RotateUp(GetSurfaceRot(_currentImagePath + ".xml"));
-            _surfaceCam.RotateTarget(GetSurfaceRot(_currentImagePath + ".xml"));
-
+            //_surfaceCam.RotateTarget(GetSurfaceRot(_currentImagePath + ".xml"));
+            _surfaceCam.RotateFromFile(_currentImagePath + ".xml");
 
 
             _spectatorCam = new SpectatorCam(w, h, _eye, _target, _up, _calibratedCam, _surfaceCam);

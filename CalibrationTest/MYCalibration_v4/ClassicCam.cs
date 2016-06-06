@@ -10,7 +10,7 @@ using System.Drawing;
 
 using CalibrationLibrary;
 
-namespace MYCalibration_v3
+namespace MYCalibration_v4
 {
     class ClassicCam : Camera
     {
@@ -23,7 +23,7 @@ namespace MYCalibration_v3
         private int _backgroundTextureId;
         private int _width;
         private int _height;*/
-        private float _angle;
+        private Vector3 _target0;
 
 
         #region Constructeurs
@@ -56,8 +56,7 @@ namespace MYCalibration_v3
             _useDoubleMatrix = false;
             _isCalibrated = false;
             setPlanPoints(5.0f, 5.0f);
-            _angle = 0.0f;
-
+            _target0 = target;
         }
         #endregion
 
@@ -188,7 +187,7 @@ namespace MYCalibration_v3
         #endregion
 
         #region DrawMethods
-        private Vector3 VectMove(Vector3 p_point, Vector3 p_dir, double p_dist)
+        protected Vector3 VectMove(Vector3 p_point, Vector3 p_dir, double p_dist)
         {
             Vector3 l_dir = p_dir;
             l_dir.Normalize();
@@ -372,6 +371,10 @@ namespace MYCalibration_v3
         {
             return;
         }
+        public override void Calibrate(Camera calibratedCam)
+        {
+            return;
+        }
         #endregion
 
         #region Control
@@ -435,6 +438,18 @@ namespace MYCalibration_v3
             
             UpdateLookAt();
         }
+        public override void RotateTarget(Matrix4 rotation)
+        {
+            
+            Vector3 tmp = this._target0 - this._eye;
+            this._target = Vector3.Transform(tmp, rotation);
+            
+
+            /*Vector3 tmp1 = Vector3.Transform(this._eye, rotation);
+            Vector3 tmp2 = this._target0 - tmp1;
+            this._target = tmp2 + this._eye;*/ 
+            UpdateLookAt();
+        }
 
         #endregion
 
@@ -480,6 +495,11 @@ namespace MYCalibration_v3
         {
             this._up = up;
             UpdateLookAt();
+        }
+
+        public override void RotateFromFile(string path)
+        {
+            return;
         }
     }
     }

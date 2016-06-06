@@ -54,6 +54,7 @@ namespace MYCalibration_v4
 
         #region Calibration
         public abstract void Calibrate(String calibrationPathFile, List<Vector2> listImagePoints, List<Vector3> listObjectPoints);
+        public abstract void Calibrate(Camera calibratedCam);
         #endregion
 
         #region Control
@@ -82,6 +83,8 @@ namespace MYCalibration_v4
         public abstract void RotateUp(Matrix4 matRotation);
 
         public abstract void RotateTarget(Matrix4 rotation);
+
+        public abstract void RotateFromFile(string path);
 
         //public abstract void RotatePosition(Matrix4 matRotation);
 

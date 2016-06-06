@@ -92,6 +92,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpectatorCam.cs" />
+    <Compile Include="SurfaceCam.cs" />
     <Compile Include="TexLib.cs" />
     <Compile Include="Vect2D.cs" />
     <Compile Include="Vect3D.cs" />
