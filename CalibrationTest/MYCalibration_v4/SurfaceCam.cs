@@ -46,7 +46,7 @@ namespace MYCalibration_v4
 
             Vector3 tmp2 = this._target0 - this._target;
             this._target = VectMove(this._target, tmp2, (double)tmp2.Length);
-            //this._eye = VectMove(this._eye, tmp2, (double)tmp2.Length);
+            this._eye = VectMove(this._eye, tmp2, (double)tmp2.Length);
         }
 
         public override void RotateFromFile(string path)

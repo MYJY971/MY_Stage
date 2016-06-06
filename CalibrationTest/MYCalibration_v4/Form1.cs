@@ -49,25 +49,10 @@ namespace MYCalibration_v4
 
         private float _angleX, _angleY, _angleZ;
 
-        private OrientationSensor _orientationSensor;
-
-        /*private float _M11, _M12, _M13,
-                      _M21, _M22, _M23,
-                      _M31, _M32, _M33;
-
-        Matrix4 _matSensor;*/
-
-        private bool _b = false;
-
         public Form1()
         {
             InitializeComponent();
-            _orientationSensor = OrientationSensor.GetDefault();
-            //Run();
-            if (_orientationSensor != null)
-            {
-                _orientationSensor.ReadingChanged += _orientationSensor_ReadingChanged;
-            }
+
         }
 
         private void _orientationSensor_ReadingChanged(OrientationSensor sender, OrientationSensorReadingChangedEventArgs args)
@@ -75,16 +60,6 @@ namespace MYCalibration_v4
             throw new NotImplementedException();
         }
 
-        /*private void Run()
-        {
-            if (_b)
-            {
-                if (_orientationSensor != null)
-                {
-                    _orientationSensor.ReadingChanged = 
-                }
-            }
-        }*/
 
 
         private void glControl1_Load(object sender, EventArgs e)
@@ -666,7 +641,6 @@ namespace MYCalibration_v4
             _calibratedCam.ReinitializePosition();
             _surfaceCam.SetLookat(_eye, _target, _up);
             _currentCam = _calibratedCam;*/
-            _b = false;
             initCameras();
             Refresh();
         }
@@ -858,7 +832,7 @@ namespace MYCalibration_v4
 
             //_surfaceCam.RotateUp(GetSurfaceRot(_currentImagePath + ".xml"));
             //_surfaceCam.RotateTarget(GetSurfaceRot(_currentImagePath + ".xml"));
-            //_surfaceCam.RotateFromFile(_currentImagePath + ".xml");
+            _surfaceCam.RotateFromFile(_currentImagePath + ".xml");
 
 
             _spectatorCam = new SpectatorCam(w, h, _eye, _target, _up, _calibratedCam, _surfaceCam);
@@ -869,8 +843,7 @@ namespace MYCalibration_v4
             _angleY = 0.0f;
             _angleZ = 0.0f;
 
-            _b = true;
-        }
+         }
 
         private Matrix4 GetSurfaceRot(string path)
         {
@@ -967,27 +940,6 @@ namespace MYCalibration_v4
             return FactoriseSize(FactoriseSize(s));
         }*/
 
-        /*private void _orientationSensor_ReadingChanged(OrientationSensor sender, OrientationSensorReadingChangedEventArgs args)
-        {
-            _M11 = args.Reading.RotationMatrix.M11;
-            _M12 = args.Reading.RotationMatrix.M12;
-            _M13 = args.Reading.RotationMatrix.M13;
-
-            _M21 = args.Reading.RotationMatrix.M21;
-            _M22 = args.Reading.RotationMatrix.M22;
-            _M23 = args.Reading.RotationMatrix.M23;
-
-            _M31 = args.Reading.RotationMatrix.M31;
-            _M32 = args.Reading.RotationMatrix.M32;
-            _M33 = args.Reading.RotationMatrix.M33;
-
-            _matSensor = new Matrix4(_M11, _M12, _M13, 0.0f,
-                                     _M21, _M22, _M23, 0.0f,
-                                     _M31, _M32, _M33, 0.0f,
-                                     0.0f, 0.0f, 0.0f, 1.0f);
-
-            _surfaceCam.RotateTarget(_matSensor);
-        }*/
-
+        
     }
 }
