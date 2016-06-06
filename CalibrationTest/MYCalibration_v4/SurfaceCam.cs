@@ -17,15 +17,8 @@ namespace MYCalibration_v4
 {
     class SurfaceCam : ClassicCam
     {
-        private float _angle;
+        //private float _angle;
         private Vector3 _target0;
-        private OrientationSensor _orientationSensor;
-
-        private float _M11, _M12, _M13,
-                      _M21, _M22, _M23,
-                      _M31, _M32, _M33;
-
-        Matrix4 _matSensor;
 
         #region Constructeurs
         public SurfaceCam(int width, int height)
@@ -39,35 +32,13 @@ namespace MYCalibration_v4
             :base(width,height,eye,target,up)
         {
             this._target0 = target;
-            _orientationSensor = OrientationSensor.GetDefault();
-            if (_orientationSensor != null)
-            {
-                _orientationSensor.ReadingChanged += _orientationSensor_ReadingChanged;
-            }
+            
+            
         }
 
-        private void _orientationSensor_ReadingChanged(OrientationSensor sender, OrientationSensorReadingChangedEventArgs args)
-        {
-            _M11 = args.Reading.RotationMatrix.M11;
-            _M12 = args.Reading.RotationMatrix.M12;
-            _M13 = args.Reading.RotationMatrix.M13;
-
-            _M21 = args.Reading.RotationMatrix.M21;
-            _M22 = args.Reading.RotationMatrix.M22;
-            _M23 = args.Reading.RotationMatrix.M23;
-
-            _M31 = args.Reading.RotationMatrix.M31;
-            _M32 = args.Reading.RotationMatrix.M32;
-            _M33 = args.Reading.RotationMatrix.M33;
-
-            _matSensor = new Matrix4(_M11, _M12, _M13, 0.0f,
-                                     _M21, _M22, _M23, 0.0f,
-                                     _M31, _M32, _M33, 0.0f,
-                                     0.0f, 0.0f, 0.0f, 1.0f);
-
-            RotateTarget(_matSensor);
-        }
+        
         #endregion
+
 
         public override void RotateTarget(Matrix4 rotation)
         {
@@ -196,6 +167,8 @@ namespace MYCalibration_v4
             return result;
         }
         #endregion
+
+        
     }
 
 
