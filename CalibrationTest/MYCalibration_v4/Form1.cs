@@ -719,21 +719,8 @@ namespace MYCalibration_v4
                         _spectatorCam.ReinitializePosition();
                         break;
                     case Keys.C:
-                        _angleX += 0.005f;
-                        radianAngleX = (float)Math.PI * _angleX / 180;
-                        radianAngleY = (float)Math.PI * _angleY / 180;
-                        radianAngleZ = (float)Math.PI * _angleZ / 180;
-
-                        rotX = Matrix4.CreateRotationX(radianAngleX);
-                        rotY = Matrix4.CreateRotationY(radianAngleY);
-                        rotZ = Matrix4.CreateRotationZ(radianAngleZ);
-
-                        rotation = Matrix4.Mult(rotX, rotY);
-                        rotation = Matrix4.Mult(rotation, rotZ);
-
-                        _surfaceCam.RotateUp(rotation);
-
-                    textBoxXangle.Text = "" + radianAngleX;
+                    _angleZ++;
+                    _surfaceCam.RotateEye(_angleZ);
 
                         break;
                     case Keys.V:

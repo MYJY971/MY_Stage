@@ -84,6 +84,8 @@ namespace MYCalibration_v4
 
         public abstract void RotateTarget(Matrix4 rotation);
 
+        public abstract void RotateEye(float angle);
+
         public abstract void RotateFromFile(string path);
 
         //public abstract void RotatePosition(Matrix4 matRotation);

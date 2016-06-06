@@ -23,7 +23,7 @@ namespace MYCalibration_v4
         private int _backgroundTextureId;
         private int _width;
         private int _height;*/
-        private Vector3 _target0;
+        private Vector3 _target0, _eye0;
 
 
         #region Constructeurs
@@ -57,6 +57,7 @@ namespace MYCalibration_v4
             _isCalibrated = false;
             setPlanPoints(5.0f, 5.0f);
             _target0 = target;
+            _eye0 = eye;
         }
         #endregion
 
@@ -453,6 +454,8 @@ namespace MYCalibration_v4
             UpdateLookAt();
         }
 
+
+
         #endregion
 
         #region Spectator
@@ -504,6 +507,11 @@ namespace MYCalibration_v4
             return;
         }
 
-        
+        public override void RotateEye(float angle)
+        {
+            Matrix4 rotZ = Matrix4.CreateRotationZ(angle);
+
+            this._eye = Vector3.Transform(this._eye0, rotZ) + this._eye;
+        }
     }
     }

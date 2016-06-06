@@ -105,13 +105,31 @@ namespace MYCalibration_v4
         #region Calibration
         public override void Calibrate(Camera calibratedCam)
         {
+            Camera c1 = calibratedCam;
+
             //change perspective
             ChangePerspective(calibratedCam._projectionMatrixDouble);
 
             //change eye
-            Vector3 eyeCenter = calibratedCam._eye - this._target0;
-            Vector3 axeTarget = this._target - this._eye;
+            //Vector3 eyeCenter = calibratedCam._eye - this._target0;
+            //Vector3 axeTarget = this._target - this._eye;
             //this._eye = VectMove(this._eye, axeTarget, (float)axeTarget.Length - (float)eyeCenter.Length);
+            //fait correspondre les deux "targets"
+            Vector3 tmp = c1._target - this._target;
+            this._target = VectMove(this._target, tmp, (double)tmp.Length);
+            //Adapte la position de l'oeil
+            this._eye = VectMove(this._eye, tmp, (double)tmp.Length);
+            Vector3 targetAxis = this._eye - this._target;
+            Vector3 targetC1 = c1._target - c1._eye;
+            this._eye = VectMove(this._eye, targetAxis, targetC1.Length-targetAxis.Length);
+
+            /*Vector3 axRot = new Vector3(this._target.X, this._target.Y, this._eye.Z)-this._target;
+            Matrix4 rot = Matrix4.CreateFromAxisAngle(axRot, (float)Math.PI/2);
+            rot.Transpose();
+            
+            this._eye = Vector3.Transform(this._eye, rot);*/
+            //Vector3 tmpEye = this._eye;
+
 
             UpdateLookAt();
         }
