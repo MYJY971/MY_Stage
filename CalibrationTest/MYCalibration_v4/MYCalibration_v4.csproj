@@ -81,7 +81,24 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Windows.ApplicationModel" />
+    <Reference Include="Windows.Data" />
     <Reference Include="Windows.Devices" />
+    <Reference Include="Windows.Foundation" />
+    <Reference Include="Windows.Gaming" />
+    <Reference Include="Windows.Globalization" />
+    <Reference Include="Windows.Graphics" />
+    <Reference Include="Windows.Management" />
+    <Reference Include="Windows.Media" />
+    <Reference Include="Windows.Networking" />
+    <Reference Include="Windows.Perception" />
+    <Reference Include="Windows.Security" />
+    <Reference Include="Windows.Services" />
+    <Reference Include="Windows.Storage" />
+    <Reference Include="Windows.System" />
+    <Reference Include="Windows.UI" />
+    <Reference Include="Windows.UI.Xaml" />
+    <Reference Include="Windows.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calibration4points.cs" />
