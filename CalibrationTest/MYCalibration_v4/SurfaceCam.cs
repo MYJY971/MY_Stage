@@ -19,6 +19,7 @@ namespace MYCalibration_v4
     {
         private float _angle;
         private Vector3 _target0;
+        private OrientationSensor _orientationSensor;
 
         #region Constructeurs
         public SurfaceCam(int width, int height)
