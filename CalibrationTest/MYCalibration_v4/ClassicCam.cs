@@ -434,6 +434,7 @@ namespace MYCalibration_v4
         public override void RotateUp(Matrix4 matRotation)
         {
             //this._eye = Vector3.Transform(this._eye, matRotation);
+            matRotation.Transpose();
             this._up = Vector3.Transform(this._up, matRotation);
             //this._target = Vector3.Transform(this._target, matRotation);
             
@@ -511,7 +512,7 @@ namespace MYCalibration_v4
         {
             Matrix4 rotZ = Matrix4.CreateRotationZ(angle);
 
-            this._eye = Vector3.Transform(this._eye0, rotZ) + this._eye;
+            this._eye = Vector3.Transform(this._eye0, rotZ)+ this._target;
         }
     }
     }

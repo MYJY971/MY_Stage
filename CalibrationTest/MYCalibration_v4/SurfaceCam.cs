@@ -17,7 +17,7 @@ namespace MYCalibration_v4
     class SurfaceCam : ClassicCam
     {
         //private float _angle;
-        private Vector3 _target0;
+        private Vector3 _target0, _eye0, _targetZ;
 
         #region Constructeurs
         public SurfaceCam(int width, int height)
@@ -31,7 +31,7 @@ namespace MYCalibration_v4
             :base(width,height,eye,target,up)
         {
             this._target0 = target;
-            
+            this._eye0 = eye; 
             
         }
 
@@ -46,12 +46,22 @@ namespace MYCalibration_v4
             Vector3 tmp2 = this._target0 - this._target;
             this._target = VectMove(this._target, tmp2, (double)tmp2.Length);
             this._eye = VectMove(this._eye, tmp2, (double)tmp2.Length);
+            this._eye0 = _eye;
+
+            UpdateLookAt();
+        }
+
+        public override void UpdateLookAt()
+        {
+            base.UpdateLookAt();
+            //this._targetZ = VectMove(this._target, Vector3.UnitZ, this._eye.Z - this._target.Z);
         }
 
         public override void RotateFromFile(string path)
         {
             Matrix4 rotation = GetSurfaceRot(path);
             RotateTarget(rotation);
+            //RotateUp(rotation);
         }
 
 
@@ -115,21 +125,44 @@ namespace MYCalibration_v4
             //Vector3 axeTarget = this._target - this._eye;
             //this._eye = VectMove(this._eye, axeTarget, (float)axeTarget.Length - (float)eyeCenter.Length);
             //fait correspondre les deux "targets"
+
             Vector3 tmp = c1._target - this._target;
             this._target = VectMove(this._target, tmp, (double)tmp.Length);
             //Adapte la position de l'oeil
             this._eye = VectMove(this._eye, tmp, (double)tmp.Length);
-            Vector3 targetAxis = this._eye - this._target;
+
+            //met le "eye" à la même hauteur que le eye de C1
+
+            Vector3 targetAxiss = this._target - this._eye;
             Vector3 targetC1 = c1._target - c1._eye;
-            this._eye = VectMove(this._eye, targetAxis, targetC1.Length-targetAxis.Length);
-
-            /*Vector3 axRot = new Vector3(this._target.X, this._target.Y, this._eye.Z)-this._target;
-            Matrix4 rot = Matrix4.CreateFromAxisAngle(axRot, (float)Math.PI/2);
-            rot.Transpose();
+            this._eye = VectMove(this._eye, targetAxiss, targetAxiss.Length - targetC1.Length);
+            this._eye0 = VectMove(this._eye0, targetAxiss, targetAxiss.Length - targetC1.Length); 
             
-            this._eye = Vector3.Transform(this._eye, rot);*/
-            //Vector3 tmpEye = this._eye;
+            //axe de symétrie entre les deux caméra
+            Vector3 axis = VectMove(this._target, Vector3.UnitZ, this._eye.Z - this._target.Z);
+            /*
+            Vector3 vadjC1 = axis - this._target;
+            Vector3 vhypC1 = c1._eye - c1._target;
+            float angleC1 = Vector3.CalculateAngle(vadjC1, vhypC1);
 
+            float adj = (float)Math.Cos(angleC1)*vhypC1.Length;
+
+            Vector3 vectHyp = this._eye - this._target;
+            
+            float angle2 = Vector3.CalculateAngle(vectHyp, vadjC1);
+            float hyp = adj / (float)(Math.Cos(angle2));
+
+            Vector3 targetAxis = this._target - this._eye;
+
+            this._eye = VectMove(this._eye, targetAxis, targetAxis.Length - hyp);
+            this._eye0 = VectMove(this._eye0, targetAxis, targetAxis.Length - hyp);
+            */
+            Vector3 vecEyeAxis = this._eye - axis;
+            Vector3 vecEyeC1Axis = c1._eye - axis;
+
+            float angle3 = Vector3.CalculateAngle(vecEyeC1Axis, vecEyeAxis);
+            float magicNumber = (float)Math.PI * 177.0438f / 180;
+            RotateEye(angle3);
 
             UpdateLookAt();
         }
@@ -151,6 +184,17 @@ namespace MYCalibration_v4
             UpdateLookAt();
         }
         #endregion
+
+        public override void RotateEye(float angle)
+        {
+            Vector3 axis = VectMove(this._target, Vector3.UnitZ, this._eye.Z - this._target.Z);
+            axis.Normalize();
+            Matrix4 rotZ = /*Matrix4.CreateFromAxisAngle(axis, angle);//= */Matrix4.CreateRotationZ(angle);
+
+            this._eye = Vector3.Transform(this._eye0, rotZ)+this._target;
+
+            UpdateLookAt();
+        }
 
         #region matrice Rotation
         //rotation X
@@ -185,9 +229,20 @@ namespace MYCalibration_v4
         }
         #endregion
 
-        
+        public override void Draw()
+        {
+            base.Draw();
+            Vector3 axis = VectMove(this._target, Vector3.UnitZ, this._eye.Z-this._target.Z);
+
+            GL.Color3(1.0f, 0.0f, 0.0f);
+            GL.Begin(BeginMode.Lines);
+            GL.Vertex3(axis);
+            GL.Vertex3(this._target);
+            GL.End();
+            GL.Color4(this._color);
+        }
     }
 
-
+    
 
 }

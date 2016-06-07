@@ -77,6 +77,16 @@ namespace MYCalibration_v4
                 SetPerspective(_calibration4P._glProjectionMatrix);
 
                 //SetLookat(_calibration4P._modelView.toMatrix4());
+
+                //Ramène le vecteur target au plan XY pour simplifier la visualisation
+                Vector3 axisTarget = this._eye - this._target;
+                Vector3 dirAxis = axisTarget;
+                dirAxis.Normalize();
+
+                float dist = (- Vector3.Dot(this._eye,Vector3.UnitZ)) / (Vector3.Dot(dirAxis,Vector3.UnitZ)) ;
+
+                this._target = VectMove(this._eye, axisTarget, dist);
+
                 UpdateLookAt();
 
                 _isCalibrated = true;

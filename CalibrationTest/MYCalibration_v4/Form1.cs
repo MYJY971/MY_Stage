@@ -719,9 +719,10 @@ namespace MYCalibration_v4
                         _spectatorCam.ReinitializePosition();
                         break;
                     case Keys.C:
-                    _angleZ++;
+                    _angleZ +=0.01f;//(float)Math.PI * 180 / 180;
                     _surfaceCam.RotateEye(_angleZ);
-
+                    textBoxXangle.Text = "" +(_surfaceCam._target - _surfaceCam._eye).Length;
+                    textBoxYangle.Text = "" + 180.0f* _angleZ/(float)Math.PI;
                         break;
                     case Keys.V:
                     _angleY+= 0.005f;
@@ -826,8 +827,8 @@ namespace MYCalibration_v4
             _angleX = 0.0f;
             _angleY = 0.0f;
             _angleZ = 0.0f;
-
-         }
+            textBoxXangle.Text = "" + (_surfaceCam._target - _surfaceCam._eye).Length;
+        }
 
         private Matrix4 GetSurfaceRot(string path)
         {
@@ -859,7 +860,7 @@ namespace MYCalibration_v4
 
                 //transformation pour adapter le repere de la surface à celui d'openGL
                 //float magicNumber = 3.773402f;
-                Matrix4 rotX = Matrix4.CreateRotationX(/*-90*/-(float)Math.PI / 2/**/);
+                Matrix4 rotX = Matrix4.CreateRotationX(/*-90*/- (float)Math.PI / 2/**/);
                 Matrix4 rotZ = Matrix4.CreateRotationZ(/*-90*/-(float)Math.PI / 2/**/);
                 //Matrix4 rotY = Matrix4.CreateRotationY(/**/(float)Math.PI / 2 + magicNumber);
 
