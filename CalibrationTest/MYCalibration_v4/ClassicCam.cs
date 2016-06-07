@@ -23,7 +23,7 @@ namespace MYCalibration_v4
         private int _backgroundTextureId;
         private int _width;
         private int _height;*/
-        private Vector3 _target0, _eye0;
+        private Vector3 _target0, _eye0, _up0;
 
 
         #region Constructeurs
@@ -58,6 +58,7 @@ namespace MYCalibration_v4
             setPlanPoints(5.0f, 5.0f);
             _target0 = target;
             _eye0 = eye;
+            this._up0 = up;
         }
         #endregion
 
@@ -435,7 +436,7 @@ namespace MYCalibration_v4
         {
             //this._eye = Vector3.Transform(this._eye, matRotation);
             matRotation.Transpose();
-            this._up = Vector3.Transform(this._up, matRotation);
+            this._up = Vector3.Transform(this._up0, matRotation);
             //this._target = Vector3.Transform(this._target, matRotation);
             
             UpdateLookAt();
