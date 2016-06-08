@@ -228,7 +228,7 @@ namespace MYCalibration_v4
             DrawTrihedral();
            // GL.Rotate(90, Vector3d.UnitZ);
 
-            DrawQuad();
+            DrawObject3D();
 
 
             //_surfaceCam.Draw();
@@ -243,7 +243,7 @@ namespace MYCalibration_v4
         #endregion
 
         #region Objects
-        private void DrawQuad()
+        private void DrawObject3D()
         {
 
             GL.Material(MaterialFace.FrontAndBack, MaterialParameter.Specular, new Color4(0.3f, 0.3f, 0.3f, 1.0f));
@@ -296,6 +296,15 @@ namespace MYCalibration_v4
             GL.End();
 
             GL.Disable(EnableCap.Texture2D);
+
+            GL.Color3(1.0f, 0.0f, 0.0f);
+            GL.Begin(BeginMode.Points);
+            foreach(Vector3 point in _listObjectPoints)
+            {
+                GL.Vertex3(point);
+            }
+            GL.End();
+
             GL.Color3(1.0f, 1.0f, 1.0f);
         }
 

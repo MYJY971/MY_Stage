@@ -59,6 +59,7 @@ namespace MYCalibration_v4
             _target0 = target;
             _eye0 = eye;
             this._up0 = up;
+            _axe3 = Vector3.Cross(up, target);
         }
         #endregion
 
@@ -116,6 +117,10 @@ namespace MYCalibration_v4
             this._target = target;
             this._up = up;
             _lookatMatrix = Matrix4.LookAt(_eye, _target, _up);
+
+
+            //3eme axe
+            this._axe3 = Vector3.Cross(this._target - this._eye, this._up - this._eye);
         }
 
         protected void SetLookat(Matrix4 lookatMatrix)
@@ -214,9 +219,11 @@ namespace MYCalibration_v4
 
             Vector3 targetAxis = this._target - this._eye;
             Vector3 upVector = this._up - this._eye;
+            //Vector3 axis3 = Vector3.Cross(targetAxis, upVector);
 
             Vector3 target = VectMove(this._eye, targetAxis, 2);
             Vector3 up = VectMove(this._eye, this._up, 2);
+            Vector3 axe3 = VectMove(this._eye, this._axe3, 2);
 
 
             Matrix4 rotationMat1 = Matrix4.CreateFromAxisAngle(targetAxis, (float)Math.PI / 2);
@@ -256,6 +263,12 @@ namespace MYCalibration_v4
             GL.Color3(1-_color.R, 1-_color.G,1-_color.B);
             GL.Vertex3(this._eye);
             GL.Vertex3(up);
+
+            //3eme axe
+            
+            GL.Color3(_color.R, 1 - _color.G, 1 - _color.B);
+            GL.Vertex3(this._eye);
+            GL.Vertex3(axe3);
 
             GL.Color4(_color);
 

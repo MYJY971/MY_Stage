@@ -17,7 +17,7 @@ namespace MYCalibration_v4
         public Matrix4 _projectionMatrix;
         protected Matrix4 _lookatMatrix;
         public double[] _projectionMatrixDouble;
-        public Vector3 _eye, _target, _up;
+        public Vector3 _eye, _target, _up, _axe3;
         protected Color4 _color;
         public bool _useDoubleMatrix;
         protected int _backgroundTextureId;
