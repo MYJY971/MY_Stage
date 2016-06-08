@@ -416,11 +416,11 @@ namespace CalibrationLibrary//Logyline.Math.Geometry3D
 			return v.SquareNorm();   
 		}
 
-        /*public static double Angle3D(Vect3D u, Vect3D v)
+        public static double Angle3D(Vect3D u, Vect3D v)
         {
             double l_angle, deno = ScalarProduct(u, v);
             Vect3D n = VectorialProduct(u, v);
-            if (System.Math.Abs(deno) > MathTools.LOW_EPS)
+            if (System.Math.Abs(deno) > Math.Pow(10,-7)/*MathTools.LOW_EPS*/)
                 l_angle = System.Math.Atan(n.Norm() / deno);
             else l_angle = System.Math.PI / 2;
 
@@ -432,7 +432,7 @@ namespace CalibrationLibrary//Logyline.Math.Geometry3D
                     l_angle = l_angle + System.Math.PI;
             }
             return l_angle;
-        }*/
+        }
         /*public static double Angle3D_bis(Vect3D u, Vect3D v)
 		{
             double angle;

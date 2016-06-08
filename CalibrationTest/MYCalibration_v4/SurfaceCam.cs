@@ -56,6 +56,7 @@ namespace MYCalibration_v4
         public override void RotateUp(Matrix4 rotation)
         {
             rotation.Transpose();
+            Vector3 tmp2 = this._target0 - this._target;
             this._up = Vector3.Transform(this._up0, rotation);
             this._up0 = _up;
             UpdateLookAt();
@@ -148,7 +149,7 @@ namespace MYCalibration_v4
             Vector3 targetC1 = c1._target - c1._eye;
             this._eye = VectMove(this._eye, targetAxiss, targetAxiss.Length - targetC1.Length);
             this._eye0 = VectMove(this._eye0, targetAxiss, targetAxiss.Length - targetC1.Length);
-            this._up0 = VectMove(this._up0, targetAxiss, targetAxiss.Length - targetC1.Length);
+            
 
             //axe de symétrie entre les deux caméra
             Vector3 axis = VectMove(this._target, Vector3.UnitZ, this._eye.Z - this._target.Z);
@@ -169,12 +170,24 @@ namespace MYCalibration_v4
             this._eye = VectMove(this._eye, targetAxis, targetAxis.Length - hyp);
             this._eye0 = VectMove(this._eye0, targetAxis, targetAxis.Length - hyp);
             */
-            Vector3 vecEyeAxis = this._eye - axis;
-            Vector3 vecEyeC1Axis = c1._eye - axis;
+            Vector3 vecEyeAxis = this._eye - this._target;
+            Vector3 vecEyeC1Axis = c1._eye - c1._target;
 
-            float angle3 = Vector3.CalculateAngle(vecEyeC1Axis, vecEyeAxis);
+            vecEyeAxis = VectMove(vecEyeAxis, Vector3.UnitZ, -vecEyeAxis.Z);
+            vecEyeC1Axis = VectMove(vecEyeC1Axis, Vector3.UnitZ, -vecEyeC1Axis.Z);
+            //this._eye = vecEyeAxis;
+            //this._eye0 = vecEyeAxis;
+            float angle3 = Vector3.CalculateAngle(vecEyeAxis, vecEyeC1Axis);
+            float angle4 = (float)Vect3D.Angle3D(Vect3D.ToVect3D(vecEyeAxis), Vect3D.ToVect3D(vecEyeC1Axis));
             float magicNumber = (float)Math.PI * 177.0438f / 180;
-            //RotateEye(angle3);
+            //Calcul du determinant pour determiner le signe de l'angle
+            Vector3 prodVect = Vector3.Cross(vecEyeAxis, vecEyeC1Axis);
+
+            if (prodVect.Z < 0.0f)
+                angle3 = -angle3;
+
+            RotateEye(angle3);
+
 
             UpdateLookAt();
         }
@@ -204,7 +217,7 @@ namespace MYCalibration_v4
             Matrix4 rotZ = /*Matrix4.CreateFromAxisAngle(axis, angle);//= */Matrix4.CreateRotationZ(angle);
 
             this._eye = Vector3.Transform(this._eye0, rotZ)+this._target;
-            this._up = Vector3.Transform(this._up0, rotZ) + this._target;
+            this._up = Vector3.Transform(this._up0, rotZ);// + this._target;
 
             UpdateLookAt();
         }
@@ -247,7 +260,7 @@ namespace MYCalibration_v4
             base.Draw();
             Vector3 axis = VectMove(this._target, Vector3.UnitZ, this._eye.Z-this._target.Z);
 
-            GL.Color3(1.0f, 0.0f, 0.0f);
+            GL.Color3(1.0f, 0.0f, 1.0f);
             GL.Begin(BeginMode.Lines);
             GL.Vertex3(axis);
             GL.Vertex3(this._target);

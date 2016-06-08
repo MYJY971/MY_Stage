@@ -87,6 +87,10 @@ namespace MYCalibration_v4
 
                 this._target = VectMove(this._eye, axisTarget, dist);
 
+
+                //test
+                //this._eye = VectMove(this._eye, Vector3.UnitZ, -this._eye.Z);
+
                 UpdateLookAt();
 
                 _isCalibrated = true;
