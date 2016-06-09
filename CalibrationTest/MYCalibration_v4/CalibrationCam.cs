@@ -15,6 +15,7 @@ namespace MYCalibration_v4
     class CalibrationCam : ClassicCam
     {
         Calibration4points _calibration4P;
+        private List<Vector3> _newPoints3D = new List<Vector3>();
 
         #region Constructeurs
         public CalibrationCam (int width, int height)
@@ -111,6 +112,26 @@ namespace MYCalibration_v4
 
         #region Control
 
+        public override void Draw()
+        {
+            base.Draw();
+            DrawNewPoints();
+        }
+
+
+        private void DrawNewPoints()
+        {
+            if(_newPoints3D.Count==4)
+            {
+                GL.Color3(0.0f, 1.0f, 1.0f);
+                foreach(Vector3 point in _newPoints3D)
+                {
+                    GL.Vertex3(point);
+                }
+                GL.End();
+                GL.Color3(1.0f, 1.0f, 1.0f);
+            }
+        }
         #region Rotation
         public override void KeyDOWN()
         {
@@ -167,6 +188,39 @@ namespace MYCalibration_v4
 
         #endregion
 
+        public override void Correction(Camera surface, out float angleUp, out float angleAxe3)
+        {
+            if (surface._isCalibrated && _listPoints.Count==4)
+            {
+                Vector3 vectEye = surface._eye - this._eye;
+                //this._eye = VectMove(this._eye, vectEye, vectEye.Length);
+
+                Vector3 vectUp =  surface._up - this._up;
+                //this._up = VectMove(this._up, vectUp, vectUp.Length);
+                
+
+                foreach(Vector3 point in _listPoints)
+                {
+                    
+                    Vector3 newpoint = point;
+                    newpoint = VectMove(newpoint, vectEye, vectEye.Length);
+                    newpoint = VectMove(newpoint, vectUp, vectUp.Length);
+                }
+
+                angleAxe3 = 0;
+                angleUp = 0;
+
+
+                UpdateLookAt();
+
+
+            }
+            else
+            {
+                angleAxe3 = 0;
+                angleUp = 0;
+            }
+        }
 
     }
 }

@@ -126,7 +126,9 @@ namespace MYCalibration_v4
         #region Calibration
         public override void Calibrate(Camera calibratedCam)
         {
-            Camera c1 = calibratedCam;
+            if (!_isCalibrated)
+            {
+                Camera c1 = calibratedCam;
 
             //change perspective
             ChangePerspective(calibratedCam._projectionMatrixDouble);
@@ -135,7 +137,7 @@ namespace MYCalibration_v4
             //Vector3 eyeCenter = calibratedCam._eye - this._target0;
             //Vector3 axeTarget = this._target - this._eye;
             //this._eye = VectMove(this._eye, axeTarget, (float)axeTarget.Length - (float)eyeCenter.Length);
-            
+
             //fait correspondre les deux "targets"
             Vector3 tmp = c1._target - this._target;
             this._target = VectMove(this._target, tmp, (double)tmp.Length);
@@ -149,7 +151,7 @@ namespace MYCalibration_v4
             Vector3 targetC1 = c1._target - c1._eye;
             this._eye = VectMove(this._eye, targetAxiss, targetAxiss.Length - targetC1.Length);
             this._eye0 = VectMove(this._eye0, targetAxiss, targetAxiss.Length - targetC1.Length);
-            
+
 
             //axe de symétrie entre les deux caméra
             Vector3 axis = VectMove(this._target, Vector3.UnitZ, this._eye.Z - this._target.Z);
@@ -182,35 +184,43 @@ namespace MYCalibration_v4
             float magicNumber = (float)Math.PI * 177.0438f / 180;
             //Calcul du determinant pour determiner le signe de l'angle
             Vector3 prodVect = Vector3.Cross(vecEyeAxis, vecEyeC1Axis);
-
+            
             if (prodVect.Z < 0.0f)
                 angle3 = -angle3;
 
-            RotateEye(angle3);
+            RotateAroundZ(angle3);
 
-            Vector3 vecup = this._up - this._eye;
-            Vector3 vecupC1 = c1._up - c1._eye;
+                //////////////////////////////
+                /*Vector3 vecEye = this._eye - c1._eye;
+                c1._eye = VectMove(c1._eye, vecEye, vecEye.Length);
 
-            float angleUp = Vector3.CalculateAngle(vecup, vecupC1);
+                Vector3 vtar = this._target - this._eye;
+                Vector3 vtarc1 = c1._target - c1._eye;
 
-            Vector3 vecAxe3 = this._axe3 - this._eye;
-            Vector3 vecAxe3C1 = c1._axe3 - c1._eye;
+                float angleTar = Vector3.CalculateAngle(vtar, vtarc1);
 
-            float angleAxe3 = Vector3.CalculateAngle(vecAxe3, vecAxe3C1);
+                Vector3 vUp = this._up - this._target;
+                Vector3 vUpc1 = c1._up - c1._target;
 
-            Vector3 crossAxe3 = Vector3.Cross(vecAxe3, vecAxe3C1);
+                float angleUp = Vector3.CalculateAngle(vUp, vUpc1);
 
-            this._eye0 = this._eye;
+                //RotateAroundAxe3(angleUp);
 
-            RotateEyeY(angleUp);
-            Vector3 vecTarget = this._target - this._target;
-            Vector3 vecTargetC1 = c1._target - c1._target;
+                //vecEye = this._eye - c1._eye;
+                //c1._eye = VectMove(c1._eye, vecEye, vecEye.Length);
 
-            float angleTarget = Vector3.CalculateAngle(vecTarget, vecTargetC1);
+                Vector3 v3a = this._axe3 - this._eye;
+                Vector3 v3ac1 = c1._axe3 - c1._eye;
 
+                float angleA3 = Vector3.CalculateAngle(v3a, v3ac1);*/
 
+                //RotateAroundTarget(angleA3);
+                /////////////////////////////
 
             UpdateLookAt();
+
+            _isCalibrated = true;
+            }
         }
         #endregion
 
@@ -233,21 +243,108 @@ namespace MYCalibration_v4
 
         public override void RotateEye(float angle)
         {
+            /*
             Vector3 axis = VectMove(this._target, Vector3.UnitZ, this._eye.Z - this._target.Z);
             axis.Normalize();
-            Matrix4 rotZ = /*Matrix4.CreateFromAxisAngle(axis, angle);//= */Matrix4.CreateRotationZ(angle);
+            Matrix4 rotZ = Matrix4.CreateRotationZ(angle);
 
             this._eye = Vector3.Transform(this._eye0, rotZ)+this._target;
+            
             this._up = Vector3.Transform(this._up0, rotZ);// + this._target;
+
+
+            */
+
+            Vector3 axis = this._axe3 - this._eye;
+            axis.Normalize();
+            Matrix4 rot = Matrix4.CreateFromAxisAngle(axis, angle);
+
+            this._eye = Vector3.Transform(this._eye0, rot) + this._target;
+            this._up = Vector3.Transform(this._up0, rot);// + this._target;
 
             UpdateLookAt();
         }
+
+        public void RotateEye(float angle,float angleUp)
+        {
+            Vector3 axis = this._up - this._eye;//this._target - this._eye;//VectMove(this._target, Vector3.UnitZ, this._eye.Z - this._target.Z);
+            axis.Normalize();
+
+            Matrix4 rotZ = /*Matrix4.CreateFromAxisAngle(axis, angle);//= */Matrix4.CreateRotationZ(angle);
+            Matrix4 rotUp = /*Matrix4.CreateFromAxisAngle(axis, angleUp);*/Matrix4.CreateRotationY(angleUp);
+
+
+            this._eye = Vector3.Transform(Vector3.Transform(this._eye0, rotUp),rotZ) + this._target;
+            this._up = Vector3.Transform(Vector3.Transform(this._up0, rotUp),rotZ);// + this._target;
+
+            UpdateLookAt();
+        }
+
+        private void RotateAroundZ(float angle)
+        {
+            Matrix4 rotZ = Matrix4.CreateRotationZ(angle);
+
+            this._eye = Vector3.Transform(this._eye0, rotZ) + this._target;
+            this._eye0 = Vector3.Transform(this._eye0, rotZ);
+
+            this._up = Vector3.Transform(this._up0, rotZ);
+            this._up0 = Vector3.Transform(this._up0, rotZ);
+
+            UpdateLookAt();
+        }
+
+        private void RotateAroundTarget(float angle)
+        {
+            Vector3 axis = this._target - this._eye;
+            axis.Normalize();
+            Matrix4 rot = Matrix4.CreateFromAxisAngle(axis, angle);
+
+            this._eye = Vector3.Transform(this._eye0, rot) + this._target;
+            this._up = Vector3.Transform(this._up0, rot);// + this._target;
+
+            this._eye0 = Vector3.Transform(this._eye0, rot);
+            this._up0 = this._up;
+
+            UpdateLookAt();
+        }
+
+        private void RotateAroundAxe3(float angle)
+        {
+            Vector3 axis = this._axe3 - this._eye;
+            axis.Normalize();
+            Matrix4 rot = Matrix4.CreateFromAxisAngle(axis, angle);
+
+            this._eye = Vector3.Transform(this._eye0, rot) + this._target;
+            this._up = Vector3.Transform(this._up0, rot);// + this._target;
+
+            this._eye0 = Vector3.Transform(this._eye0, rot);
+            this._up0 = this._up;
+
+            UpdateLookAt();
+        }
+
+
+
+
+
 
         private void RotateEyeY(float angle)
         {
             Vector3 axis = VectMove(this._target, Vector3.UnitY, this._eye.Y - this._target.Y);
             axis.Normalize();
             Matrix4 rot = /*Matrix4.CreateFromAxisAngle(axis, angle);//= */Matrix4.CreateRotationY(angle);
+
+            this._eye = Vector3.Transform(this._eye0, rot) + this._target;
+            this._up = Vector3.Transform(this._up0, rot);// + this._target;
+
+            UpdateLookAt();
+        }
+
+        private void RotateAxe3 (float angle)
+        {
+            Vector3 axis = this._target - this._eye;//VectMove(this._target, Vector3.UnitZ, this._eye.Z - this._target.Z);
+            axis.Normalize();
+            Matrix4 rot = Matrix4.CreateFromAxisAngle(axis, angle);
 
             this._eye = Vector3.Transform(this._eye0, rot) + this._target;
             this._up = Vector3.Transform(this._up0, rot);// + this._target;

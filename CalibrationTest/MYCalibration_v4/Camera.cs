@@ -25,6 +25,7 @@ namespace MYCalibration_v4
         protected int _height;
         public bool _isCalibrated;
         public List<Vector3> _listPlanPoints = new List<Vector3>();
+        public List<Vector3> _listPoints = new List<Vector3>();
 
         #region Projection
 
@@ -92,10 +93,14 @@ namespace MYCalibration_v4
 
         #endregion
 
+        public abstract void Correction(Camera surface, out float angle1, out float tr2 );
+       
         #region Setters
         public abstract void SetTarget(Vector3 target);
         public abstract void SetEye(Vector3 eye);
         public abstract void SetUp(Vector3 up);
+
+        public abstract void setPoints(List<Vector3> list);
         #endregion
 
         #region Spectator

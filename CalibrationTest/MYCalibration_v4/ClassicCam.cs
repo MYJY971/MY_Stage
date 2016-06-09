@@ -528,5 +528,17 @@ namespace MYCalibration_v4
 
             this._eye = Vector3.Transform(this._eye0, rotZ)+ this._target;
         }
+
+        public override void Correction(Camera surface, out  float angle1,  out float angle2)
+        {
+            angle1 = 0;
+            angle2 = 0;
+            return;
+        }
+
+        public override void setPoints(List<Vector3> list)
+        {
+            this._listPoints = list;
+        }
     }
     }

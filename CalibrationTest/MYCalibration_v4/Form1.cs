@@ -656,6 +656,14 @@ namespace MYCalibration_v4
             SetImagePoints();
         }
 
+        private void buttonCorrection_Click(object sender, EventArgs e)
+        {
+            float angle1, angle2;
+            _calibratedCam.Correction(_surfaceCam,out angle1,out angle2);
+            textBoxXangle.Text = "" + angle1;
+            textBoxYangle.Text = "" + angle2;
+        }
+
         private void buttonCamCalib_Click(object sender, EventArgs e)
         {
             _currentCam = _calibratedCam;
@@ -817,7 +825,7 @@ namespace MYCalibration_v4
             _calibratedCam = new CalibrationCam(w, h, _eye, _target, _up); 
             _calibratedCam.SetColor(new Color4(75, 0, 130, 0));
             _calibratedCam.SetBackgroundTextureId(_backgroundTextureId);
-
+            _calibratedCam.setPoints(_listObjectPoints);
 
 
             _surfaceCam = new SurfaceCam(w, h, _eye, _target, _up);
