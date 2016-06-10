@@ -16,7 +16,7 @@ namespace MYCalibration_v4
     {
         Calibration4points _calibration4P;
         private List<Vector3> _newPoints3D = new List<Vector3>();
-
+        private float _angleTest = 0.0f;
         #region Constructeurs
         public CalibrationCam (int width, int height)
             :base(width,height)
@@ -74,7 +74,9 @@ namespace MYCalibration_v4
                 this._eye = _calibration4P._eyePosition.ToVector3();
                 this._target = _calibration4P._targetPosition.ToVector3();
                 this._up = _calibration4P._upVector.ToVector3();
-                
+
+                this._target0 = this._target;
+
                 SetPerspective(_calibration4P._glProjectionMatrix);
 
                 //SetLookat(_calibration4P._modelView.toMatrix4());
@@ -92,8 +94,11 @@ namespace MYCalibration_v4
                 //test
                 //this._eye = VectMove(this._eye, Vector3.UnitZ, -this._eye.Z);
 
-                UpdateLookAt();
+                this._eye0 = this._eye;
+                this._up0 = this._up;
 
+                UpdateLookAt();
+                
                 _isCalibrated = true;
             }
 
@@ -124,6 +129,7 @@ namespace MYCalibration_v4
             if(_newPoints3D.Count==4)
             {
                 GL.Color3(0.0f, 1.0f, 1.0f);
+                GL.Begin(BeginMode.Points);
                 foreach(Vector3 point in _newPoints3D)
                 {
                     GL.Vertex3(point);
@@ -133,6 +139,34 @@ namespace MYCalibration_v4
             }
         }
         #region Rotation
+        public override void RotateEye(float angle)
+        {
+            /*Vector3 axis = this._target - this._eye;
+            axis.Normalize();
+            Matrix4 rot = Matrix4.CreateFromAxisAngle(axis, angle);
+
+            this._eye = Vector3.Transform(this._eye0, rot) + this._target;
+            this._up = Vector3.Transform(this._up0, rot);// + this._target;*/
+
+            Vector3 axis = this._target - this._eye;
+            axis.Normalize();
+            Matrix4 rot = Matrix4.CreateFromAxisAngle(axis, angle);
+            rot = Matrix4.CreateRotationY(angle);
+
+            /*this._eye = Vector3.Transform(this._eye0, rot);// +this._eye0;
+            this._eye = VectMove(this._eye, (_eye0 - _eye), (_eye0 - _eye).Length);
+            this._up = Vector3.Transform(this._up0, rot);// + this._target;
+            */
+
+            this._target = Vector3.Transform(this._target, rot);
+
+            
+            UpdateLookAt();
+
+            //this._eye0 = Vector3.Transform(this._eye0, rot);
+            //this._up0 = Vector3.Transform(this._up0, rot);
+        }
+
         public override void KeyDOWN()
         {
             return;
@@ -192,20 +226,26 @@ namespace MYCalibration_v4
         {
             if (surface._isCalibrated && _listPoints.Count==4)
             {
-                Vector3 vectEye = surface._eye - this._eye;
-                //this._eye = VectMove(this._eye, vectEye, vectEye.Length);
 
-                Vector3 vectUp =  surface._up - this._up;
-                //this._up = VectMove(this._up, vectUp, vectUp.Length);
-                
+                /*Vector3 axis = Vector3.Cross(this._target, surface._target);
+                axis = axis - this._target;
+                axis.Normalize();
 
-                foreach(Vector3 point in _listPoints)
-                {
-                    
-                    Vector3 newpoint = point;
-                    newpoint = VectMove(newpoint, vectEye, vectEye.Length);
-                    newpoint = VectMove(newpoint, vectUp, vectUp.Length);
-                }
+                Vector3 tar = this._target - this._eye;
+                Vector3 tarS = surface._target - surface._eye;
+
+                float angle = Vector3.CalculateAngle(tar, tarS);
+
+                _angleTest = 0.005f ;
+
+                Matrix4 rot = Matrix4.CreateFromAxisAngle(axis, -angle);
+
+                this._eye = Vector3.Transform(this._eye, rot);
+                this._up = Vector3.Transform(this._up, rot);
+                */
+
+                /*Matrix4 Cam = new Matrix4(new Vector4(this._eye,0),
+                                          new Vector4(this._eye, 0))*/
 
                 angleAxe3 = 0;
                 angleUp = 0;
@@ -220,6 +260,22 @@ namespace MYCalibration_v4
                 angleAxe3 = 0;
                 angleUp = 0;
             }
+        }
+
+        //
+        private void RotateAroundAxe3(float angle)
+        {
+            Vector3 axis = this._axe3 - this._eye;
+            axis.Normalize();
+            Matrix4 rot = Matrix4.CreateFromAxisAngle(axis, angle);
+
+            this._eye = Vector3.Transform(this._eye0, rot) + this._target;
+            this._up = Vector3.Transform(this._up0, rot);// + this._target;
+
+            this._eye0 = Vector3.Transform(this._eye0, rot);
+            this._up0 = this._up;
+
+            UpdateLookAt();
         }
 
     }

@@ -23,7 +23,7 @@ namespace MYCalibration_v4
         private int _backgroundTextureId;
         private int _width;
         private int _height;*/
-        private Vector3 _target0, _eye0, _up0;
+        protected Vector3 _target0, _eye0, _up0;
 
 
         #region Constructeurs
@@ -56,10 +56,11 @@ namespace MYCalibration_v4
             _useDoubleMatrix = false;
             _isCalibrated = false;
             setPlanPoints(5.0f, 5.0f);
-            _target0 = target;
-            _eye0 = eye;
+            this._target0 = target;
+            this._eye0 = eye;
             this._up0 = up;
             _axe3 = Vector3.Cross(up, target);
+            
         }
         #endregion
 
@@ -327,7 +328,17 @@ namespace MYCalibration_v4
 
             GL.End();
 
+            GL.Begin(BeginMode.Points);
+            GL.PointSize(20);
+            foreach(Vector3 point in _listPoints)
+            {
+                GL.Vertex3(point);
+            }
+            GL.End();
+
             GL.Color3(1.0f, 1.0f, 1.0f);
+
+            
         }
 
         public override void DrawPlan(Color4 colorPlan)

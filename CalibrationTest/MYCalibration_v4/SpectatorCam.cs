@@ -84,6 +84,22 @@ namespace MYCalibration_v4
 
         #region Control
         #region Rotation
+
+        public override void RotateEye(float angle)
+        {
+            Vector3 axis = this._target - this._eye;
+            axis.Normalize();
+            Matrix4 rot = Matrix4.CreateFromAxisAngle(axis, angle);
+
+            this._eye = Vector3.Transform(this._eye0, rot) + this._target;
+            this._up = Vector3.Transform(this._up0, rot);// + this._target;
+
+            //this._eye0 = Vector3.Transform(this._eye0, rot);
+            //this._up0 = this._up;
+
+            UpdateLookAt();
+        }
+
         public override void KeyDOWN()
         {
             _angleV += 5;

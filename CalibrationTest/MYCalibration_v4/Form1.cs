@@ -662,6 +662,7 @@ namespace MYCalibration_v4
             _calibratedCam.Correction(_surfaceCam,out angle1,out angle2);
             textBoxXangle.Text = "" + angle1;
             textBoxYangle.Text = "" + angle2;
+            Refresh();
         }
 
         private void buttonCamCalib_Click(object sender, EventArgs e)
@@ -775,14 +776,11 @@ namespace MYCalibration_v4
                     textBoxZangle.Text = "" + radianAngleZ;
                     break;
                 case Keys.N:
+                    _angleZ = 1.0f;
+                    radianAngleZ = (float)Math.PI * _angleZ / 180;
 
-                    float mn = (float)Math.PI * 216.2f / 180;
+                    _calibratedCam.RotateEye(radianAngleZ);
 
-                    Matrix4 rotEst = Matrix4.CreateRotationY(mn);
-
-                    _surfaceCam.RotateUp(rotEst);
-                    textBoxZangle.Text = "" + mn;
-                    textBoxYangle.Text = "" + 180 * mn / Math.PI;
                     break;
                 case Keys.NumPad1:
                         _currentCam.LookCam(0);

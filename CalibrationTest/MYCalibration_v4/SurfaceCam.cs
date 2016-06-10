@@ -258,8 +258,9 @@ namespace MYCalibration_v4
             Vector3 axis = this._axe3 - this._eye;
             axis.Normalize();
             Matrix4 rot = Matrix4.CreateFromAxisAngle(axis, angle);
+            rot = Matrix4.CreateRotationY(angle);
 
-            this._eye = Vector3.Transform(this._eye0, rot) + this._target;
+            this._eye = Vector3.Transform(this._target, rot) + this._eye0;
             this._up = Vector3.Transform(this._up0, rot);// + this._target;
 
             UpdateLookAt();
