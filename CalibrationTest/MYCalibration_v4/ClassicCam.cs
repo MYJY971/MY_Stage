@@ -145,7 +145,7 @@ namespace MYCalibration_v4
         {
             if (_backgroundTextureId == 0)
             {
-                GL.ClearColor(new Color4(48,48,48,0));
+                GL.ClearColor(new Color4(1.0f, 1.0f, 1.0f, 0)/*(48,48,48,0)*/);
             }
             else
             {

@@ -243,27 +243,7 @@ namespace MYCalibration_v4
 
         public override void RotateEye(float angle)
         {
-            /*
-            Vector3 axis = VectMove(this._target, Vector3.UnitZ, this._eye.Z - this._target.Z);
-            axis.Normalize();
-            Matrix4 rotZ = Matrix4.CreateRotationZ(angle);
-
-            this._eye = Vector3.Transform(this._eye0, rotZ)+this._target;
-            
-            this._up = Vector3.Transform(this._up0, rotZ);// + this._target;
-
-
-            */
-
-            Vector3 axis = this._axe3 - this._eye;
-            axis.Normalize();
-            Matrix4 rot = Matrix4.CreateFromAxisAngle(axis, angle);
-            rot = Matrix4.CreateRotationY(angle);
-
-            this._eye = Vector3.Transform(this._target, rot) + this._eye0;
-            this._up = Vector3.Transform(this._up0, rot);// + this._target;
-
-            UpdateLookAt();
+            RotateAroundZ(angle);
         }
 
         public void RotateEye(float angle,float angleUp)

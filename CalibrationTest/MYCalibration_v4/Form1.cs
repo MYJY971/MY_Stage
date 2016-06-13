@@ -585,13 +585,13 @@ namespace MYCalibration_v4
             //_eye = Vector3.Transform(_eye, rotationMat);
 
             //
-            textBoxXangle.Text = "" + _calibratedCam._eye;
+            /*textBoxXangle.Text = "" + _calibratedCam._eye;
             textBoxYangle.Text = "" + _calibratedCam._target;
             textBoxZangle.Text = "" + _calibratedCam._up;
 
             textBox5.Text = "" + _surfaceCam._eye;
             textBox6.Text = "" + _surfaceCam._target;
-            textBox7.Text = "" + _surfaceCam._up;
+            textBox7.Text = "" + _surfaceCam._up;*/
             //
 
             Refresh();
@@ -669,9 +669,10 @@ namespace MYCalibration_v4
 
         private void buttonCorrection_Click(object sender, EventArgs e)
         {
-            float angle1, angle2;
-            _calibratedCam.Correction(_surfaceCam,out angle1,out angle2);
-            
+            float yVal, zVal;
+            _calibratedCam.Correction(_surfaceCam,out yVal,out zVal);
+            textBoxYangle.Text =""+ yVal;
+            textBoxZangle.Text = "" + zVal;
             Refresh();
         }
 
@@ -741,16 +742,16 @@ namespace MYCalibration_v4
                         _spectatorCam.KeySpace();
                         break;
                     case Keys.X:
-                        _spectatorCam.KeyX();
-                        break;
+                    _angleZ = -0.01f;//(float)Math.PI * 180 / 180;
+                    _surfaceCam.RotateEye(_angleZ);
+                    break;
                     case Keys.I:
                         _spectatorCam.ReinitializePosition();
                         break;
                     case Keys.C:
-                    _angleZ +=0.01f;//(float)Math.PI * 180 / 180;
+                    _angleZ =0.01f;//(float)Math.PI * 180 / 180;
                     _surfaceCam.RotateEye(_angleZ);
-                    textBoxXangle.Text = "" +(_surfaceCam._target - _surfaceCam._eye).Length;
-                    textBoxYangle.Text = "" + 180.0f* _angleZ/(float)Math.PI;
+                    
                         break;
                     case Keys.V:
                     _angleY+= 0.005f;
@@ -783,25 +784,10 @@ namespace MYCalibration_v4
 
                     
                     _surfaceCam.RotateUp(rotation);
-                    textBoxZangle.Text = "" + radianAngleZ;
+                    
                     break;
                 case Keys.N:
-                    _angleZ =0.5f;
-                    radianAngleZ = (float)Math.PI * _angleZ / 180;
-
-                    _calibratedCam.RotateEye(-radianAngleZ);
-
-                    textBox8.Text = ""+180*radianAngleZ/Math.PI;
-
-                    //
-                    textBoxXangle.Text = "" + _calibratedCam._eye;
-                    textBoxYangle.Text = "" + _calibratedCam._target;
-                    textBoxZangle.Text = "" + _calibratedCam._up;
-
-                    textBox5.Text = "" + _surfaceCam._eye;
-                    textBox6.Text = "" + _surfaceCam._target;
-                    textBox7.Text = "" + _surfaceCam._up;
-                    //
+                    
 
                     break;
                 case Keys.NumPad1:
@@ -864,7 +850,7 @@ namespace MYCalibration_v4
             _angleX = 0.0f;
             _angleY = 0.0f;
             _angleZ = 0.0f;
-            textBoxXangle.Text = "" + (_surfaceCam._target - _surfaceCam._eye).Length;
+            
         }
 
         private Matrix4 GetSurfaceRot(string path)

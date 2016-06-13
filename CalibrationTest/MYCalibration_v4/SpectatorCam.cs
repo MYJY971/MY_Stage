@@ -68,18 +68,10 @@ namespace MYCalibration_v4
         }
 
 
-        /*public override void DrawPlan(Color4 color)
+        public override void DrawPlan(Color4 colorPlan)
         {
-            Color4 colorP1 = color;
-            Color4 colorP2 = new Color4(1 - colorP1.R, 1 - colorP1.G, 1 - colorP1.B, 1.0f);
-
-            //_observedCam1.Projection();
-            _observedCam1.DrawPlan(colorP1);
-            //_observedCam2.Projection();
-            _observedCam2.DrawPlan(colorP2);
-            //Projection();
-            //LookAt();
-        }*/
+            base.DrawPlan(new Color4(0.0f,0.0f, 0.0f,0.0f));
+        }
         #endregion
 
         #region Control
