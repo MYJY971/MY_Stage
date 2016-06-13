@@ -15,7 +15,7 @@ namespace MYCalibration_v4
     public abstract class Camera
     {
         public Matrix4 _projectionMatrix;
-        protected Matrix4 _lookatMatrix;
+        public Matrix4 _lookatMatrix;
         public double[] _projectionMatrixDouble;
         public Vector3 _eye, _target, _up, _axe3;
         protected Color4 _color;

@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.buttonCorrection = new System.Windows.Forms.Button();
             this.textBoxZangle = new System.Windows.Forms.TextBox();
             this.textBoxYangle = new System.Windows.Forms.TextBox();
             this.textBoxXangle = new System.Windows.Forms.TextBox();
@@ -45,7 +49,7 @@
             this.glControl1 = new OpenTK.GLControl();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonCorrection = new System.Windows.Forms.Button();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -54,6 +58,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Silver;
+            this.panel1.Controls.Add(this.textBox8);
+            this.panel1.Controls.Add(this.textBox7);
+            this.panel1.Controls.Add(this.textBox6);
+            this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.buttonCorrection);
             this.panel1.Controls.Add(this.textBoxZangle);
             this.panel1.Controls.Add(this.textBoxYangle);
@@ -69,33 +77,67 @@
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 580);
+            this.panel1.Location = new System.Drawing.Point(3, 579);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1033, 76);
+            this.panel1.Size = new System.Drawing.Size(1089, 77);
             this.panel1.TabIndex = 0;
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.textBox7.Location = new System.Drawing.Point(871, 52);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(194, 22);
+            this.textBox7.TabIndex = 16;
+            // 
+            // textBox6
+            // 
+            this.textBox6.BackColor = System.Drawing.Color.PaleGreen;
+            this.textBox6.Location = new System.Drawing.Point(659, 54);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(206, 22);
+            this.textBox6.TabIndex = 15;
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.Color.IndianRed;
+            this.textBox5.Location = new System.Drawing.Point(447, 55);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(206, 22);
+            this.textBox5.TabIndex = 14;
+            // 
+            // buttonCorrection
+            // 
+            this.buttonCorrection.Location = new System.Drawing.Point(84, 53);
+            this.buttonCorrection.Name = "buttonCorrection";
+            this.buttonCorrection.Size = new System.Drawing.Size(87, 23);
+            this.buttonCorrection.TabIndex = 13;
+            this.buttonCorrection.Text = "CORRIGER";
+            this.buttonCorrection.UseVisualStyleBackColor = true;
+            this.buttonCorrection.Click += new System.EventHandler(this.buttonCorrection_Click);
             // 
             // textBoxZangle
             // 
             this.textBoxZangle.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.textBoxZangle.Location = new System.Drawing.Point(708, 32);
+            this.textBoxZangle.Location = new System.Drawing.Point(871, 31);
             this.textBoxZangle.Name = "textBoxZangle";
-            this.textBoxZangle.Size = new System.Drawing.Size(100, 22);
+            this.textBoxZangle.Size = new System.Drawing.Size(194, 22);
             this.textBoxZangle.TabIndex = 12;
             // 
             // textBoxYangle
             // 
             this.textBoxYangle.BackColor = System.Drawing.Color.PaleGreen;
-            this.textBoxYangle.Location = new System.Drawing.Point(602, 32);
+            this.textBoxYangle.Location = new System.Drawing.Point(659, 32);
             this.textBoxYangle.Name = "textBoxYangle";
-            this.textBoxYangle.Size = new System.Drawing.Size(100, 22);
+            this.textBoxYangle.Size = new System.Drawing.Size(206, 22);
             this.textBoxYangle.TabIndex = 11;
             // 
             // textBoxXangle
             // 
             this.textBoxXangle.BackColor = System.Drawing.Color.IndianRed;
-            this.textBoxXangle.Location = new System.Drawing.Point(496, 32);
+            this.textBoxXangle.Location = new System.Drawing.Point(447, 32);
             this.textBoxXangle.Name = "textBoxXangle";
-            this.textBoxXangle.Size = new System.Drawing.Size(100, 22);
+            this.textBoxXangle.Size = new System.Drawing.Size(206, 22);
             this.textBoxXangle.TabIndex = 10;
             // 
             // buttonReinit
@@ -208,7 +250,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1033, 571);
+            this.panel2.Size = new System.Drawing.Size(1089, 570);
             this.panel2.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -223,24 +265,21 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.55691F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.4431F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1039, 659);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1095, 659);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // buttonCorrection
+            // textBox8
             // 
-            this.buttonCorrection.Location = new System.Drawing.Point(84, 53);
-            this.buttonCorrection.Name = "buttonCorrection";
-            this.buttonCorrection.Size = new System.Drawing.Size(87, 23);
-            this.buttonCorrection.TabIndex = 13;
-            this.buttonCorrection.Text = "CORRIGER";
-            this.buttonCorrection.UseVisualStyleBackColor = true;
-            this.buttonCorrection.Click += new System.EventHandler(this.buttonCorrection_Click);
+            this.textBox8.Location = new System.Drawing.Point(919, 4);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(100, 22);
+            this.textBox8.TabIndex = 17;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1039, 659);
+            this.ClientSize = new System.Drawing.Size(1095, 659);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -272,6 +311,10 @@
         private System.Windows.Forms.TextBox textBoxYangle;
         private System.Windows.Forms.TextBox textBoxXangle;
         private System.Windows.Forms.Button buttonCorrection;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox8;
     }
 }
 

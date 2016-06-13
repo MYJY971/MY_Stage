@@ -580,9 +580,20 @@ namespace MYCalibration_v4
                 textBox3.Text = "" + _listImagePoints.ElementAt(2);
                 textBox4.Text = "" + _listImagePoints.ElementAt(3);
             }
-            
+
             //Matrix4 rotationMat = Matrix4.CreateRotationZ(_angle);
             //_eye = Vector3.Transform(_eye, rotationMat);
+
+            //
+            textBoxXangle.Text = "" + _calibratedCam._eye;
+            textBoxYangle.Text = "" + _calibratedCam._target;
+            textBoxZangle.Text = "" + _calibratedCam._up;
+
+            textBox5.Text = "" + _surfaceCam._eye;
+            textBox6.Text = "" + _surfaceCam._target;
+            textBox7.Text = "" + _surfaceCam._up;
+            //
+
             Refresh();
         }
         #endregion
@@ -660,8 +671,7 @@ namespace MYCalibration_v4
         {
             float angle1, angle2;
             _calibratedCam.Correction(_surfaceCam,out angle1,out angle2);
-            textBoxXangle.Text = "" + angle1;
-            textBoxYangle.Text = "" + angle2;
+            
             Refresh();
         }
 
@@ -776,10 +786,22 @@ namespace MYCalibration_v4
                     textBoxZangle.Text = "" + radianAngleZ;
                     break;
                 case Keys.N:
-                    _angleZ = 1.0f;
+                    _angleZ =0.5f;
                     radianAngleZ = (float)Math.PI * _angleZ / 180;
 
-                    _calibratedCam.RotateEye(radianAngleZ);
+                    _calibratedCam.RotateEye(-radianAngleZ);
+
+                    textBox8.Text = ""+180*radianAngleZ/Math.PI;
+
+                    //
+                    textBoxXangle.Text = "" + _calibratedCam._eye;
+                    textBoxYangle.Text = "" + _calibratedCam._target;
+                    textBoxZangle.Text = "" + _calibratedCam._up;
+
+                    textBox5.Text = "" + _surfaceCam._eye;
+                    textBox6.Text = "" + _surfaceCam._target;
+                    textBox7.Text = "" + _surfaceCam._up;
+                    //
 
                     break;
                 case Keys.NumPad1:
