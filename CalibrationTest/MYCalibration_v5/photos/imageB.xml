@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImagePose>
+  <!--Image pose data-->
+  <ImageData>
+    <isCalibrated>True</isCalibrated>
+    <IsAssociatedWithCalibration>True</IsAssociatedWithCalibration>
+    <CalibrationMode>MireFenetrre</CalibrationMode>
+    <ObjectCalibrationHeight>1.45000004768372</ObjectCalibrationHeight>
+    <ObjectCalibrationWidth>2.20000004768372</ObjectCalibrationWidth>
+    <HeightGroundObjectCalibration>0.930000007152557</HeightGroundObjectCalibration>
+    <ListObjectPoints> 0 0 0, 2.20000004768372 0 0, 2.20000004768372 -1.45000004768372 0, 0 -1.45000004768372 0,</ListObjectPoints>
+    <ListImagePoints> 1695.52425018045 1310.40032944366, 2114.72692038519 1312.47557262363, 2114.61816866578 1592.02390189302, 1692.46054125259 1589.37970484245,</ListImagePoints>
+    <ImagePointHasMoved>True</ImagePointHasMoved>
+    <FocalLengthCorrection>2602.09</FocalLengthCorrection>
+    <ReprojectionError>1.75779115199471</ReprojectionError>
+    <ModeviewMatrix1x16>0.999232470989227 0.0108109749853611 0.0376514010131359 0 0.0142217483371496 -0.995700478553772 -0.091532826423645 0 0.0364999584853649 0.0919980406761169 -0.995090007781982 0 0.822509 0.790765 -13.616086 1 </ModeviewMatrix1x16>
+    <ProjectionMatrix1x16>1.69406901041667 0 0 0 0 -2.25875868055556 0 0 0 0 -1.002002002002 -1 0 0 -2.002002002002 0 </ProjectionMatrix1x16>
+    <CameraInternParams Name="Langlais" Fx="2602.09" Fy="2602.09" K1="-0.169965" K2="0.134545545" P1="0.000688709" P2="-0.00212149" />
+  </ImageData>
+</ImagePose>
