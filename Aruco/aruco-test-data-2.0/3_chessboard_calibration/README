@@ -1,0 +1,30 @@
+This video shows the new chessboard of aruco. 
+
+Files:
+
+chessboard.mp4: video showing the board
+aruco_calibration_board_a4.pdf: printable version of the board
+aruco_calibration_board_a4.yml: file with the configuration of the board indicating how many markers it has, where they are, etc.
+camera.yml: intrisic parameters of the camera that recorded the video. It has been generated using the aruco_calibration program on this video.(see below)
+from_images: a directory with images for calibration
+
+Using the video:
+
+
+You can use the video to test the calibration app as
+
+./utils_calibration/aruco_calibration path_to/chessboard.mp4 res.yml -size 0.035
+
+
+
+Also, you can test the  detection using :
+
+./utils_calibration/aruco_test_markermap  path_to/chessboard.mp4 path_to/aruco_calibration_board_a4.yml -c path_to/chessboard/camera.yml -s 0.035 -corner 1
+
+
+
+You can also Calibrate from a set of images instead of a video:
+
+
+
+./utils_calibration/aruco_calibration_fromimages ~/out.yml -size 0.035 path_to/from_images/*

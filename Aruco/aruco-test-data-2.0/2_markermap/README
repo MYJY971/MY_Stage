@@ -1,0 +1,40 @@
+
+This directorry contains files to test the markermap utils
+
+Contents:
+map.png:  image of the map 
+map.pdf:  pdf version of the png image to be printed on A4 paper
+map.yml:  marker map configuration file. Indicates the position of each marker. Must be provided to aruco
+map.mp4: video showing the map 
+camera.yml: calibration parameters of camera that recorded the video
+map_screenshot.png: image showing the trajectory of the camera
+map.pcd: point cloud library
+The map has been generated using the following command line tool:
+
+./utils_markermap/aruco_create_markermap 5:7 map.png map.yml -s 200 -t 0
+
+It genereates the file map.png and map.yml. The first one is the image of the map. We have converted it into a
+pdf file you can print. The second one is the map description. It indicates the position of each marker w.r.t to the center of the set.
+The positions are expressed in pixels, since we do not know in advance the real size it will have once printed.
+
+Print you board and use a measure to determine the real size of each marker. Then, you can test the sequence using
+
+
+./utils_markermap/aruco_test_markermap map.mp4 map.yml -c camera.yml -s 0.03 [-pcd map.pcd]
+
+The parameter -s is the size of the marker. camera.yml are the camera parmeters we have previously calibrated.
+
+
+The final parameter is optional. If enabled, prints at the end a pcd file (Point Cloud Library) that you can visualize with
+pcl_viewer. The file shows the 3D marker locations (in blue) along the the trajectory of the camera (in green). A snapshot of the result can be seen in map_screenshot.png.
+
+
+
+
+
+
+
+
+
+ 
+

@@ -1,0 +1,27 @@
+
+
+
+Contents
+
+map2.mp4    : video showing the a video file with a marker map
+map2.yml    : marker map configuration file
+camera.yml  : parameters of camera that recorded the video
+map2.pcd    : Point Cloud file (pcl library) showing the marker map and the camera trajectory. Open with pcl_viewer
+map2_screenshot.png :  snapshot of the map2.pcd showing the markers (in blue) and the camera trajetory (in green).
+
+
+This folder contains the necessary material to test an advanced example of marker map. In this case, the set of markers
+are placed along the environment in unknown locations. Using the marker_mapper library (http://www.uco.es/investiga/grupos/ava/node/57/), we have 
+determined the 3D location of the markers. As a result, the marker_mapper library has returned the file map2.yml. The map indicates the 3d position of the markers, expressed in meters. 
+
+Then, this file can be used to locate the camera in the environment. To test the results, use
+
+utils_markermap/aruco_test_markermap map2.mp4 map2.yml -c camera.yml  -pcd map2.pcd
+
+
+As you'll see, the center of the reference system is marker 244. As a result, you will obtain the pcd file (use pcl_viewer program of Point Cloud Library) to visualize. An screenshot can be seen in
+map2_screenshot.png
+
+
+
+
