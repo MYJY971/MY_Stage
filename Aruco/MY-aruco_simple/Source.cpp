@@ -9,7 +9,6 @@ using namespace cv;
 using namespace aruco;
 
 
-
 //class for parsing command line
 //operator [](string cmd) return  whether cmd is present //string operator ()(string cmd) return the value as a string: -cmd value
 class CmdLineParser 

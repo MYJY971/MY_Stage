@@ -6,7 +6,7 @@
 #include <opencv2/highgui/highgui.hpp>
 using namespace cv;
 using namespace aruco;
-
+//using namespace aru
 MarkerDetector MDetector;
 VideoCapture TheVideoCapturer;
 vector< Marker > TheMarkers;
@@ -41,16 +41,25 @@ int main(int argc, char **argv) {
 			return false;
 		}
 
+		/*
 		///////////  PARSE ARGUMENTS
-		string TheInputVideo = /*video_path/**/argv[1]/**/;
+		string TheInputVideo = argv[1];
 		// read camera parameters if passed
-		if (cml["-c"])  TheCameraParameters.readFromXMLFile(camParam_path/*cml("-c")*/);
+		if (cml["-c"])  TheCameraParameters.readFromXMLFile(camParam_path);
 		float TheMarkerSize = std::stof(cml("-s", "-1"));
 		aruco::Dictionary::DICT_TYPES  TheDictionary = Dictionary::getTypeFromString(cml("-d", "ARUCO"));
+		*/
+
+		////Read camera parameters if passed
+		if (cml["-c"])  TheCameraParameters.readFromXMLFile(camParam_path);
+		float TheMarkerSize = 0.05; //std::stof(cml("-s", "-1"));
+		aruco::Dictionary::DICT_TYPES  TheDictionary = Dictionary::getTypeFromString(cml("-d", "ARUCO"));
+		
+
 
 		///////////  OPEN VIDEO
 		// read from camera or from  file
-		if (TheInputVideo.find("live") != string::npos) {
+		/*if (TheInputVideo.find("live") != string::npos) {
 			int vIdx = 0;
 			// check if the :idx is here
 			char cad[100];
@@ -65,7 +74,14 @@ int main(int argc, char **argv) {
 		else TheVideoCapturer.open(TheInputVideo);
 		// check video is open
 		if (!TheVideoCapturer.isOpened())  throw std::runtime_error("Could not open video");
-
+		*/
+		///////////  OPEN VIDEO
+		int vIdx = 0;
+		cout << "Opening camera index "<< vIdx << endl;
+		TheVideoCapturer.open(vIdx);
+		waitTime = 10;
+		// check video is open
+		if (!TheVideoCapturer.isOpened())  throw std::runtime_error("Could not open video");
 
 		///// CONFIGURE DATA
 		// read first image to get the dimensions
@@ -74,14 +90,15 @@ int main(int argc, char **argv) {
 			TheCameraParameters.resize(TheInputImage.size());
 
 		MDetector.setDictionary(TheDictionary);//sets the dictionary to be employed (ARUCO,APRILTAGS,ARTOOLKIT,etc)
-		MDetector.setThresholdParams(7, 7);
-		MDetector.setThresholdParamRange(2, 0);
+		//MDetector.setThresholdParams(7, 7);
+		//MDetector.setThresholdParamRange(2, 0);
+		
 		//gui requirements : the trackbars to change this parameters
-		iThresParam1 = MDetector.getParams()._thresParam1;
-		iThresParam2 = MDetector.getParams()._thresParam2;
+		//iThresParam1 = MDetector.getParams()._thresParam1;
+		//iThresParam2 = MDetector.getParams()._thresParam2;
 		cv::namedWindow("in");
-		cv::createTrackbar("ThresParam1", "in", &iThresParam1, 25, cvTackBarEvents);
-		cv::createTrackbar("ThresParam2", "in", &iThresParam2, 13, cvTackBarEvents);
+		//cv::createTrackbar("ThresParam1", "in", &iThresParam1, 25, cvTackBarEvents);
+		//cv::createTrackbar("ThresParam2", "in", &iThresParam2, 13, cvTackBarEvents);
 
 		//go!
 		char key = 0;
@@ -90,20 +107,21 @@ int main(int argc, char **argv) {
 		do {
 
 			TheVideoCapturer.retrieve(TheInputImage);
+			
 			// copy image
-			double tick = (double)getTickCount(); // for checking the speed
+			//double tick = (double)getTickCount(); // for checking the speed
 												  // Detection of markers in the image passed
 			TheMarkers = MDetector.detect(TheInputImage, TheCameraParameters, TheMarkerSize);
 			// chekc the speed by calculating the mean speed of all iterations
-			AvrgTime.first += ((double)getTickCount() - tick) / getTickFrequency();
-			AvrgTime.second++;
-			cout << "\rTime detection=" << 1000 * AvrgTime.first / AvrgTime.second << " milliseconds nmarkers=" << TheMarkers.size() << std::endl;
+			//AvrgTime.first += ((double)getTickCount() - tick) / getTickFrequency();
+			//AvrgTime.second++;
+			//cout << "\rTime detection=" << 1000 * AvrgTime.first / AvrgTime.second << " milliseconds nmarkers=" << TheMarkers.size() << std::endl;
 
 			// print marker info and draw the markers in image
 			TheInputImage.copyTo(TheInputImageCopy);
 
 			for (unsigned int i = 0; i < TheMarkers.size(); i++) {
-				cout << TheMarkers[i] << endl;
+				//cout << TheMarkers[i] << endl;
 				TheMarkers[i].draw(TheInputImageCopy, Scalar(0, 0, 255), 1);
 			}
 
@@ -117,7 +135,7 @@ int main(int argc, char **argv) {
 			// DONE! Easy, right?
 			// show input with augmented information and  the thresholded image
 			cv::imshow("in", TheInputImageCopy);
-			cv::imshow("thres", MDetector.getThresholdedImage());
+			//cv::imshow("thres", MDetector.getThresholdedImage());
 
 
 			key = cv::waitKey(waitTime); // wait for key to be pressed
